@@ -1,0 +1,196 @@
+.navDark {
+  height: 100%;
+  color: #eaeaea;
+  position: fixed;
+  right:0;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  background-color: #2D333C;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding: 32px;
+  border: 0px;
+  border-right: 1px solid black;
+}
+
+.navDark > a {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #A1A3B5;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: #333;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+}
+
+.navDark > a:hover {
+  background-color: #686A75;
+  cursor:pointer;
+}
+
+.navDark > button {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #333;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+}
+
+.navDark > button:hover {
+  background-color: black;
+  cursor:pointer;
+}
+
+.navDark > p {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #333;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid white;
+  transition: all 0.8s ease;
+}
+
+.navDark > buttonset {
+  margin: 0px;
+  color: white;
+  text-decoration: none;
+  background: #333;
+  width: 50px;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 7px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+}
+
+.navDark > buttonset:hover {
+  background-color: black;
+  cursor:pointer;
+}
+
+.nav {
+  height: 100%;
+  color: black;
+  position: fixed;
+  right:0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 250px;
+  background-color:#EFEDEE;
+  padding: 32px;
+  border: 0px;
+  border-right: 1px solid #eaeaea;
+}
+
+.nav > a {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: #333;
+  border: 1px solid #eaeaea;
+  transition: all 0.8s ease;
+}
+
+.nav > a:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+.nav > button {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid #eaeaea;
+  transition: all 0.8s ease;
+}
+
+.nav > button:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+
+
+.nav > p {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+}
+
+.nav > buttonset {
+  margin: 0px;
+  color: black;
+  text-decoration: none;
+  background: white;
+  width: 50px;
+  border-radius: 18px;
+  font-size: 14px;
+  padding: 7px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+}
+
+.nav > buttonset:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+.input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+}
