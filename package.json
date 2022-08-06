@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@arcgis/core": "^4.25.0-next.20220802",
+    "@arcgis/core": "^4.24.7",
     "@arcgis/webpack-plugin": "^4.22.0",
     "@esri/react-arcgis": "^5.2.0",
     "@fortawesome/fontawesome-svg-core": "^6.1.2",
@@ -21,6 +21,7 @@
     "deck.gl": "^8.8.6",
     "esri": "^0.0.1-security",
     "esri-loader": "^3.6.0",
+    "esri-loader-hooks": "^0.4.0",
     "git": "^0.1.5",
     "google-map-react": "^2.2.0",
     "google-maps": "^4.3.3",

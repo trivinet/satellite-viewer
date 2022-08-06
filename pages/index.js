@@ -67,7 +67,7 @@ export default function Home() {
           </a>
 
           <a
-            href="/Map3D"
+            href="/map3D"
             className={styles.card}
           >
             <h2><icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/>3D Maps</icon> &rarr;</h2>

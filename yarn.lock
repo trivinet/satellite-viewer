@@ -7,17 +7,17 @@
   resolved "https://registry.yarnpkg.com/@a11y/focus-trap/-/focus-trap-1.0.5.tgz#0748189c37ca21255c702aa5de3ee00ed4821d22"
   integrity sha512-3JOd6g+BALysWS8LNf0qdB8ltR651H/RCLAvUmfS0LIHwHO579XfjZUIZbURYiAZrcbp1CBAq4QZ2YwKNQZ1hw==
 
-"@arcgis/core@^4.25.0-next.20220802":
-  version "4.25.0-next.20220802"
-  resolved "https://registry.yarnpkg.com/@arcgis/core/-/core-4.25.0-next.20220802.tgz#9708204bd54cd614d4968aabf7a69f15fdf198fb"
-  integrity sha512-RUsTz9o4BFd+hhgvBVCKuFZN5zmtipd56VSEOkIXBnpxsf8X9gKWQA2DvUL7P8LpxviQgWMylB6e3F8a99PoLg==
+"@arcgis/core@^4.24.7":
+  version "4.24.7"
+  resolved "https://registry.yarnpkg.com/@arcgis/core/-/core-4.24.7.tgz#a8161f48967100d5e7cc5b400094cb66c3f9687c"
+  integrity sha512-uDkF4/3zOOFDzFEXxAaENhtz7hhkmOw71R96rfVPjqIfRxd2HxgrpNlrjXI8xYC2ub8rRpBZ6WmxlvaCn/zu7Q==
   dependencies:
-    "@esri/arcgis-html-sanitizer" "~2.11.0"
+    "@esri/arcgis-html-sanitizer" "~2.10.0"
     "@esri/calcite-colors" "~6.0.1"
-    "@esri/calcite-components" "1.0.0-beta.86"
+    "@esri/calcite-components" "1.0.0-beta.82"
     "@popperjs/core" "~2.11.5"
     focus-trap "~6.9.4"
-    luxon "~3.0.1"
+    luxon "~2.4.0"
     sortablejs "~1.15.0"
 
 "@arcgis/webpack-plugin@^4.22.0":
@@ -322,27 +322,27 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@esri/arcgis-html-sanitizer@~2.11.0":
-  version "2.11.0"
-  resolved "https://registry.yarnpkg.com/@esri/arcgis-html-sanitizer/-/arcgis-html-sanitizer-2.11.0.tgz#d1107dc55086c22c7d15626fdca50ec4b37eb676"
-  integrity sha512-eYQw1In+Jkop6YR6QW5R9ruYDwbxSYIlHF6sg3OwVbN65Mie3howP7ut3GcfAmIOIYegnPYCv4TDhkkF1nWcfw==
+"@esri/arcgis-html-sanitizer@~2.10.0":
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/@esri/arcgis-html-sanitizer/-/arcgis-html-sanitizer-2.10.0.tgz#993a5d9c1433a61fc6ffcf00917ac11e6341354d"
+  integrity sha512-OGrczx3sbszMVQESGdZf2BaZL/oGMm+wuFgF6od50ff0WThjiJDTxi5SXIleRF6QQVFywsab3sFbQ77Q/gSzsg==
   dependencies:
     lodash.isplainobject "^4.0.6"
-    xss "^1.0.13"
+    xss "^1.0.11"
 
 "@esri/calcite-colors@~6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@esri/calcite-colors/-/calcite-colors-6.0.1.tgz#770ec4d77bbbd4da32a66450eb93f4c780c0ff28"
   integrity sha512-iGUIIpeMCJSTDGw4ZsxLwwxkml0QzOUJTtysjRryGbhSt183NEtwWKS+yQO19utXQz5LbQWjoav6x6CsawElkw==
 
-"@esri/calcite-components@1.0.0-beta.86":
-  version "1.0.0-beta.86"
-  resolved "https://registry.yarnpkg.com/@esri/calcite-components/-/calcite-components-1.0.0-beta.86.tgz#b74730815c153826ded2b2ada85d751667d3a6a1"
-  integrity sha512-X6vvIMOY00OWGJZ+CGdHRH1ng8oHWESMafr6/fQtOnRuynXcE7YiCGAFRSbM4qZOnDq+n7FEduGuV3FLqAV71g==
+"@esri/calcite-components@1.0.0-beta.82":
+  version "1.0.0-beta.82"
+  resolved "https://registry.yarnpkg.com/@esri/calcite-components/-/calcite-components-1.0.0-beta.82.tgz#797c6fe36179c37989b9aa08e65c2dc676fa22d4"
+  integrity sha512-wAJeEZ4g/TiJ4J6z/GO9YQFSFubQERCWEo71jr2xLmegxEQIYHL3AvJaLmp0IBsr2tVzRG1TN2PVuew4ljp8WA==
   dependencies:
     "@a11y/focus-trap" "1.0.5"
     "@popperjs/core" "2.11.5"
-    "@stencil/core" "2.16.1"
+    "@stencil/core" "2.15.1"
     "@types/color" "3.0.3"
     color "4.2.3"
     form-request-submit-polyfill "2.0.0"
@@ -902,10 +902,10 @@
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.1.4.tgz#0c8b74c50f29ee44f423f7416829c0bf8bb5eb27"
   integrity sha512-LwzQKA4vzIct1zNZzBmRKI9QuNpLgTQMEjsQLf3BXuGYb3QPTP4Yjf6mkdX+X1mYttZ808QpOwAzZjv28kq7DA==
 
-"@stencil/core@2.16.1":
-  version "2.16.1"
-  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.16.1.tgz#f6752026af72a10356d5b1f27e2db6b1ee0c730f"
-  integrity sha512-s/UJp9qxExL3DyQPT70kiuWeb3AdjbUZM+5lEIXn30I2DLcLYPOPXfsoWJODieQywq+3vPiLZeIdkoqjf6jcSw==
+"@stencil/core@2.15.1":
+  version "2.15.1"
+  resolved "https://registry.yarnpkg.com/@stencil/core/-/core-2.15.1.tgz#ed308d2f48c086aec63c63c33b915702036b9aee"
+  integrity sha512-NYjRwQnjzscyFfqK+iIwRdr/dgYn33u6KE7kyQWdi7xsCkqMHalXYgJlN/QBQ9PN3qXmXKeBrJNG8EkNdCbK5g==
 
 "@swc/helpers@0.4.2":
   version "0.4.2"
@@ -1915,6 +1915,13 @@ esrecurse@^4.3.0:
   dependencies:
     estraverse "^5.2.0"
 
+esri-loader-hooks@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/esri-loader-hooks/-/esri-loader-hooks-0.4.0.tgz#e617edf0e3de20ab348c978be6c1df6da7cbe2ca"
+  integrity sha512-0q+wHEWGvhp5cQCyHAJ+0Ovi77PquGncrS8K6zZYY+TlaWFNNcLbv4LcZtKwrJK3fwLbHuSEhAFaCPPuVZQAKw==
+  dependencies:
+    hooks "^0.3.2"
+
 esri-loader@^2.6.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/esri-loader/-/esri-loader-2.16.0.tgz#995c83f2ae93bdae0e64b36bb821d29dc56c039d"
@@ -2282,6 +2289,11 @@ hoist-non-react-statics@^3.0.0:
   dependencies:
     react-is "^16.7.0"
 
+hooks@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/hooks/-/hooks-0.3.2.tgz#a31f060c2026cea6cf1ca3eb178430e718e1c4a3"
+  integrity sha512-TqeFzUf12rSzcbm5lUls81jimUC8TmXZ4ANPxxeeMou09hrjBcHYhAQ0WgyN5YqNCXOzz7L6xVNl/+ctFuSeOw==
+
 htmlparser2@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-4.1.0.tgz#9a4ef161f2e4625ebf7dfbe6c0a2f52d18a59e78"
@@ -2648,10 +2660,10 @@ lru-cache@^6.0.0:
   dependencies:
     yallist "^4.0.0"
 
-luxon@~3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-3.0.1.tgz#6901111d10ad06fd267ad4e4128a84bef8a77299"
-  integrity sha512-hF3kv0e5gwHQZKz4wtm4c+inDtyc7elkanAsBq+fundaCdUBNJB1dHEGUZIM6SfSBUlbVFduPwEtNjFK8wLtcw==
+luxon@~2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-2.4.0.tgz#9435806545bb32d4234dab766ab8a3d54847a765"
+  integrity sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA==
 
 mapbox-gl@^2.9.2:
   version "2.9.2"
@@ -3703,7 +3715,7 @@ wrappy@1:
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==
 
-xss@^1.0.13:
+xss@^1.0.11:
   version "1.0.13"
   resolved "https://registry.yarnpkg.com/xss/-/xss-1.0.13.tgz#6e48f616128b39f366dfadc57411e1eb5b341c6c"
   integrity sha512-clu7dxTm1e8Mo5fz3n/oW3UCXBfV89xZ72jM8yzo1vR/pIS0w3sgB3XV2H8Vm6zfGnHL0FzvLJPJEBhd86/z4Q==

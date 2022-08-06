@@ -194,6 +194,20 @@
   margin-left: 0.5rem;
 }
 
+.container::-webkit-scrollbar{
+  width: 10px;
+}
+
+.container::-webkit-scrollbar-track{
+  background:#2D333C;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb{
+  background:#333;
+  border-radius: 10px;
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
