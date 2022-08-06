@@ -10,8 +10,8 @@ import assignTLE from './assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
 
   
-const totalpoints = 500;
-const intervalo = 50000;/* 
+const totalpoints = 50;
+const intervalo = 10000;/* 
 const hora = new Date(100000000000);
 const horaActual = Date.now(); */
 

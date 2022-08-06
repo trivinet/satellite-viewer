@@ -1922,6 +1922,11 @@ esri-loader-hooks@^0.4.0:
   dependencies:
     hooks "^0.3.2"
 
+esri-loader-react@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/esri-loader-react/-/esri-loader-react-2.0.3.tgz#8fbb524dc7ec33b366c68aff9018ced8c26f8b9d"
+  integrity sha512-Q2EywQ0aRIcTTe+GF/HJYcSGezBKSE9Vo0mScebRvj87bXa+DJjRsfZKke4aVp1+gdHDxV3h40UApRCDwuz29A==
+
 esri-loader@^2.6.0:
   version "2.16.0"
   resolved "https://registry.yarnpkg.com/esri-loader/-/esri-loader-2.16.0.tgz#995c83f2ae93bdae0e64b36bb821d29dc56c039d"

@@ -22,6 +22,7 @@
     "esri": "^0.0.1-security",
     "esri-loader": "^3.6.0",
     "esri-loader-hooks": "^0.4.0",
+    "esri-loader-react": "^2.0.3",
     "git": "^0.1.5",
     "google-map-react": "^2.2.0",
     "google-maps": "^4.3.3",
