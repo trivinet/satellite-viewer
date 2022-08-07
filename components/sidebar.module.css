@@ -8,9 +8,11 @@
   background-color: #2D333C;
   padding: 32px;
   border: 0px;
-  /* border-right: 1px solid black; */
+  opacity: 0.5;
 }
-
+.navDark:hover {
+  opacity: 1;
+}
 .navDark > a {
   margin: 8px 0;
   color: #eaeaea;
@@ -113,7 +115,11 @@
   background-color: #2D333C;
   padding: 32px;
   border: 0px;
-  /* border-right: 1px solid black; */
+  opacity: 0.5;
+}
+
+.navDarkClose:hover {
+  opacity: 1;
 }
 
 .navDarkClose > a {
@@ -212,7 +218,11 @@
   background-color:#EFEDEE;
   padding: 32px;
   border: 0px;
-  /* border-right: 1px solid #eaeaea; */
+  opacity: 0.5;
+}
+
+.nav:hover {
+  opacity: 1;
 }
 
 .nav > a {
@@ -306,7 +316,11 @@
   background-color:#EFEDEE;
   padding: 32px;
   border: 0px;
-  /* border-right: 1px solid #eaeaea; */
+  opacity: 0.5;
+}
+
+.navClose:hover {
+  opacity: 1;
 }
 
 .navClose > a {

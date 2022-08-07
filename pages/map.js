@@ -10,8 +10,8 @@ import assignTLE from './assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
 
   
-const totalpoints = 50;
-const intervalo = 10000;/* 
+const totalpoints = 250;
+const intervalo = 40000;/* 
 const hora = new Date(100000000000);
 const horaActual = Date.now(); */
 
@@ -35,13 +35,15 @@ export default function SimpleMap(){
                 height: '100vh',
                 width: '100%',
                 "padding-right":'250px',
-                "padding-left":'250px'
+                "padding-left":'250px',
+                background: 'black'
         })
         } else {return({
             height: '100vh',
             width: '100%',
             "padding-right":'250px',
-            "padding-left":'100px'
+            "padding-left":'100px',
+            background: 'black'
         })}
     }
 
@@ -126,7 +128,6 @@ else {
      <> 
       <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
       <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} />
-
     <div style={styleMap(sidebarOpen)}>
     <GoogleMapReact className="Mapa"
       bootstrapURLKeys={{ key: "AIzaSyDKrg6ygIgLkBGpUX29D9hc2OtKprEQvGY" }}

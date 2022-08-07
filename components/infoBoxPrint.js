@@ -5,6 +5,7 @@ import assignTLE from '../pages/assignTLE';
 import Sidebar from './sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
+import { Scrollbars } from 'react-custom-scrollbars';
 
 /* const tle = `ISS (ZARYA)
   1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
@@ -35,15 +36,18 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints}) {
         )
       }
   return (
+    
     <>
+     
     <nav className={dark?(styles.navDark):(styles.nav)}>
           <>
+                  
             <icon onClick={() =>setSelectedSat((p)=>!p)}><FontAwesomeIcon icon={(selectedSat)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Selected Satellite</icon>
             {selectedSat?(<>{<>
             <p>CHOSEN ID: {IDsel}</p>
             <p>TLE: {assignTLE(IDsel)}</p>
             </>}</>):(<>{<>
-            <p /* hidden={true} */>TLE: {assignTLE(IDsel)}</p>
+            <p hidden={true}>TLE: {assignTLE(IDsel)}</p>
             </>}</>)}
             <icon onClick={() =>setSettings((p)=>!p)}><FontAwesomeIcon icon={(settings)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Settings</icon>
             {settings?(<>
@@ -62,12 +66,12 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints}) {
               <icon onClick={() =>setSettingsPoints((p)=>!p)}><FontAwesomeIcon icon={(settingsPoints)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/> Total points</icon>
               {settingsPoints?(<>{<>
                 <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(100)}}>
-                100
+                100pts
                 </buttonset>
-                <buttonset className={styles.buttonset} onClick={() => {setInterval(200)}}>
-                200
+                <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(200)}}>
+                200pts
                 </buttonset>
-                <buttonset className={styles.buttonset} onClick={() => {setInterval(500)}}>
+                <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(500)}}>
                 500
                 </buttonset></>
               }</>):('')}
@@ -75,8 +79,11 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints}) {
             <icon onClick={() =>setAvailableSat((p)=>!p)}><FontAwesomeIcon icon={(availableSats)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>SATELLITES</icon>
             
             {availableSats?(<>{itemsArchive}</>):('')}
+            
           </>
+          
     </nav>
+    
     </>
     )
 }
