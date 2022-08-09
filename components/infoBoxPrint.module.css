@@ -32,7 +32,18 @@
   outline: 1px solid slategrey;
 }
 
-
+.navDark > input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: #333;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+  transition: all 0.8s ease;
+}
 
 .navDark > a {
   margin: 8px 0;
@@ -91,12 +102,13 @@
 }
 
 .navDark > buttonset {
-  margin: 0px;
+  margin-right: 0px;
   color: white;
   text-decoration: none;
   background: #333;
   width: 50px;
-  border-radius: 4px;
+  border-radius: 8px;
+  text-align: center;
   font-size: 14px;
   padding: 7px;
   font-weight: 600;
@@ -124,6 +136,18 @@
   border: 0px;
   border-right: 1px solid #eaeaea;
   opacity: 0.5;
+}
+
+.nav > input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+  transition: all 0.8s ease;
 }
 
 .nav:hover{
@@ -208,7 +232,8 @@
   text-decoration: none;
   background: white;
   width: 50px;
-  border-radius: 18px;
+  border-radius: 8px;
+  text-align: center;
   font-size: 14px;
   padding: 7px;
   font-weight: 600;

@@ -12,6 +12,7 @@ const IDdefault=25544;
 const totalpoints = 200;
 const intervalo = 50000;
 const darkDefault = true;
+const defaultCenter = [-101.17, 21.78];
 
 
 // hooks allow us to create a map component as a function
@@ -41,6 +42,8 @@ export default function PointMap() {
   const vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
     [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
   
+  var center = [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000];
+
   var polylineVert = {
     type: "polyline", // autocasts as new Polyline()
     paths: [vertLine]
@@ -79,6 +82,10 @@ export default function PointMap() {
     markersFuture[i]=[posiciones[i].lng,posiciones[i].lat,10000];
   }
 
+  var polylinePast = {
+    type: "polyline", // autocasts as new Polyline()
+    paths: [markersPast]
+  };
 
   var polylinePast = {
     type: "polyline", // autocasts as new Polyline()
@@ -120,7 +127,6 @@ export default function PointMap() {
   const options = {
       view: {
         zoom: 2,
-        center: [-101.17, 21.78],
         ui: {
           components:['attribution']
         },

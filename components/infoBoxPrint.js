@@ -25,33 +25,59 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints}) {
     const [IDsel, setIDsel] = React.useState(IDdefault);
     //var [TLE,setTLE]= React.useState(TLEdefault);
     
+
+    
+
     var activeSorted = active.sort((a,b) => a.OBJECT_NAME - b.OBJECT_NAME);
 
-    var itemsArchive=[];
+    var itemsArchiveBuildInitial = [];
       for (let i = 0; i < activeSorted.length; i++) {
-        itemsArchive.push(
+        itemsArchiveBuildInitial.push(
         <button onClick={() => {setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID)}}>
           <a>{activeSorted[i].OBJECT_NAME}</a>
         </button>
         )
       }
+    
+    const [itemsArchive,setItemsArchive] = useState(itemsArchiveBuildInitial);
+    const [inputSaved,setInputSaved] = useState('a');
+    
+
+    function handleChange(event) {
+      var itemsArchiveBuild=[];
+      setInputSaved(event.target.value);
+      if(event.target.value===''){setItemsArchive(itemsArchiveBuildInitial)} else{
+      for (let i = 0; i < activeSorted.length; i++) {
+        if(event.target.value===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value.toUpperCase()===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value===activeSorted[i].NORAD_CAT_ID.toString().substring(0,event.target.value.length))
+        {
+          itemsArchiveBuild.push(
+          <button onClick={() => {setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID)}}>
+            <a>{activeSorted[i].OBJECT_NAME}</a>
+          </button>
+          )
+        }}
+        setItemsArchive(itemsArchiveBuild);
+        return(itemsArchive)
+    }
+  }
+
   return (
     
     <>
      
     <nav className={dark?(styles.navDark):(styles.nav)}>
           <>
-                  
-            <icon onClick={() =>setSelectedSat((p)=>!p)}><FontAwesomeIcon icon={(selectedSat)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Selected Satellite</icon>
+            <input placeholder="Search..." onChange={handleChange} onClick={() =>setAvailableSat((p)=>true)}/>      
+            <p><icon onClick={() =>setSelectedSat((p)=>!p)}><FontAwesomeIcon icon={(selectedSat)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Selección</p>
             {selectedSat?(<>{<>
-            <p>CHOSEN ID: {IDsel}</p>
-            <p>TLE: {assignTLE(IDsel)}</p>
+            <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>CHOSEN ID: {IDsel}</p>
+            <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>TLE: {assignTLE(IDsel)}</p>
             </>}</>):(<>{<>
             <p hidden={true}>TLE: {assignTLE(IDsel)}</p>
             </>}</>)}
-            <icon onClick={() =>setSettings((p)=>!p)}><FontAwesomeIcon icon={(settings)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Settings</icon>
+            <p><icon onClick={() =>setSettings((p)=>!p)}><FontAwesomeIcon icon={(settings)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Ajustes</p>
             {settings?(<>
-              <icon onClick={() =>setSettingsInterval((p)=>!p)}><FontAwesomeIcon icon={(settingsInterval)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/> Interval</icon>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsInterval((p)=>!p)}><FontAwesomeIcon icon={(settingsInterval)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon>Intervalo</p>
               {settingsInterval?(<>{<>
                   <buttonset className={styles.buttonset} onClick={() => {setInterval(10000)}}>
                   10s
@@ -63,20 +89,20 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints}) {
                   50s
                   </buttonset></>
               }</>):('')}
-              <icon onClick={() =>setSettingsPoints((p)=>!p)}><FontAwesomeIcon icon={(settingsPoints)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/> Total points</icon>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsPoints((p)=>!p)}><FontAwesomeIcon icon={(settingsPoints)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon>Puntos Totales</p>
               {settingsPoints?(<>{<>
                 <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(100)}}>
-                100pts
+                100
                 </buttonset>
                 <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(200)}}>
-                200pts
+                200
                 </buttonset>
                 <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(500)}}>
                 500
                 </buttonset></>
               }</>):('')}
             </>):('')}
-            <icon onClick={() =>setAvailableSat((p)=>!p)}><FontAwesomeIcon icon={(availableSats)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>SATELLITES</icon>
+            <p><icon onClick={() =>setAvailableSat((p)=>!p)}><FontAwesomeIcon icon={(availableSats)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>SATéLITES</icon></p>
             
             {availableSats?(<>{itemsArchive}</>):('')}
             
