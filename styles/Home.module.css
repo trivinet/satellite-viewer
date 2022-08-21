@@ -1,3 +1,6 @@
+
+
+
 .container {
   padding: 0;
   height: '100vh';
@@ -164,27 +167,46 @@
     } */
     font-size: 40px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    content: url(https://www.pngall.com/wp-content/uploads/2/Rocket-Transparent.png);
-    width: 30px;
-    height: 30px;
+    content: url('./Satellite-png-hd.png'); /* url(https://www.lifepng.com/wp-content/uploads/2020/11/Satellite-png-hd.png); */ /* url("https://cdn-icons-png.flaticon.com/512/1042/1042820.png"); *//* https://www.pngall.com/wp-content/uploads/2/Rocket-Transparent.png */
+    width: 70px;
+    height: 70px;
     align-content: center;
+    position: relative;
+    right: 35px;
+    bottom:35px;
     border: "0";
     padding: '0';
 }
 
 .markerTracePast{
-  font-size: 20px;
-  width: '15px';
-  height: '15px';
-  color: #FF6F70;
+  font-size: 40px;
+  width: '5px';
+  height: '5px';
+  color: #FAC949;
   cursor: help;
+  align-content: center;
+  position: relative;
+  bottom:60px;
 }
 .markerTraceFuture{
   font-size: 20px;
+  width: '5px';
+  height: '5px';
+  color: #85785D;
+  cursor: help;
+  align-content: center;
+  position: relative;
+  bottom:30px;
+}
+.markerTraceMark{
+  font-size: 160px;
   width: '15px';
   height: '15px';
-  color: #7D7A68;
+  color: #A0FA7C;
   cursor: help;
+  position: relative;
+  bottom:300px;
+  right:16px;
 }
 .card:hover,
 .card:focus,
@@ -209,6 +231,13 @@
   margin-left: 0.5rem;
 }
 
+.cardinfo {
+  backdrop-filter: blur(7px) saturate(200%);
+  -webkit-backdrop-filter: blur(7px) saturate(200%);
+  background-color: rgba(17, 25, 40, 0.68);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
 
 @media (max-width: 600px) {
   .grid {

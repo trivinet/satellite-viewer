@@ -45,6 +45,10 @@
   transition: all 0.8s ease;
 }
 
+.navDark > input:hover {
+  background-color: black;
+}
+
 .navDark > a {
   margin: 8px 0;
   color: #eaeaea;
@@ -101,6 +105,10 @@
   transition: all 0.8s ease;
 }
 
+.navDark > p:hover{
+  background-color: black ;
+}
+
 .navDark > buttonset {
   margin-right: 0px;
   color: white;
@@ -148,6 +156,10 @@
   padding: 8px 16px;
   height: 28px;
   transition: all 0.8s ease;
+}
+
+.nav > input:hover {
+  background-color: #eaeaea;
 }
 
 .nav:hover{
@@ -224,6 +236,10 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+}
+
+.nav > p :hover{
+  background-color: #eaeaea;
 }
 
 .nav > buttonset {

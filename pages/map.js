@@ -8,18 +8,15 @@ import Layout from '../components/layout'
 import Sidebar from '../components/sidebar'
 import assignTLE from './assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
+import { getSatelliteInfo,getLatLngObj } from 'tle.js';
 
   
-const totalpoints = 250;
-const intervalo = 40000;/* 
-const hora = new Date(100000000000);
-const horaActual = Date.now(); */
-
-//var ID=false;
-
+const totalpoints = 200;
+const intervalo = 50000;
 const IDdefault=25544;
 const darkDefault = true;
-//const ID = 902;
+const defaultCenter = [Pos(assignTLE(IDdefault),1,intervalo)[0].lat,Pos(assignTLE(25544),1,intervalo)[0].lng];
+
 
 export default function SimpleMap(){
 
@@ -28,6 +25,9 @@ export default function SimpleMap(){
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [interval,setInterval] = useState(intervalo);
     const [totalPoints,setTotalPoints] = useState(totalpoints);
+    const [selectedFam, setSelectedFam] = useState(false);
+    const [center,setCenter] = useState(defaultCenter);
+    const [mark,setMark] = useState('');
 
     function styleMap(sidebarOpen) {
         if (sidebarOpen){
@@ -48,7 +48,9 @@ export default function SimpleMap(){
     }
 
   //marker
-  const AnyReactComponent = ({ text }) => <div className={styles.marker}> {text}</div>;
+  /* const AnyReactComponent = ({ text }) => <div className={styles.marker}> {text}</div>; */
+  const AnyReactComponent = () => <div className={styles.marker}><p></p>
+  </div>;
   //traza futuro
   const AnyReactComponentTraceFuture = ({ text,info,number }) => <div className={styles.markerTraceFuture}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
@@ -56,42 +58,94 @@ export default function SimpleMap(){
   //traza pasado
   const AnyReactComponentTracePast = ({ text,info,number }) => <div className={styles.markerTracePast}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} html={true}>{info}</ReactTooltip></div>;
+  const AnyReactComponentTraceMark = ({ text,info,number }) => <div className={styles.markerTraceMark}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
+  <ReactTooltip id={"markerTooltip"+number} html={true}>{info}</ReactTooltip></div>;
 
   //variables mapa
   const defaultProps = {
     center: {
-      lat: 38.9862,
-      lng: -5.2557
+      lat: center[0],
+      lng: center[1]
     },
     zoom: 0
   }
-  //tle
-   /* const tle = `ISS (ZARYA)
-    1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
-    2 25544  51.6408 178.1024 0004971  26.6345  84.2777 15.50023189 350148`; */
-   /*  const tle = `CALSPHERE 1             
-    1 00900U 64063C   22202.77533537  .00000453  00000+0  47325-3 0  9991
-    2 00900  90.1734  41.5384 0024926 280.2982 199.7183 13.73846342875373`;  */
+
+  if(selectedFam){
+    
+    var markers=[];
+    for (let i = 0; i < ID.length; i++) {
+
+    var tle = assignTLE(ID[i]); 
+
+    var name = tle.split('\n')[0];
+  
+  //calcula (lat,long)
+    var posiciones = Pos(tle,1,interval);
+
+  //calcula tiempos (ms)
+    var tiempos = TimePoints(1, interval);
+
+  //crea markers
+    markers.push(<AnyReactComponentTracePast
+          lat={posiciones[1].lat}
+          lng={posiciones[1].lng}
+          text="·"
+          info= {'ID: '+ ID[i] + ', name: ' + name}
+          number={i}
+/>)}
+        if (mark!=''){
+            name = assignTLE(mark).split('\n')[0];
+            var posicionesMark=Pos(assignTLE(mark),totalPoints,interval);
+            var tiempos = TimePoints(totalPoints, interval);
+            
+            for (let i=0;i<totalPoints;i++){
+                markers.push(<AnyReactComponentTraceFuture
+                    lat={posicionesMark[i].lat}
+                    lng={posicionesMark[i].lng}
+                    text='.'
+                    info= {'ID: '+ mark + ', name: ' + name + '<br/>' +
+                    posicionesMark[i].lat.toString().substring(0,7)+"º , "+posicionesMark[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(assignTLE(mark),Date.now(),getLatLngObj(assignTLE(mark),Date.now()).lat,getLatLngObj(assignTLE(mark),Date.now()).lng,0).height.toString().substring(0,9) + 'km' +'<br />'+
+                     '\ time:' + tiempos[i] }
+                    number={ID.length+i}
+                  />)
+            }
+
+            markers.push(<AnyReactComponentTraceMark
+                lat={posicionesMark[Math.ceil(totalPoints/2)].lat}
+                lng={posicionesMark[Math.ceil(totalPoints/2)].lng}
+                text='.'
+                info= {'ID: '+ mark + ', name: ' + name + '<br/>' +
+                posicionesMark[Math.ceil(totalPoints/2)].lat.toString().substring(0,7)+"º , "+posicionesMark[Math.ceil(totalPoints/2)].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(assignTLE(mark),Date.now(),getLatLngObj(assignTLE(mark),Date.now()).lat,getLatLngObj(assignTLE(mark),Date.now()).lng,0).height.toString().substring(0,9) + 'km' +'<br />'+
+                 '\ time:' + tiempos[Math.ceil(totalPoints/2)] }
+                number={ID.length+totalPoints}
+              />)
+            
+        }
+  }else{
+
   const tle = assignTLE(ID); 
 
   const name = tle.split('\n')[0];
-  //const tle = TLE;
+
   //calcula (lat,long)
   const posiciones = Pos(tle,totalPoints,interval);
-  if (posiciones != 'Server Failed') {
 
   //calcula tiempos (ms)
   const tiempos = TimePoints(totalPoints, interval);
 
   //crea markers
   var markers=[];
+  markers.push(<AnyReactComponent
+    lat={posiciones[Math.ceil(posiciones.length/2)].lat}
+    lng={posiciones[Math.ceil(posiciones.length/2)].lng}
+  />)
   for (let i = 0; i < Math.ceil(posiciones.length/2); i++) {
       markers.push(<AnyReactComponentTracePast
           lat={posiciones[i].lat}
           lng={posiciones[i].lng}
           text="·"
           info= {'ID: '+ ID + ', name: ' + name + '<br/>' +
-            posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º"+'<br />'+
+            posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+'<br />'+
            '\ time:' + tiempos[i] }
           number={i}
         />)
@@ -101,33 +155,18 @@ export default function SimpleMap(){
       lat={posiciones[i].lat}
       lng={posiciones[i].lng}
       text="·"
-      info={'ID: '+ ID + ', name: ' + name + '<br/>' + posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º"
-      + '<br />' + "time: " + tiempos[i]}
+      info={'ID: '+ ID + ', name: ' + name + '<br/>' + posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º" +posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+ '<br />' + "time: " + tiempos[i]}
       number={i}
     />)
   }
 }
-else {
-    markers=[];
-    markers.push(<AnyReactComponentTracePast
-        lat={0}
-        lng={0}
-        text="·"
-        info= {'Server Failed'}
-      />)
-}
   //config mapa
-  const handleApiLoaded = (map, maps) => {
-    // use map and maps objects
-  };
-  //const latLonObj = getLatLngObj(tle,/*  optionalTimestampMS+120000 */Date.now());
- // ⬅️ si está light, mostramos light map
- //{{ height: '100vh' , width: '100%', "padding-right":'250px',"padding-left":'250px'}
+  const handleApiLoaded = (map, maps) => {};
     return (
       // Important! Always set the container height explicitly
      <> 
       <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} />
+      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} />
     <div style={styleMap(sidebarOpen)}>
     <GoogleMapReact className="Mapa"
       bootstrapURLKeys={{ key: "AIzaSyDKrg6ygIgLkBGpUX29D9hc2OtKprEQvGY" }}
@@ -322,14 +361,6 @@ else {
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
     >
-        {(posiciones.length>1)?(
-      <AnyReactComponent
-        lat={posiciones[Math.ceil(posiciones.length/2)].lat}
-        lng={posiciones[Math.ceil(posiciones.length/2)].lng}
-      />):(<AnyReactComponent
-        lat={posiciones[0].lat}
-        lng={posiciones[0].lng}
-      />)}
       {markers}
     </GoogleMapReact>
     
@@ -339,13 +370,3 @@ else {
     );
 }
 
-
-/* SimpleMap.getLayout = function getLayout(page) {
-    const [ID,setID] = useState(null);
-  return (   
-    <Layout>
-        {page}
-      {<InfoBoxPrint setID={setID}/>}
-    </Layout>
-  )
-} */

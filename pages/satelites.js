@@ -4,20 +4,30 @@ import assignTLE from './assignTLE'
 import Sidebar from '../components/sidebar'
 import Layout from '../components/layout'
 import React, { useState, useEffect } from 'react';
-import { getLatLngObj } from "tle.js";
-import InfoBoxPrint from '../components/infoBoxPrint'
+import { getLatLngObj,getSatelliteName } from "tle.js";
+import InfoBoxPrint from '../components/infoBoxPrint';
+import generateIDs from './generateIDs';
+import Pos from './trace';
 
 
 const tle = `ISS (ZARYA)
 1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
 2 25544  51.6408 178.1024 0004971  26.6345  84.2777 15.50023189 350148`; 
+const IDdefault=[900,25544];
+const totalpoints = 200;
+const intervalo = 50000;
+const darkDefault = true;
+const defaultCenter = [-101.17, 21.78];
 
 
 
 export default function showTLE(){
   const [dark,setDark] = useState(true);
   const [sidebarOpen,setSidebarOpen] = useState(false);
-  const [ID,setID] = useState(25544);
+  const [ID,setID] = useState(1361);
+  const [interval,setInterval] = useState(intervalo);
+  const [totalPoints,setTotalPoints] = useState(totalpoints);
+
   function assignTheme(dark){
     {if(dark){
       if(sidebarOpen){
@@ -30,6 +40,15 @@ export default function showTLE(){
       }
   }}
   
+  var result = tle.split('\n')
+  var IDs = generateIDs('Starlink')
+  var extern=[];
+  var prueba;
+
+  for (let i = 0; i < IDs.length; i++) {
+    extern.push(<h2>{assignTLE(IDs[i])},{getSatelliteName(assignTLE(IDs[i]))}</h2>)
+  }
+
   return(
     <> 
   <div style={{ height: '100vh' , width: '100%'}}>
@@ -44,11 +63,19 @@ export default function showTLE(){
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1> 
         <h2>{assignTLE(ID)}</h2>
+        <h2>{assignTLE(ID).split('\n')[0]}</h2>
+        <h2>{assignTLE(ID).split('\n')[1]}</h2>
+        <h2>{assignTLE(ID).split('\n')[2]}</h2>
         <h2>{getLatLngObj(tle,Date.now()).lat}</h2>
         <h2>{tle}</h2>
         <h2>'hola'</h2>
         <h2>is dark? {dark?('YES'):('no')}</h2>
         <h2>is open? {sidebarOpen?('YES'):('no')}</h2>
+        <h2>{result[0]}</h2>
+        <h2>{result[1]}</h2>
+        <h2>{result[2]}</h2>
+        <h2>{getSatelliteName('hola')}</h2>
+        {extern}
       </main>
       </div>
       </>

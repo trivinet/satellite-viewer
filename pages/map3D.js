@@ -6,10 +6,10 @@ import {pointGraphicJson,polygonGraphicJson} from "./graphics";
 import assignTLE from './assignTLE'
 import Pos from './trace';
 import Altitude from './altitude';
-
+import styles from '../styles/Home.module.css'
 
 const IDdefault=25544;
-const totalpoints = 200;
+const totalpoints = 100;
 const intervalo = 50000;
 const darkDefault = true;
 const defaultCenter = [-101.17, 21.78];
@@ -23,101 +23,274 @@ export default function PointMap() {
   const [interval,setInterval] = useState(intervalo);
   const [totalPoints,setTotalPoints] = useState(totalpoints);
   const [sidebarOpen,setSidebarOpen] = useState(false);
+  const [selectedFam, setSelectedFam] = useState(false);
   const [dark, setDark] = useState(true);
+  const [center,setCenter] = useState(defaultCenter);
+  const [mark,setMark] = useState('');
 
-  const tle = assignTLE(ID);
-  const posiciones = Pos(tle,totalPoints,interval);
+  
+  if(selectedFam){
+
+  var tle =[];
+  var posiciones =[];
+  var geometry = [];
+  var vertLine = [];
+  var polylineVert=[];
+  var lineSymbolVert=[];
+  var polylineGraphicJsonVert=[];
+  var symbol=[];
+  var markersPast=[]; //órbita
+  var markersFuture=[]; //traza
+  var polylinePast=[]; 
+  var polylineFuture=[];
+  var lineSymbolPast=[];
+  var lineSymbolFuture=[];
+  var polylineGraphicJsonPast=[];
+  var polylineGraphicJsonFuture=[];
+  var graphics=[];
   var altitudes=[];
-  for (let i = 0; i < posiciones.length; i++) {
-    altitudes[i] = Altitude(tle,totalPoints,interval,posiciones[i].lat,posiciones[i].lng);
-  }
+  var polylineVertSaved=[];
+  var polylineFutureSaved=[];
+  var polylinePastSaved=[];
+  var geometrySaved=[];
 
-  const geometry = {
+  
+  symbol = {
+    type: "picture-marker", // autocasts as new PictureMarkerSymbol()
+    url: /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
+    /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
+    "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
+    width: 28,
+    height: 28
+  };  
+  console.log(ID.length)
+  for (let i = 0; i < ID.length; i++) {
+ 
+  tle = assignTLE(ID[i]);
+  if (tle!=''){
+  posiciones = Pos(tle,totalPoints,interval);
+  if (posiciones!=''){
+
+  for (let j = 0; j < posiciones.length; j++) {
+    altitudes.push(Altitude(tle,interval,j-Math.ceil(posiciones.length/2),posiciones[j].lat,posiciones[j].lng));
+  }
+  
+  geometry={
         type: 'point', // autocasts as new Point()
         x: posiciones[Math.ceil(posiciones.length/2)].lng,
         y: posiciones[Math.ceil(posiciones.length/2)].lat,
         z: altitudes[Math.ceil(posiciones.length/2)]*1000
-        } ;   
+        };   
   
-  const vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
+  vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
     [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
-  
-  var center = [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000];
 
-  var polylineVert = {
+  polylineVert = {
     type: "polyline", // autocasts as new Polyline()
-    paths: [vertLine]
+    paths: vertLine
   };
       
-  var lineSymbolVert = {
+  lineSymbolVert = {
     type: "simple-line", // autocasts as SimpleLineSymbol()
-    color: [234, 128, 208,0.5],
-    width: 4
+    color: [160, 250, 124,0.98]/* [234, 128, 208,0.5] */,
+    width: 1
   };
-  const polylineGraphicJsonVert = {
+
+  polylineGraphicJsonVert = {
     geometry: polylineVert,
     symbol: lineSymbolVert
   };
 
-  var symbol = {
-    type: "picture-marker", // autocasts as new PictureMarkerSymbol()
-    url: "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
-    width: 48,
-    height: 48
-  };  
+   graphics.push(polylineGraphicJsonVert,/* pointGraphicJson ,*//* polylineGraphicJsonPast  ,*/ {geometry , symbol}/*, polylineGraphicJsonFuture */);
 
- /*  var symbol = {
-    type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-    color: [226, 119, 40]
-  } */
-
-
-  var markersPast=[];
-  var markersFuture=[]; 
-
-  for (let i = 0; i < posiciones.length; i++) {
-    markersPast[i]=[posiciones[i].lng,posiciones[i].lat,altitudes[i]*1000];
   }
-  for (let i = 0; i < posiciones.length; i++) {
-    markersFuture[i]=[posiciones[i].lng,posiciones[i].lat,10000];
   }
+  }
+  if (mark!=''){
 
-  var polylinePast = {
-    type: "polyline", // autocasts as new Polyline()
-    paths: [markersPast]
-  };
+    var posiciones = Pos(assignTLE(mark),totalPoints,interval);
+    var altitudes=[];
+    var markersPast=[];
+    var markersFuture=[];
+    
+    if (posiciones!=''){
+    for (let j = 0; j < posiciones.length; j++) {
+      altitudes.push(Altitude(assignTLE(mark),interval,j-Math.ceil(posiciones.length/2),posiciones[j].lat,posiciones[j].lng));
+    }
+    
+    for (let j = 0; j < posiciones.length; j++) {
+      markersPast[j]=[posiciones[j].lng,posiciones[j].lat,altitudes[j]*1000];
+    }
+    for (let j = 0; j < posiciones.length; j++) {
+      markersFuture[j]=[posiciones[j].lng,posiciones[j].lat,10000];
+    }
 
-  var polylinePast = {
-    type: "polyline", // autocasts as new Polyline()
-    paths: [markersPast]
-  };
-  var polylineFuture = {
-    type: "polyline", // autocasts as new Polyline()
-    paths: [markersFuture]
-  };
 
-  var lineSymbolPast = {
-    type: "simple-line", // autocasts as SimpleLineSymbol()
-    color: [255, 192, 49,0.5],
-    width: 4
-  };
+    polylinePast = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersPast]
+    };
 
-  var lineSymbolFuture = {
-    type: "simple-line", // autocasts as SimpleLineSymbol()
-    color: [175, 175, 175,0.5],
-    width: 4
-  };
+    polylineFuture = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersFuture]
+    };
 
+    lineSymbolPast = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [156,152,247]/* [255, 192, 49,0.5] */,
+      width: 1
+    };
+
+    lineSymbolFuture = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [175, 175, 175,0.5],
+      width: 1
+    };
+
+    polylineGraphicJsonPast = {
+      geometry: polylinePast,
+      symbol: lineSymbolPast
+    };
+    polylineGraphicJsonFuture = {
+      geometry: polylineFuture,
+      symbol: lineSymbolFuture
+    };
+
+    geometry={
+      type: 'point', // autocasts as new Point()
+      x: posiciones[Math.ceil(posiciones.length/2)].lng,
+      y: posiciones[Math.ceil(posiciones.length/2)].lat,
+      z: altitudes[Math.ceil(posiciones.length/2)]*1000
+    }; 
+
+    symbol = {
+      type: "picture-marker", // autocasts as new PictureMarkerSymbol()
+      url: /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
+      /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
+      "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
+      width: 28,
+      height: 28,
+      color:'red'
+    };  
+      
+    vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
+    [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
+
+    polylineVert = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: vertLine
+    };
+      
+    lineSymbolVert = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [245, 189, 34,0.96],
+      width: 4
+    };
+
+    polylineGraphicJsonVert = {
+      geometry: polylineVert,
+      symbol: lineSymbolVert
+    };
+
+    graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast,{geometry , symbol}, polylineGraphicJsonFuture );
+
+  }}
+  }else{
+  var tle = assignTLE(ID);
+  var posiciones = Pos(tle,totalPoints,interval);
+  var altitudes=[];
+    for (let i = 0; i < posiciones.length; i++) {
+      altitudes.push(Altitude(tle,interval,i-Math.ceil(posiciones.length/2),posiciones[i].lat,posiciones[i].lng));
+    }
+  
+    var geometry = {
+          type: 'point', // autocasts as new Point()
+          x: posiciones[Math.ceil(posiciones.length/2)].lng,
+          y: posiciones[Math.ceil(posiciones.length/2)].lat,
+          z: altitudes[Math.ceil(posiciones.length/2)]*1000
+          } ;   
+    
+    var vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
+      [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
+  
+    var polylineVert = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [vertLine]
+    };
+        
+    var lineSymbolVert = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [234, 128, 208,0.5],
+      width: 4
+    };
+    var polylineGraphicJsonVert = {
+      geometry: polylineVert,
+      symbol: lineSymbolVert
+    };
+  
+      var symbol = {
+      type: "picture-marker", // autocasts as new PictureMarkerSymbol()
+      url: /* './Satellite-png-hd.png', */
+      /* "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhmFmxNIb5gqkSUZMivYIQj2tcy361W3AsA&usqp=CAU", */
+      /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
+      /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
+       "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
+      /* "https://aios.global/wp-content/uploads/2020/06/sattelite.png", */
+      width: 28,
+      height: 28
+    }; 
+  
+    var markersPast=[];
+    var markersFuture=[]; 
+  
+    for (let i = 0; i < posiciones.length; i++) {
+      markersPast[i]=[posiciones[i].lng,posiciones[i].lat,altitudes[i]*1000];
+    }
+    for (let i = 0; i < posiciones.length; i++) {
+      markersFuture[i]=[posiciones[i].lng,posiciones[i].lat,10000];
+    }
+  
+    var polylinePast = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersPast]
+    };
+  
+    var polylinePast = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersPast]
+    };
+    var polylineFuture = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersFuture]
+    };
+  
+    var lineSymbolPast = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [234, 128, 208,0.5]/* [255, 192, 49,0.5] */,
+      width: 4
+    };
+  
+    var lineSymbolFuture = {
+      type: "simple-line", // autocasts as SimpleLineSymbol()
+      color: [175, 175, 175,0.5],
+      width: 4
+    };
+  
+  
+    
+    var polylineGraphicJsonPast = {
+      geometry: polylinePast,
+      symbol: lineSymbolPast
+    };
+    var polylineGraphicJsonFuture = {
+      geometry: polylineFuture,
+      symbol: lineSymbolFuture
+    };
+    var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture];
+  }
 
   
-  const polylineGraphicJsonPast = {
-    geometry: polylinePast,
-    symbol: lineSymbolPast
-  };
-  const polylineGraphicJsonFuture = {
-    geometry: polylineFuture,
-    symbol: lineSymbolFuture
-  };
 
 
   var map = {
@@ -126,6 +299,7 @@ export default function PointMap() {
   };
   const options = {
       view: {
+        center,
         zoom: 2,
         ui: {
           components:['attribution']
@@ -147,7 +321,6 @@ export default function PointMap() {
   };
 
   function styleMap(sidebarOpen) {
-    if (sidebarOpen){
         return({
             height: '100vh',
             width: '100%',
@@ -155,18 +328,10 @@ export default function PointMap() {
             padding:{
               right:0},
             margin:0,
-            'overflow-y':'hidden'
+            'overflowY':'hidden'
     })
-    } else {return({
-        height: '100vh',
-        width: '100%',
-        background:'black',
-        padding:{
-          right:0},
-        margin:0,
-        'overflow-y':'hidden'
-    })}
-}
+    }
+
 
 function styleMapTheme(dark) {
   if (dark){
@@ -185,16 +350,15 @@ function styleMapTheme(dark) {
   // takes a view instance and graphic as a POJO
   // the point will be replaced if the lat/lng props change
   
-  const graphics = [polylineGraphicJsonVert,pointGraphicJson,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture];
+
   useGraphics(view, graphics);
- 
 
 
   return( <>
-  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} />
+  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark}/>
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-  
-  <div style={styleMap(sidebarOpen)} ref={ref} />
+
+  <div style={styleMap(sidebarOpen)} ref={ref}></div>
   </>
   )
 }
