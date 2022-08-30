@@ -3350,7 +3350,7 @@ sanitize-html@^1.11.1:
     parse-srcset "^1.0.2"
     postcss "^7.0.27"
 
-satellite.js@^4.1.3:
+satellite.js@^4.1.3, satellite.js@^4.1.4:
   version "4.1.4"
   resolved "https://registry.yarnpkg.com/satellite.js/-/satellite.js-4.1.4.tgz#ede7c0077309bfdc59c24bd758d7d11f39e3ee91"
   integrity sha512-OGUrs1GoGKjy9FYbW2ZaM5slaPfJaYrcxjE3YQTeR/OGyFPCxb6HK22Chao55POU06pdmNAdW5rtKJURse0+XA==

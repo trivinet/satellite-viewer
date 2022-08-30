@@ -5,10 +5,19 @@
   display: flex;
   flex-direction: column;
   width: 250px;
-  background-color: #2D333C;
+  background-color: rgba(45, 51, 60, 0.24)/* #2D333C */;
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
+  2px 3.2px 19.9px rgba(250, 130, 200, 0.034),
+  3.1px 5px 31.7px rgba(250, 130, 200, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08);
 }
 .navDark:hover {
   opacity: 1;
@@ -26,6 +35,17 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDark > a:hover {
@@ -47,6 +67,17 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDark > icon:isOpen {
@@ -99,11 +130,41 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDark > button:hover {
   background-color: black;
 }
+
+.navDark::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.navDark::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.navDark::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+
+
+
+
+
 
 .navDarkClose {
   height: 100%;
@@ -112,10 +173,25 @@
   display: flex;
   flex-direction: column;
   width: 100px;
-  background-color: #2D333C;
+  background-color: rgba(45, 51, 60, 0.24)/* #2D333C */;
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
+  2px 3.2px 19.9px rgba(250, 130, 200, 0.034),
+  3.1px 5px 31.7px rgba(250, 130, 200, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200,0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08)
+;
+/* background-image:
+radial-gradient(at 68% 2%, hsla(204,78%,63%,1) 0px, transparent 50%),
+radial-gradient(at 78% 69%, hsla(155,72%,66%,1) 0px, transparent 50%),
+radial-gradient(at 71% 33%, hsla(211,79%,69%,1) 0px, transparent 50%),
+radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 }
 
 .navDarkClose:hover {
@@ -135,6 +211,17 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDarkClose > a:hover {
@@ -156,6 +243,17 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDarkClose > icon:hover {
@@ -192,6 +290,17 @@
   letter-spacing: 0.025em;
   border: 1px solid black;
   transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
 }
 
 .navDarkClose > button:hover {
@@ -208,6 +317,25 @@
   background-color: #333;
 }
 
+/* .navDarkClose::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.navDarkClose::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.navDarkClose::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+} */
+
+
+
+
+
+
+
 .nav {
   height: 100%;
   color: black;
@@ -219,6 +347,19 @@
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .nav:hover {
@@ -238,10 +379,23 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .nav > a:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
 }
 .nav > button {
   margin: 8px 0;
@@ -258,10 +412,24 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  cursor: pointer;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .nav > button:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
 }
 
 .nav > i {
@@ -300,10 +468,23 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .nav > icon:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
 }
 
 .navClose {
@@ -317,6 +498,19 @@
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .navClose:hover {
@@ -336,10 +530,23 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .navClose > a:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
 }
 .navClose > button {
   margin: 8px 0;
@@ -357,10 +564,23 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .navClose > button:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
 }
 
 .navClose > i {
@@ -399,8 +619,22 @@
   letter-spacing: 0.025em;
   border: 1px solid #eaeaea;
   transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
 }
 
 .navClose > icon:hover {
-  background-color: #eaeaea;
+  background-color: #aeaeae;
+  
 }

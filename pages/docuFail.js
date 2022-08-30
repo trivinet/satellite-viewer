@@ -8,6 +8,7 @@ import { getLatLngObj } from "tle.js";
 import InfoBoxPrint from '../components/infoBoxPrint'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
+import DocuContainer from './docuContainer'
 
 const texto = ` 
 Resumen
@@ -1288,7 +1289,9 @@ export default function Docu(){
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <>
   <div className={styles.container}>
+    <>
      <Head>
         <title>Documentación</title>
         <link rel="icon" href="/favicon.ico" />
@@ -1297,9 +1300,9 @@ export default function Docu(){
       
       <main className={assignTheme(dark,sidebarOpen)}>
         <h1 className={styles.title} style={{'font-size':'66px'}}>
-          <a href="/docu" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
+          <a href="/docu" className={styles.logo}>{ {/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
-        </a> */}Documentación<a className={styles.imageGifTitle}>
+        </a>  */}}Documentación<a className={styles.imageGifTitle}>
             <img href = "/docu" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>
         </h1>
@@ -1560,80 +1563,14 @@ export default function Docu(){
         <h2><icon onClick={() =>setTeoMecOrb((p)=>!p)}><FontAwesomeIcon icon={(teoriaMecOrb)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Teoría de Mecánica Orbital</icon></h2>
               {teoriaMecOrb?(<>{<>
 
-                <h3>Definición</h3>
-        <p>La astrodinámica o mecánica orbital es la aplicación de la balística y la mecánica
-        celeste a los problemas prácticos relativos al movimiento de cohetes y otras
-        naves espaciales (<a style={{color:'blue'}} 
-        href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>link</a>). Está basada en las leyes de Newton y en la ley de la
-        gravitación universal. Esta pretende hacer un estudio exhaustivo sobre las
-        trayectorias de las naves espaciales, además de la multitud de maniobras, y es
-        la herramienta principal de los planificadores de misiones espaciales.</p>
+                <h3>Resumen</h3>
+        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
 
-        <p>PARÁMETROS DE LA ÓRBITA</p>
-        <p>Hasta este punto, se ha mencionado toda la teoría que recoge la información
-        necesaria para la visualización de objetos, las herramientas utilizadas y toda
-        clase de documentación, por lo que es conveniente y necesario llevar al quid de
-        la cuestión: cómo representar un satélite y cuáles son los parámetros que lo
-        conforman.</p>
-        <p>Los elementos orbitales son aquellos parámetros necesarios y suficientes para
-        determinar una órbita (éste usa un modelo de dos masas siguiendo las leyes de
-        movimiento de Newton). Con esta denominación se suele hacer referencia a seis
-        parámetros básicos, también denominados como elementos keplerianos (como tributo 
-        a Kepler (<a style={{color:'blue'}} 
-        href='https://es.wikipedia.org/wiki/Elementos_orbitales#:~:text=Los%20elementos%20orbitales%20son%20los,utilizando%20una%20%C3%B3rbita%20de%20Kepler'>link</a>)), que a continuación se definen para el caso de  (<a style={{color:'blue'}} 
-        href='https://en.wikipedia.org/wiki/Geocentric_orbit'>órbitas geocéntricas</a>):</p>
+        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
 
-        <p>a. Longitud del nodo ascendente (☊ o Ω)</p> 
-        <p>Ángulo formado entre el primer
-punto de Aries (ɤ) o eje X, también conocido como origen de la longitud y
-la dirección del nodo. Suele hacerse referencia a este parámetro (en
-casos geocéntricos como este) como Ascensión recta del nodo
-ascendente. Este ángulo es medido siempre hacia el este (tal y como es
-visto desde el norte, en sentido antihorario). Color salmón en la figura.</p>
+        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
 
-        <img src ={'https://thumbs.files.fm/thumb_show.php?i=uafge52af&view'}/>
-        <p style={{textAlign:'center'}}>Elementos keplerianos</p>
-
-        <p>b. Argumento del perihelio (ω)</p> 
-        <p>Su función es orientar la elipse sobre el plano
-orbital, puesto que mide el ángulo desde el nodo ascendente hasta el
-perigeo, medido en la dirección del movimiento del cuerpo que orbita.
-Nótese que, de no tener en cuenta la dirección del movimiento del cuerpo,
-se podría producir una ambigüedad. Color azul en la figura.</p>
-<p>c. Inclinación orbital (i)</p> 
-<p>Ángulo formado por el plano orbital y el plano
-Ecuatorial.</p>
-<p>d. Semieje mayor (a)</p> 
-<p>Medida del semieje mayor de la elipse que realiza el
-objeto orbital. En ocasiones se determina también el semieje menor, pero
-es el mayor el que se determina siempre y quien forma parte de los
-elementos keplerianos. Su cálculo es sencillo: se trata del valor medio de
-las distancias mínima y máxima de la elipse al foco, tal y como aparece
-en la ecuación (4).</p>
-<p style={{textAlign:'center'}}>𝑎 = (𝑟máx + 𝑟mín)/2                     (4)</p>
-<p>e. Excentricidad (e o ε)</p> 
-<p>Parámetro que determina la desviación de la elipse
-con respecto a una circunferencia (cuanto más cercano a 0, menor
-excentricidad y trayectoria más parecida a la circunferencia). Para el caso
-de las elipses, dicho parámetro debe valer igual o más que 0 y siempre
-menos que 1 (una excentricidad de valor 1 se corresponde con una
-parábola). Tomando el semieje mayor y el semieje menor,
-respectivamente, como ‘a’ y ‘b’, su cálculo queda expuesto en la ecuación 5.</p>
-<p style={{textAlign:'center'}}>𝑒 = √(1 −𝑏^2/𝑎^2)                    (5)</p>
-<p>f. Anomalía media de la época (M0)</p> 
-<p>Parte del período orbital que ya ha
-transcurrido, expresado como un ángulo. Ecuación 6.</p>
-<p style={{textAlign:'center'}}>𝑀 = 𝑛 · ( 𝑡 − 𝑡0 )                 (6)</p>
-<p>Donde ‘𝑛’ es el movimiento medio (normalmente medido en °/día, o
-rad/día), ‘𝑡’ es el instante en el que se desea obtener el valor, y ‘𝑡0’ es el
-instante de paso del planeta por el perihelio (o perigeo, anteriormente
-mencionado).</p>
-<p>Además de estos valores, en ocasiones se utilizan otros datos como la anomalía
-verdadera (ѵ), semieje menor (b), excentricidad linear (ϵ), anomalía excéntrica
-(E), longitud media (L), longitud verdadera (լ) y período orbital (Т). Sin embargo,
-no se pondrán en uso en este proyecto, ya que no forman parte de los elementos
-que conforman los TLEs.</p>
-
+        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
 
         </>}</>):('')}
 
@@ -1708,7 +1645,9 @@ que conforman los TLEs.</p>
         </>}</>):('')}
         {espaciado}
       </main>
-      </div>
+      </>
+      </div> 
+      </> 
       </>
   )
 }

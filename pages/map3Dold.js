@@ -7,8 +7,6 @@ import assignTLE from './assignTLE'
 import Pos from './trace';
 import Altitude from './altitude';
 import styles from '../styles/Home.module.css';
-import TimePoints from './getTimes';
-import { getMeanMotion } from 'tle.js';
 
 
 const IDdefault=25544;
@@ -16,8 +14,6 @@ const totalpoints = 100;
 const intervalo = 50000;
 const darkDefault = true;
 const defaultCenter = [-101.17, 21.78];
-const velAngTierra = 9/2154100 ; //º/ms
-const periodoTierra = (23*60*60+56*60+4)*1000 ; //período tierra en ms
 
 
 // hooks allow us to create a map component as a function
@@ -32,9 +28,6 @@ export default function PointMap() {
   const [dark, setDark] = useState(true);
   const [center,setCenter] = useState(defaultCenter);
   const [mark,setMark] = useState('');
-  const [viewMode,setViewMode] = useState('ECI');
-  const [viewTrace, setViewTrace] = useState(true);
-
 
   
   if(selectedFam){
@@ -71,7 +64,7 @@ export default function PointMap() {
     width: 28,
     height: 28
   };  
-
+  console.log(ID.length)
   for (let i = 0; i < ID.length; i++) {
  
   tle = assignTLE(ID[i]);
@@ -116,31 +109,19 @@ export default function PointMap() {
   }
   if (mark!=''){
 
-    var tle = assignTLE(mark);
-    var posiciones = Pos(tle,totalPoints,interval);
-    var tiempos = TimePoints(totalPoints, interval);
+    var posiciones = Pos(assignTLE(mark),totalPoints,interval);
     var altitudes=[];
     var markersPast=[];
     var markersFuture=[];
-    var markersEciPast=[];
     
     if (posiciones!=''){
     for (let j = 0; j < posiciones.length; j++) {
-      altitudes.push(Altitude(tle,interval,j-Math.ceil(posiciones.length/2),posiciones[j].lat,posiciones[j].lng));
+      altitudes.push(Altitude(assignTLE(mark),interval,j-Math.ceil(posiciones.length/2),posiciones[j].lat,posiciones[j].lng));
     }
     
     for (let j = 0; j < posiciones.length; j++) {
       markersPast[j]=[posiciones[j].lng,posiciones[j].lat,altitudes[j]*1000];
     }
-
-    var periodoSat = periodoTierra/(getMeanMotion(tle));
-    
-    var ptosPeriodo = Math.ceil(periodoSat/interval);
-
-    for (let j = 0; j < Math.min(ptosPeriodo,totalPoints); j++){
-      markersEciPast[j] = [posiciones[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)].lng+velAngTierra*(tiempos[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)]-tiempos[Math.floor(tiempos.length/2)]),posiciones[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)].lat,altitudes[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)]*1000];
-    }
-
     for (let j = 0; j < posiciones.length; j++) {
       markersFuture[j]=[posiciones[j].lng,posiciones[j].lat,10000];
     }
@@ -149,11 +130,6 @@ export default function PointMap() {
     polylinePast = {
       type: "polyline", // autocasts as new Polyline()
       paths: [markersPast]
-    };
-
-    polylineEciPast = {
-      type: "polyline", // autocasts as new Polyline()
-      paths: [markersEciPast]
     };
 
     polylineFuture = {
@@ -167,12 +143,6 @@ export default function PointMap() {
       width: 1
     };
 
-    lineSymbolEciPast = {
-      type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [255, 192, 49,0.5],
-      width: 1
-    };
-
     lineSymbolFuture = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
       color: [175, 175, 175,0.5],
@@ -182,10 +152,6 @@ export default function PointMap() {
     polylineGraphicJsonPast = {
       geometry: polylinePast,
       symbol: lineSymbolPast
-    };
-    polylineGraphicJsonEciPast = {
-      geometry: polylineEciPast,
-      symbol: lineSymbolEciPast
     };
     polylineGraphicJsonFuture = {
       geometry: polylineFuture,
@@ -228,31 +194,13 @@ export default function PointMap() {
       symbol: lineSymbolVert
     };
 
-
-    switch (viewMode) {
-      case 'ECEF':
-        if (viewTrace) {graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast,{geometry , symbol}, polylineGraphicJsonFuture )
-      } else {graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast,{geometry , symbol} )}
-      break;
-      case 'ECI':
-        graphics.push(polylineGraphicJsonVert,polylineGraphicJsonEciPast , {geometry,symbol})
-      break;
-      case 'BOTH':
-        if (viewTrace) {graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture,polylineGraphicJsonEciPast)
-      } else {graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonEciPast)}
-      break;
-      default:
-        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture, polylineGraphicJsonEciPast];
-}
-  
+    graphics.push(polylineGraphicJsonVert,polylineGraphicJsonPast,{geometry , symbol}, polylineGraphicJsonFuture );
 
   }}
   }else{
   var tle = assignTLE(ID);
   var posiciones = Pos(tle,totalPoints,interval);
-  var tiempos = TimePoints(totalPoints, interval);
   var altitudes=[];
-
     for (let i = 0; i < posiciones.length; i++) {
       altitudes.push(Altitude(tle,interval,i-Math.ceil(posiciones.length/2),posiciones[i].lat,posiciones[i].lng));
     }
@@ -274,8 +222,8 @@ export default function PointMap() {
         
     var lineSymbolVert = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [153, 153, 153,0.96],
-      width: 2
+      color: [234, 128, 208,0.5],
+      width: 4
     };
     var polylineGraphicJsonVert = {
       geometry: polylineVert,
@@ -296,95 +244,46 @@ export default function PointMap() {
   
     var markersPast=[];
     var markersFuture=[]; 
-    var markersEciPast=[];
   
     for (let i = 0; i < posiciones.length; i++) {
       markersPast[i]=[posiciones[i].lng,posiciones[i].lat,altitudes[i]*1000];
-      }
-
-      var periodoSat = periodoTierra/(getMeanMotion(tle));
-
-    var ptosPeriodo = Math.ceil(periodoSat/interval);
-
-    for (let j = 0; j < Math.min(ptosPeriodo,totalPoints); j++){
-      markersEciPast[j] = [posiciones[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)].lng+velAngTierra*(tiempos[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)]-tiempos[Math.floor(tiempos.length/2)]),posiciones[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)].lat,altitudes[j+totalPoints/2-Math.floor(Math.min(ptosPeriodo,totalPoints)/2)]*1000];
     }
-
+    for (let i = 0; i < posiciones.length; i++) {
+      markersFuture[i]=[posiciones[i].lng,posiciones[i].lat,10000];
+    }
+  
     var polylinePast = {
       type: "polyline", // autocasts as new Polyline()
       paths: [markersPast]
     };
-
+    var polylineFuture = {
+      type: "polyline", // autocasts as new Polyline()
+      paths: [markersFuture]
+    };
+  
     var lineSymbolPast = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
       color: [234, 128, 208,0.5]/* [255, 192, 49,0.5] */,
       width: 4
     };
-
-    var polylineGraphicJsonPast = {
-      geometry: polylinePast,
-      symbol: lineSymbolPast
-    };
-    
-
-
-    var polylineEciPast = {
-      type: "polyline", // autocasts as new Polyline()
-      paths: [markersEciPast]
-    };
   
-    var lineSymbolEciPast = {
-      type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [255, 192, 49,0.5],
-      width: 4
-    };
-  
-    var polylineGraphicJsonEciPast = {
-      geometry: polylineEciPast,
-      symbol: lineSymbolEciPast
-    };
-
-
-
-    
-    for (let i = 0; i < posiciones.length; i++) {
-      markersFuture[i]=[posiciones[i].lng,posiciones[i].lat,10000];
-    }
-    
-    var polylineFuture = {
-      type: "polyline", // autocasts as new Polyline()
-      paths: [markersFuture]
-    };
-
     var lineSymbolFuture = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
       color: [175, 175, 175,0.5],
       width: 4
     };
-
+  
+  
+    
+    var polylineGraphicJsonPast = {
+      geometry: polylinePast,
+      symbol: lineSymbolPast
+    };
     var polylineGraphicJsonFuture = {
       geometry: polylineFuture,
       symbol: lineSymbolFuture
     };
-
-    switch (viewMode) {
-      case 'ECEF':
-        if (viewTrace) {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture]
-      } else {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol}];}
-      break;
-      case 'ECI':
-        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonEciPast , {geometry,symbol}]
-      break;
-      case 'BOTH':
-        if (viewTrace) {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture,polylineGraphicJsonEciPast]
-      } else {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonEciPast];}
-      break;
-      default:
-        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture, polylineGraphicJsonEciPast];
-}
-
-    
-
+    var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture];
   }
 
   
@@ -395,9 +294,14 @@ export default function PointMap() {
     ground: "world-elevation",
   };
   const options = {
-      view: {
-        center,
-        zoom: 2,
+      view:{
+        constraints: {
+          altitude: {
+            max: 12000000000 // meters
+          }
+      }
+      },
+        zoom: 3,
         ui: {
           components:['attribution']
         },
@@ -408,13 +312,8 @@ export default function PointMap() {
             // set the date and a time of the day for the current camera location
             //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
           }  
-        },
-        constraints: {
-          altitude: {
-            max: 12000000000 // meters
-          }
         }
-      }
+        
   };
 
   function styleMap(sidebarOpen) {
@@ -452,7 +351,7 @@ function styleMapTheme(dark) {
 
 
   return( <>
-  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace}/>
+  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark}/>
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
 
   <div style={styleMap(sidebarOpen)} ref={ref}></div>

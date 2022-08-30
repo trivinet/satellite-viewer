@@ -14,15 +14,12 @@ export default function Sidebar({setDark,setSidebarOpen}) {
         <>  
     <nav className={darkSidebar?(sidebarOpenProp?(styles.navDark):(styles.navDarkClose)):(sidebarOpenProp?(styles.nav):(styles.navClose))}>
     
-        
-    <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>Menú</ReactTooltip>
-   
-    
-    
+    {sidebarOpenProp?(<>{/* <input placeholder="Search..." /> */}
 
-    {sidebarOpenProp?(<><input placeholder="Search..." />
+          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip place={'top'} id={"markerTooltipMenu"} html={true}>CERRAR</ReactTooltip>
+
           <Link href="/"> 
-            <a>Home</a>
+            <a>MENÚ</a>
             
           </Link>
           <Link href="/map">
@@ -39,9 +36,10 @@ export default function Sidebar({setDark,setSidebarOpen}) {
           </Link>
       <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p)  }}>Theme</button>
       </>):(<>
-          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={faSearch} width={'20px'} height={'20px'} cursor={'pointer'}></FontAwesomeIcon></icon>
+          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>ABRIR</ReactTooltip>
+          {/* <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={faSearch} width={'20px'} height={'20px'} cursor={'pointer'}></FontAwesomeIcon></icon> */}
           <Link href="/">
-          <icon id={'house'}><FontAwesomeIcon icon={faHouse} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipHome"} ></FontAwesomeIcon> <ReactTooltip id={"markerTooltipHome"} html={true}>Home</ReactTooltip></icon>
+          <icon id={'house'}><FontAwesomeIcon icon={faHouse} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipHome"} ></FontAwesomeIcon> <ReactTooltip id={"markerTooltipHome"} html={true}>MENÚ</ReactTooltip></icon>
           </Link>
           <Link href="/map">
           <icon><FontAwesomeIcon icon={faMap} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap"} html={true}>Map 2D</ReactTooltip></icon>
@@ -50,12 +48,12 @@ export default function Sidebar({setDark,setSidebarOpen}) {
           <icon><FontAwesomeIcon icon={faAtom} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap3"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap3"} html={true}>Map 3D</ReactTooltip></icon>
           </Link>
           <Link href="/satelites">
-          <icon><FontAwesomeIcon icon={faSatellite} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipSats"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipSats"} html={true}>Satélites</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faSatellite} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipSats"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipSats"} html={true}>Sats</ReactTooltip></icon>
           </Link>
           <Link href="/docu">
-          <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Documentación</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Docu</ReactTooltip></icon>
           </Link>
-      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipTheme"} html={true}>Theme</ReactTooltip></icon></button>
+      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
       
       </>)}
       

@@ -39,7 +39,7 @@ import Pos from '../pages/trace';
 
 
 
-export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark}) {
+export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace}) {
 
     //
     const [selectedSat, setSelectedSat] = React.useState(true);
@@ -49,10 +49,15 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     const [settings, setSettings] = React.useState(false);
     const [settingsInterval, setSettingsInterval] = React.useState(false);
     const [settingsPoints, setSettingsPoints] = React.useState(false);
+    const [settingsTraza3D,setSettingsTraza3D] = React.useState(false);
+    const [settingsSistRef3D,setSettingsSistRef3D] = React.useState(false);
     const [IDsel, setIDsel] = React.useState(IDdefault);
     const [intervalSaved,setIntervalSaved] = React.useState(50000);
     const [totalPointsSaved,setTotalPointsSaved] = React.useState(200);
-    //var [TLE,setTLE]= React.useState(TLEdefault);
+    const [viewModeSaved,setViewModeSaved] = React.useState('ECI');
+    const [viewTraceSaved,setViewTraceSaved] = React.useState(true);
+    
+
     
 
 
@@ -62,7 +67,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     var itemsArchiveBuildInitial = [];
       for (let i = 0; i < activeSorted.length; i++) {
         itemsArchiveBuildInitial.push(
-        <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),setInterval(intervalSaved),setTotalPoints(totalPointsSaved),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
+        <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
           <a>{activeSorted[i].OBJECT_NAME}</a>
         </button>
         )
@@ -190,6 +195,23 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
                   <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(1000),setTotalPointsSaved(1000)}}>1000</buttonset>
                   <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(2000),setTotalPointsSaved(2000)}}>2000</buttonset>
                   <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(5000),setTotalPointsSaved(5000)}}>5000</buttonset></>
+
+              }</>):('')}
+
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsTraza3D((p)=>!p)}><FontAwesomeIcon icon={(settingsTraza3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Traza en 3D</p>
+              {settingsTraza3D?(<>{<>
+
+                  <buttonset className={styles.buttonset} onClick={() => {setViewTrace(true),setViewTraceSaved(true)}}>Visible</buttonset>
+                  <buttonset className={styles.buttonset} onClick={() => {setViewTrace(false),setViewTraceSaved(false)}}>No visible</buttonset></>
+
+              }</>):('')}
+
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsSistRef3D((p)=>!p)}><FontAwesomeIcon icon={(settingsSistRef3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Sistema de Referencia 3D</p>
+              {settingsSistRef3D?(<>{<>
+
+                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('ECEF'),setViewModeSaved('ECEF')}}>ECEF</buttonset>
+                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('ECI'),setViewModeSaved(20000)}}>ECI</buttonset>
+                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('BOTH'),setViewModeSaved(20000)}}>ECI/ECEF</buttonset></>
 
               }</>):('')}
             </>):('')}

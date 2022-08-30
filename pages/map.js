@@ -28,6 +28,8 @@ export default function SimpleMap(){
     const [selectedFam, setSelectedFam] = useState(false);
     const [center,setCenter] = useState(defaultCenter);
     const [mark,setMark] = useState('');
+    const [viewMode,setViewMode] = useState('ECI');
+    const [viewTrace, setViewTrace] = useState(true);
 
     function styleMap(sidebarOpen) {
         if (sidebarOpen){
@@ -36,14 +38,14 @@ export default function SimpleMap(){
                 width: '100%',
                 "padding-right":'250px',
                 "padding-left":'250px',
-                background: 'black'
+                background: '#0F0F09'
         })
         } else {return({
             height: '100vh',
             width: '100%',
             "padding-right":'250px',
             "padding-left":'100px',
-            background: 'black'
+            background: '#0F0F09'
         })}
     }
 
@@ -155,7 +157,7 @@ export default function SimpleMap(){
       lat={posiciones[i].lat}
       lng={posiciones[i].lng}
       text="·"
-      info={'ID: '+ ID + ', name: ' + name + '<br/>' + posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º" +posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+ '<br />' + "time: " + tiempos[i]}
+      info={'ID: '+ ID + ', name: ' + name + '<br/>' + posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+ '<br />' + "time: " + tiempos[i]}
       number={i}
     />)
   }
@@ -165,8 +167,8 @@ export default function SimpleMap(){
     return (
       // Important! Always set the container height explicitly
      <> 
-      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} />
+      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace}/>
     <div style={styleMap(sidebarOpen)}>
     <GoogleMapReact className="Mapa"
       bootstrapURLKeys={{ key: "AIzaSyDKrg6ygIgLkBGpUX29D9hc2OtKprEQvGY" }}
@@ -337,7 +339,7 @@ export default function SimpleMap(){
             "elementType": "geometry",
             "stylers": [
                 {
-                    "color": "#2D333C"
+                    "color": /* "#2D333C" */'#0F0F09'
                 }
             ]
         },
@@ -363,8 +365,6 @@ export default function SimpleMap(){
     >
       {markers}
     </GoogleMapReact>
-    
-    
   </div>
   </>
     );
