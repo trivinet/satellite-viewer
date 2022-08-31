@@ -384,19 +384,6 @@ background-color: rgba(53, 60, 75 0.25);
 }
 
 .marker{
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 18px;
-    height: 18px;
-    background-color: #000;
-    border: 2px solid #fff;
-    border-radius: 100%;
-    user-select: none;
-    transform: translate(-50%, -50%);
-    &:hover {
-      z-index: 1;
-    } */
     font-size: 40px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     content: url('./Satellite-png-hd.png'); /* url(https://www.lifepng.com/wp-content/uploads/2020/11/Satellite-png-hd.png); */ /* url("https://cdn-icons-png.flaticon.com/512/1042/1042820.png"); *//* https://www.pngall.com/wp-content/uploads/2/Rocket-Transparent.png */
@@ -424,17 +411,28 @@ background-color: rgba(53, 60, 75 0.25);
   font-size: 20px;
   width: '5px';
   height: '5px';
-  color: #FA7268;
+  color: #D0D0D0;
   cursor: help;
   align-content: center;
   position: relative;
   bottom:30px;
 }
+.markerTraceFamily{
+  font-size: 40px;
+  width: '5px';
+  height: '5px';
+  color:  #FA7268 ;
+  cursor: help;
+  align-content: center;
+  position: relative;
+  bottom:60px;
+}
 .markerTraceMark{
   font-size: 160px;
   width: '15px';
   height: '15px';
-  color: #A0FA7C;
+  color: #D0D0D0/* #3FC6C7 */;
+  opacity: 0.6;
   cursor: help;
   position: relative;
   bottom:300px;

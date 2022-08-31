@@ -56,6 +56,8 @@ export default function SimpleMap(){
   //traza futuro
   const AnyReactComponentTraceFuture = ({ text,info,number }) => <div className={styles.markerTraceFuture}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
+  const AnyReactComponentTraceFamily = ({ text,info,number }) => <div className={styles.markerTraceFamily}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
+  <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
 
   //traza pasado
   const AnyReactComponentTracePast = ({ text,info,number }) => <div className={styles.markerTracePast}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
@@ -88,7 +90,7 @@ export default function SimpleMap(){
     var tiempos = TimePoints(1, interval);
 
   //crea markers
-    markers.push(<AnyReactComponentTracePast
+    markers.push(<AnyReactComponentTraceFamily
           lat={posiciones[1].lat}
           lng={posiciones[1].lng}
           text="·"
@@ -358,8 +360,9 @@ export default function SimpleMap(){
       },
     ]
       }}
-      defaultCenter={defaultProps.center}
+      defaultCenter={defaultCenter}
       defaultZoom={defaultProps.zoom}
+      center={center}
       yesIWantToUseGoogleMapApiInternals
       onGoogleApiLoaded={({ map, maps }) => handleApiLoaded(map, maps)}
     >

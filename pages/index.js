@@ -63,7 +63,7 @@ export default function Home() {
         <div className={styles.grid}>
           <a href="/docu" className={styles.card}>
           <div className={styles.imageGif}>
-            <img href = "/docu" src ={'https://es.bloggif.com/output/6/7/6797c912efade8cb7f01404744fc2a60.gif?1661873354'}/>
+            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifDocu.gif'}/>
           </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
             <p>Encuentra información en profundidad sobre TLEs, Mecánica Orbital y más.</p>
@@ -71,7 +71,7 @@ export default function Home() {
 
           <a href="/map" className={styles.card}>
           <div className={styles.imageGif}>
-            <img href = "/docu" src ={'https://es.bloggif.com/output/1/f/1f2f8d9100bd1204591d605df40c50d0.gif?1661852652'}/>
+            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
           </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
             <p>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
@@ -80,7 +80,7 @@ export default function Home() {
 
           <a href="/map3D" className={styles.card}>
           <div className={styles.imageGif}>
-            <img href = "/docu" src ={'https://es.bloggif.com/output/0/a/0a39249124b276dfcd56ff0c6ae3de9c.gif?1661855175'}/>
+            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
           </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/> */} Mapa 3D{/* </icon> */} {/* &darr; */}</h2>
             <p>

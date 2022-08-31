@@ -120,7 +120,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     var IDsDisplayed=[];
     function displayIDs(IDsInput){
       for (let i = 0; i < IDsInput.length; i++) {
-        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved)}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
+        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
       }
       return(IDsDisplayed)
     }
@@ -134,7 +134,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
         if(event.target.value===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value.toUpperCase()===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value===activeSorted[i].NORAD_CAT_ID.toString().substring(0,event.target.value.length))
         {
           itemsArchiveBuild.push(
-          <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved).lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved).lng])}}>
+          <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),/* setTotalPoints(totalPointsSaved),setInterval(intervalSaved), */setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
             <a>{activeSorted[i].OBJECT_NAME}</a>
           </button>
           )

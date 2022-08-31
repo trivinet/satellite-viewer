@@ -15,7 +15,7 @@ const IDdefault=25544;
 const totalpoints = 100;
 const intervalo = 50000;
 const darkDefault = true;
-const defaultCenter = [-101.17, 21.78];
+const defaultCenter = [0, 0];
 const velAngTierra = 9/2154100 ; //º/ms
 const periodoTierra = (23*60*60+56*60+4)*1000 ; //período tierra en ms
 
@@ -35,7 +35,7 @@ export default function PointMap() {
   const [viewMode,setViewMode] = useState('ECI');
   const [viewTrace, setViewTrace] = useState(true);
 
-
+ 
   
   if(selectedFam){
 
@@ -274,8 +274,8 @@ export default function PointMap() {
         
     var lineSymbolVert = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [153, 153, 153,0.96],
-      width: 2
+      color: [153, 153, 153,0.46],
+      width: 1
     };
     var polylineGraphicJsonVert = {
       geometry: polylineVert,
@@ -284,14 +284,19 @@ export default function PointMap() {
   
       var symbol = {
       type: "picture-marker", // autocasts as new PictureMarkerSymbol()
-      url: /* './Satellite-png-hd.png', */
+      src: /* "https://thumbs.files.fm/thumb_show.php?i=j3yw6egm2&view", */
+      /* "https://thumbs.files.fm/thumb_show.php?i=455mh9fyf&view", */ /* './Satellite-png-hd.png', */
       /* "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhmFmxNIb5gqkSUZMivYIQj2tcy361W3AsA&usqp=CAU", */
       /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
       /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
        "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
       /* "https://aios.global/wp-content/uploads/2020/06/sattelite.png", */
-      width: 28,
-      height: 28
+      width: 6,
+      height: 6,
+      
+      /* color:'white', */
+      /* opacity: '0.7', */ 
+      color:[158, 222, 250,1],
     }; 
   
     var markersPast=[];
@@ -317,8 +322,8 @@ export default function PointMap() {
 
     var lineSymbolPast = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [234, 128, 208,0.5]/* [255, 192, 49,0.5] */,
-      width: 4
+      color: [250,114,104,0.28],/* [234, 128, 208,0.5] *//* [255, 192, 49,0.5] */
+      width: 2
     };
 
     var polylineGraphicJsonPast = {
@@ -335,8 +340,8 @@ export default function PointMap() {
   
     var lineSymbolEciPast = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [255, 192, 49,0.5],
-      width: 4
+      color: [198,35,104,0.58],/* [255, 192, 49,0.5] */
+      width: 2 
     };
   
     var polylineGraphicJsonEciPast = {
@@ -359,7 +364,7 @@ export default function PointMap() {
     var lineSymbolFuture = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
       color: [175, 175, 175,0.5],
-      width: 4
+      width: 1
     };
 
     var polylineGraphicJsonFuture = {
@@ -394,9 +399,9 @@ export default function PointMap() {
     basemap: (dark)?("dark-gray-vector"):("satellite"),
     ground: "world-elevation",
   };
-  const options = {
+  var options = {
       view: {
-        center,
+        center:defaultCenter,
         zoom: 2,
         ui: {
           components:['attribution']
@@ -439,11 +444,38 @@ function styleMapTheme(dark) {
 }
 
   
+
+  
+
+  
   const [ref,view] = useScene(map, options);
-  
+
+  useEffect(() => {
+    if (!view) {
+      // view hasn't been created yet
+      return;
+    }
+    if (view.center !== center) {
+      // zoom prop has changed, update view
+      console.log(center[1],center[0])
+      view.center = [center[1]+3,center[0]+3,altitudes[Math.ceil(posiciones.length/2)]*1000];
+      /* view.zoom = 3; */
+      console.log(view)
+    }
+  }, [center]);
   
 
 
+  /* useEffect(() => {
+    if (!view) {
+      // view hasn't been created yet
+      return;
+    }
+    if (view.zoom !== Math.round(zoom, 0)) {
+      // zoom prop has changed, update view
+      view.zoom = zoom;
+    }
+  }, [zoom, view]); */
   // takes a view instance and graphic as a POJO
   // the point will be replaced if the lat/lng props change
   

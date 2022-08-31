@@ -8,6 +8,7 @@ import { getLatLngObj } from "tle.js";
 import InfoBoxPrint from '../components/infoBoxPrint'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
+import ReactTooltip from 'react-tooltip';
 
 const texto = ` 
 Resumen
@@ -1633,21 +1634,41 @@ verdadera (ѵ), semieje menor (b), excentricidad linear (ϵ), anomalía excéntr
 (E), longitud media (L), longitud verdadera (լ) y período orbital (Т). Sin embargo,
 no se pondrán en uso en este proyecto, ya que no forman parte de los elementos
 que conforman los TLEs.</p>
-
-
         </>}</>):('')}
 
         <h2><icon onClick={() =>setInfoTLE((p)=>!p)}><FontAwesomeIcon icon={(infoTLE)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> TLEs</icon></h2>
               {infoTLE?(<>{<>
 
-                <h3>Resumen</h3>
-        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
+        <p>El formato de datos NORAD Two-Line-Element set o simplemente TLE, supone
+la codificación de una lista de elementos orbitales de un objeto orbital terrestre
+(y únicamente terrestre) para un instante en el tiempo, también conocido como
+la época (llamada así en astronomía a una fecha en concreto, en ocasiones
+medida en milisegundos a partir del 1 de enero del 2000 a las 00:00 según UTC (<a style={{color:'blue'}} 
+        href='https://en.wikipedia.org/wiki/Epoch_(astronomy)'>link</a>)
+). Gracias a este dato, es posible la correcta representación de un satélite
+dado en el instante deseado. A partir de ese instante, el error puede crecer
+progresivamente con el tiempo, por lo que dichos TLEs son actualizados
+constantemente, y no son válidos para todos los tiempos posteriores si se
+requiere de rigurosidad y exactitud en los cálculos.</p>
 
-        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
+<p>Este formato está íntimamente relacionado con los propagadores anteriormente
+mencionados, puesto que nacen tras la creación de los mismos, y se basan en
+todas sus perturbaciones para la obtención de los resultados. </p>
 
-        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
+<p>Inicialmente se pretendió materializar mediante tarjetas perforadas, un
+recurso altamente utilizado en los primeros tiempos de la programación y la
+informática. Por esta razón, el formato nació como dos tarjetas de 80 columnas
+(lo que contendría 80 caracteres en total), pero finalmente se decidió reemplazar
+dicho formato por archivos de texto con dos líneas de 69 columnas en formato
+ASCII, precedidas de una línea destinada al título. </p>
 
-        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
+<p>EJEMPLO DE TLE PARA LA ISS</p>
+
+<h2 className={styles.hTLE} style={{width:'560px'}}><p><a className={styles.nameTLE}>{tle.split('\n')[0]}</a></p>
+<p>{tle.split('\n')[1]}</p>
+<p>{tle.split('\n')[2]}</p></h2>
+
+              
 
         </>}</>):('')}
 
