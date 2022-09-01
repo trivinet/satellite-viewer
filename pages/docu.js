@@ -9,6 +9,7 @@ import InfoBoxPrint from '../components/infoBoxPrint'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 import ReactTooltip from 'react-tooltip';
+import YouTube from 'react-youtube';
 
 const texto = ` 
 Resumen
@@ -1248,9 +1249,9 @@ En el caso de InfoBox, por ejemplo, donde existen numerosas divisiones (Búsqued
 Algunas herramientas de visualizado evolucionan integrando utilidades hasta el punto en el que resulta incómodo e intuitivo interactuar con la aplicación si no se tiene experiencia con ella, por lo que el apartado de sencillez es tenido en cuenta seriamente durante todo el proceso de producción de Satellite Viewer, siendo esta un pilar fundamental para el desarrollador y los usos para los que está destinada.
   
 `;
-const tle = `ISS (ZARYA)
-1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
-2 25544  51.6408 178.1024 0004971  26.6345  84.2777 15.50023189 350148`; 
+const tle = `0 STARLINK-2360
+1 47900U 21021AS  22242.39477444 -.00000011  00000-0  18195-4 0  9991
+2 47900  53.0546 290.5183 0001524  79.7172 280.3988 15.06393353 82172`; 
 
 
 
@@ -1284,6 +1285,30 @@ export default function Docu(){
     espaciado=[];
   }
   else{espaciado.push(<><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p></>);}
+
+
+  class Example extends React.Component {
+    render() {
+      const opts = {
+        height: '390',
+        width: '640',
+        playerVars: {
+          // https://developers.google.com/youtube/player_parameters
+          autoplay: 1,
+        },
+      };
+  
+      return <YouTube videoId="Ygvrm6NiSJA" opts={opts} onReady={this._onReady} />;
+    }
+  
+    _onReady(event) {
+      // access to player in all event handlers via event.target
+      event.target.pauseVideo();
+    }
+  }
+
+
+
 
   return(
     <> 
@@ -1334,10 +1359,10 @@ export default function Docu(){
         <p>En cuanto a las funcionalidades esenciales que se plantean incluir, están la de
         visionado del satélite en un tiempo dado (generalmente en el momento en el que
         se haga la petición), la caracterización de la posición (latitud, longitud, altitud),
-        de la órbita [4] (semieje mayor, excentricidad, inclinación, ascensión recta del
+        de la órbita (semieje mayor, excentricidad, inclinación, ascensión recta del
         nodo ascendente, argumento del perigeo, anomalía verdadera) y una breve
         indicación sobre el satélite o la familia de satélites en cuestión, ya sea la
-        identificación NORAD [5] o el nombre estandarizado.</p>
+        identificación NORAD o el nombre estandarizado.</p>
         
         <p>Además del apartado gráfico, existen dos cuestiones que se consideran como
         objetivos esenciales en este trabajo: el filtrado y exposición de los cuerpos que
@@ -1396,7 +1421,7 @@ export default function Docu(){
 
         <p>Por último, y, también relacionado con la cobertura, se pretende hacer alusión a
         los satélites que conforman el sistema ADSB1
-        (constelación GNSS [6]) e
+        (constelación GNSS) e
         implantar apartados en los que se pueda interactuar con los mismos, de tal forma
         que se integre la industria aeronáutica y aeroespacial en la misma plataforma.</p>
         
@@ -1483,10 +1508,10 @@ export default function Docu(){
         que los ejes ‘giren con ella’, de ahí su nombre de centrado a la tierra y fijado a la
         tierra. Los ejes Y de ambas representaciones se construyen con un ángulo de
         90º con respecto al eje X y sobre el plano ecuatorial, pero no coinciden
-        generalmente por la misma razón que los ejes X no coinciden [26].</p>
+        generalmente por la misma razón que los ejes X no coinciden.</p>
 
         <img href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html" src ={'https://es.mathworks.com/help/aerotbx/ug/eci_ecef1.gif'}/>
-        <p style={{textAlign:'center'}}>Figura obtenida de MathWorks, enlace en <a style={{color:'blue'}} target="_blank" href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html">este link</a></p>
+        <p style={{textAlign:'center'}}>Figura obtenida de MathWorks, enlace en <a style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html">este link</a></p>
 
         <p>Aunque aún no sea trivial plasmarlo, en las representaciones 3D de las órbitas
         que se harán en la aplicación existirá una diferencia radical en la vista de ambos
@@ -1534,11 +1559,11 @@ export default function Docu(){
         <p>Estos propagadores predicen el efecto de las perturbaciones causadas por la
         forma de la tierra (que, erróneamente, es tratada como una esfera perfecta), el
         rozamiento, la radiación y los efectos gravitacionales causados por otros
-        cuerpos, tales como la luna o el sol (véase <a style={{color:'blue'}} 
-        href='https://hmong.es/wiki/SGP4'>este link</a>
+        cuerpos, tales como la luna o el sol (véase <a style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://hmong.es/wiki/SGP4' target="_blank">este link</a>
         para más información). Se estima que el propagador tiene un
         error de menos de 1km, pero crece diariamente entre 1 y 3 km, la razón principal
-        por la que los datos son continuamente actualizados (referencia en <a style={{color:'blue'}} 
+        por la que los datos son continuamente actualizados (referencia en <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://en.wikipedia.org/wiki/Two-line_element_set'>este link</a>).</p>
         <p>Dichos propagadores conllevan una carga matemática y física que se escapa de
         los límites de este proyecto, por lo que no se entrará en detalle en los cálculos
@@ -1547,12 +1572,12 @@ export default function Docu(){
         singularidades de los datos orbitales. Entre ellas, la razón por la que los TLEs
         son actualizados diariamente (como se ha mencionado, el propagador conlleva
         errores que crecen con el tiempo, y se han de corregir). Para más información,
-        la página de <a style={{color:'blue'}} 
+        la página de <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://celestrak.org/'>Celestrak</a>, referenciada en multitud de ocasiones, tiene
         documentación extensa sobre propagadores, códigos originales de la compañía
-        NORAD (desarrolladora del producto, <a style={{color:'blue'}} 
+        NORAD (desarrolladora del producto, <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://www.norad.mil/'>NORAD</a>) y librerías actualizadas sobre el
-        propagador <a style={{color:'blue'}} 
+        propagador <a style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" 
         href='https://github.com/shashwatak/satellite-js'>satellite.js</a>, entre las que se encuentra la que se usará para este proyecto,
         mencionada en el apartado de Cálculos.</p>
 
@@ -1564,7 +1589,7 @@ export default function Docu(){
                 <h3>Definición</h3>
         <p>La astrodinámica o mecánica orbital es la aplicación de la balística y la mecánica
         celeste a los problemas prácticos relativos al movimiento de cohetes y otras
-        naves espaciales (<a style={{color:'blue'}} 
+        naves espaciales (<a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>link</a>). Está basada en las leyes de Newton y en la ley de la
         gravitación universal. Esta pretende hacer un estudio exhaustivo sobre las
         trayectorias de las naves espaciales, además de la multitud de maniobras, y es
@@ -1580,8 +1605,8 @@ export default function Docu(){
         determinar una órbita (éste usa un modelo de dos masas siguiendo las leyes de
         movimiento de Newton). Con esta denominación se suele hacer referencia a seis
         parámetros básicos, también denominados como elementos keplerianos (como tributo 
-        a Kepler (<a style={{color:'blue'}} 
-        href='https://es.wikipedia.org/wiki/Elementos_orbitales#:~:text=Los%20elementos%20orbitales%20son%20los,utilizando%20una%20%C3%B3rbita%20de%20Kepler'>link</a>)), que a continuación se definen para el caso de  (<a style={{color:'blue'}} 
+        a Kepler (<a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://es.wikipedia.org/wiki/Elementos_orbitales#:~:text=Los%20elementos%20orbitales%20son%20los,utilizando%20una%20%C3%B3rbita%20de%20Kepler'>link</a>)), que a continuación se definen para el caso de  (<a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://en.wikipedia.org/wiki/Geocentric_orbit'>órbitas geocéntricas</a>):</p>
 
         <p>a. Longitud del nodo ascendente (☊ o Ω)</p> 
@@ -1643,7 +1668,7 @@ que conforman los TLEs.</p>
 la codificación de una lista de elementos orbitales de un objeto orbital terrestre
 (y únicamente terrestre) para un instante en el tiempo, también conocido como
 la época (llamada así en astronomía a una fecha en concreto, en ocasiones
-medida en milisegundos a partir del 1 de enero del 2000 a las 00:00 según UTC (<a style={{color:'blue'}} 
+medida en milisegundos a partir del 1 de enero del 2000 a las 00:00 según UTC (<a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://en.wikipedia.org/wiki/Epoch_(astronomy)'>link</a>)
 ). Gracias a este dato, es posible la correcta representación de un satélite
 dado en el instante deseado. A partir de ese instante, el error puede crecer
@@ -1662,69 +1687,172 @@ informática. Por esta razón, el formato nació como dos tarjetas de 80 columna
 dicho formato por archivos de texto con dos líneas de 69 columnas en formato
 ASCII, precedidas de una línea destinada al título. </p>
 
-<p>EJEMPLO DE TLE PARA LA ISS</p>
+<p style={{fontSize:'20px',fontFamily:[ 'Courier New', 'Courier', 'monospace']}}>EJEMPLO DE TLE</p>
+<p style={{fontSize:'15px',fontFamily:[ 'Courier New', 'Courier', 'monospace']}}>-Desliza el ratón sobre los elementos para identificarlos-</p>
 
-<h2 className={styles.hTLE} style={{width:'560px'}}><p><a className={styles.nameTLE}>{tle.split('\n')[0]}</a></p>
-<p>{tle.split('\n')[1]}</p>
-<p>{tle.split('\n')[2]}</p></h2>
+<h2 className={styles.hTLE} style={{width:'600px'}}><p><a className={styles.numberLineTLE} data-tip data-for={'numberLine'}>{tle.split('\n')[0].substring(0,1)} </a><a className={styles.nameTLE} data-tip data-for={'name'}>{tle.split('\n')[0].substring(2)}</a></p>
+<p><a className={styles.numberLineTLE} data-tip data-for={'numberLine'}>{tle.split('\n')[1].substring(0,1)} </a>
+<a className={styles.idTLE} data-tip data-for={'id'}>{tle.split('\n')[1].substring(2,7)}</a>
+<a className={styles.classTLE} data-tip data-for={'class'}>{tle.split('\n')[1].substring(7,8)} </a>
+<a className={styles.last2digYearTLE} data-tip data-for={'last2launch'}>{tle.split('\n')[1].substring(9,11)}</a>
+<a className={styles.numLaunchTLE} data-tip data-for={'numLaunch'}>{tle.split('\n')[1].substring(11,14)}</a>
+<a className={styles.pieceLaunchTLE} data-tip data-for={'piece'}>{tle.split('\n')[1].substring(14,17)}</a>
+<a className={styles.idTLE} data-tip data-for={'last2epoch'}>{tle.split('\n')[1].substring(18,20)}</a>
+<a className={styles.classTLE} data-tip data-for={'day'}>{tle.split('\n')[1].substring(20,32)} </a>
+<a className={styles.last2digYearTLE} data-tip data-for={'1m0'}>{tle.split('\n')[1].substring(33,43)}</a>
+<a className={styles.numLaunchTLE} data-tip data-for={'2m0'}>{tle.split('\n')[1].substring(44,52)}</a>
+<a className={styles.pieceLaunchTLE} data-tip data-for={'bstar'}>{tle.split('\n')[1].substring(53,61)} </a>
+<a className={styles.idTLE} data-tip data-for={'efem'}>{tle.split('\n')[1].substring(62,63)} </a>
+<a className={styles.classTLE} data-tip data-for={'numElem'}>{tle.split('\n')[1].substring(65,68)}</a>
+<a className={styles.last2digYearTLE} data-tip data-for={'checksum'}>{tle.split('\n')[1].substring(68)}</a>
+</p>
+<p><a className={styles.numberLineTLE} data-tip data-for={'numberLine'}>{tle.split('\n')[2].substring(0,1)} </a>
+<a className={styles.idTLE} data-tip data-for={'id'}>{tle.split('\n')[2].substring(2,7)} </a>
+<a className={styles.classTLE} data-tip data-for={'inclinacion'}> {tle.split('\n')[2].substring(9,16)} </a>
+<a className={styles.last2digYearTLE} data-tip data-for={'ascRect'}>{tle.split('\n')[2].substring(17,25)} </a>
+<a className={styles.numLaunchTLE} data-tip data-for={'excentr'}> {tle.split('\n')[2].substring(26,33)} </a>
+<a className={styles.pieceLaunchTLE} data-tip data-for={'argumento'}>{tle.split('\n')[2].substring(34,42)} </a>
+<a className={styles.idTLE} data-tip data-for={'anomMedia'}>{tle.split('\n')[2].substring(43,51)} </a>
+<a className={styles.classTLE} data-tip data-for={'movMedio'}>{tle.split('\n')[2].substring(52,63)}</a>
+<a className={styles.last2digYearTLE} data-tip data-for={'numRev'}>{tle.split('\n')[2].substring(63,68)}</a>
+<a className={styles.numLaunchTLE} data-tip data-for={'checksum'}>{tle.split('\n')[2].substring(68)}</a>
+</p></h2>
+<ReactTooltip className={styles.tooltip} id={"numberLine"} type='dark' html={true}>NÚMERO DE LÍNEA</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"name"} type='dark' html={true}>NOMBRE DEL SATÉLITE</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"id"} type='dark' html={true}>NORAD ID</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"class"} type='dark' html={true}>CLASIFICACIÓN*</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"last2launch"} type='dark' html={true}>Dos últimos dígitos del año de lanzamiento</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"numLaunch"} type='dark' html={true}>Número de lanzamiento del año</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"piece"} type='dark' html={true}>Parte del lanzamiento</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"last2epoch"} type='dark' html={true}>Dos últimos dígitos del año (TLE)</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"day"} type='dark' html={true}>Día del año + fracción del día (TLE)</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"1m0"} type='dark' html={true}>Primera derivada de la Anomalía Media</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"2m0"} type='dark' html={true}>Segunda derivada de la Anomalía Media (decimal)**</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"bstar"} type='dark' html={true}>BSTAR* (decimal) </ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"efem"} type='dark' html={true}>Efemérides*</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"numElem"} type='dark' html={true}>Número de set de TLEs</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"checksum"} type='dark' html={true}>Checksum*</ReactTooltip>
 
-              
+<ReactTooltip className={styles.tooltip} id={"inclinacion"} type='dark' html={true}>Inclinación</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"ascRect"} type='dark' html={true}>Ascensión recta del nodo ascendente</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"excentr"} type='dark' html={true}>Excentricidad (decimal)</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"argumento"} type='dark' html={true}>Argumento del perigeo</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"anomMedia"} type='dark' html={true}>Anomalía Media</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"movMedio"} type='dark' html={true}>Movimiento medio</ReactTooltip>
+<ReactTooltip className={styles.tooltip} id={"numRev"} type='dark' html={true}>Número de revolución</ReactTooltip>
+
+<p></p>
+<p style={{textAlign:'left'}}>* Clasificación: ‘U’ - ‘Unclassified’, ‘C’ - ‘Classified’, ‘S’ - ‘Secret’</p> 
+<p>* BSTAR: representa una modificación del coeficiente de balística (coeficiente que relaciona rozamiento, masa y área)
+representado en unidades de 1/RadioTerrestre</p>
+<p>* Efemérides: generalmente ‘0’, ver enlaces externos;</p> 
+<p>* Checksum: resultado de sumar los valores contenidos en la línea, se
+trata de una comprobación (‘Check-sum’: comprobación de la suma), ver enlaces externos</p>
+<p>** Tanto para la Línea 1 como la 2, los valores asumidos como decimales están expresados de tal forma que los dos primeros símbolos
+representan: 0,(dígitos-2)*10^-(últimos dos dígitos);</p>
 
         </>}</>):('')}
 
         <h2><icon onClick={() =>setCalculos((p)=>!p)}><FontAwesomeIcon icon={(calculos)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Cálculos</icon></h2>
               {calculos?(<>{<>
 
-                <h3>Resumen</h3>
-        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
-
-        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
-
-        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
-
-        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
+        <p>Como es de esperar, las operaciones que se requieren para obtener datos
+satelitales a partir de la información proporcionada de Celestrak no son para
+nada sencillas, siendo, en numerables ocasiones, fuera del alcance de este
+proyecto y de los conocimientos matemáticos y físicos obtenidos en la titulación.
+Por suerte, existen dos librerías en JavaScript que se encargan de realizar estos
+cálculos y proporcionar los resultados convenientes, aunque en ciertas
+situaciones tengan que tratarse con cautela y aplicar correcciones.</p>
+<p>La librería principal y ampliamente reconocida en la comunidad es 
+  <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} href='https://github.com/shashwatak/satellite-js'> Satellite.js</a> 
+, encargada de la gestión del propagador SGP4/SDP4 y de los cálculos pertinentes. Dicha librería es
+prácticamente idéntica a la librería de Brandon Rhode SGP4 para Python, y no
+es más que una encapsulación de la misma en el entorno de JavaScript. Entre
+las atribuciones de esta librería se encuentran personalidades como Nikos
+Sagias (profesor de la Universidad de Peloponeso), David Vallado (autor de
+‘Fundamentals of Astrodynamics and Applications’, 2000) o T.S. Kelso (creador
+de Celestrak) y cuenta con un total de hasta 16 contribuidores reconocidos, con
+actualizaciones y ajustes casi semanales.</p>
+<p>Gracias a esta librería, es posible la obtención casi inmediata de parámetros
+como la posición, velocidad, altitud, datos de observación y un largo etcétera. Lo
+que supone una herramienta crucial en la aplicación que se desea desarrollar.
+Todos estos parámetros, por supuesto, deben ser debidamente introducidos y
+comprobados, ya que el resultado depende de una cantidad de datos de entrada
+muy elevada, y deben ser minuciosamente generados.</p>
+<p>Esta librería comentada, a su vez, tiene unos tiempos de procesado en
+ocasiones elevados para obtener resultados que se quieren de forma casi
+inmediata. Por esta razón, y para obtener los parámetros de forma más clara y
+rápida, se hace uso de una segunda librería llamada <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://github.com/davidcalhoun/tle.js/'>tle.js</a> tle.js, la cual depende
+directamente de la primera, pero está desglosada en funciones concretas que
+facilitan aún más el uso. Además, esta librería está desarrollada enteramente por
+David Calhoun, uno desarrolladores principales de la mencionada inicialmente,
+lo que le da la fiabilidad y sentido al proyecto.</p>
+<p>La segunda librería será la utilizada en la mayor parte del proyecto, puesto que
+los parámetros básicos que se quieren obtener (latitud, longitud, elevación) son
+fácilmente accesibles con las funciones concretas de este paquete. La ventaja
+es la exactitud y veracidad de los resultados combinado con un producto más liviano, 
+sencillo y de menor complejidad. Sin embargo, habrá cálculos que deberán hacerse 
+usando la librería de Satellite.js.</p>
+<p>Los detalles de esta librería se encuentran en el Anexo II. Los detalles de la
+obtención de los resultados y la metodología aplicada vienen desarrollados en el
+capítulo 9 de descripción de tareas, puesto que en este subapartado se pretende
+mostrar las librerías escogidas y la razón por la que se ha hecho.</p>
 
         </>}</>):('')}
         
         <h2><icon onClick={() =>setSatelites((p)=>!p)}><FontAwesomeIcon icon={(satelites)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Fuente de información satelital</icon></h2>
               {satelites?(<>{<>
 
-                <h3>Resumen</h3>
-        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
-
-        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
-
-        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
-
-        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
+                <p>Las formas de acceder a estos TLEs son oficialmente dos: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='http://www.celestrak.org/'>Celestrak</a> y <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://www.space-track.org/'>SpaceTrack</a>. Ambas corporaciones están dotadas de la información pública (existe
+información clasificada y elementos militares de acceso restringido) sobre los
+satélites que orbitan la tierra. La fuente de información es la Fuerza Espacial de
+los Estados Unidos, la cual lleva supervisando, controlando y almacenando
+datos de los objetos orbitales desde el principio de los tiempos de la carrera
+espacial. Si bien el canal de comunicación oficial de este organismo es SpaceTrack, ambas alternativas son igualmente válidas y veraces, teniendo en cuenta la peculiaridad de Celestrak.</p>
+<p>Para este proyecto se usarán indistintamente ambas fuentes, y, en ocasiones,
+puede hacerse alusión sólo a alguna de ellas, pero en cualquier caso ambas son
+igualmente válidas y correctas, limitándose meramente a una decisión del
+desarrollador y de los requisitos de la plataforma.</p>
+<p>Como información complementaria, existen reportes sobre análisis de datos,
+estadísticas interesantes y diferentes análisis hechos en ambas fuentes, por lo
+que partir de ambas puede ser en cualquier caso beneficioso y no contraproducente. 
+Además, en ambas se puede elegir previamente el formato
+en el que se desea recibir los datos, ya sean directamente TLEs en archivo de
+texto o bien en formato JSON para ser fácilmente adaptables a un entorno de
+programación.</p>
 
         </>}</>):('')}
 
         <h2><icon onClick={() =>setEnlaces((p)=>!p)}><FontAwesomeIcon icon={(enlaces)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Enlaces variados y suplemento de documentación</icon></h2>
               {enlaces?(<>{<>
 
-                <h3>Resumen</h3>
-        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
+        <p>Documento original formación TLEs <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/ADCOM%20DO%20Form%2012.pdf'>(link)</a> </p>   
+        <p>Controversia Parámetro CHECKSUM <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/checksum.php'>(link)</a> </p>    
+<p>Propagador <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/spacetrk.pdf'>(link)</a> </p> 
+<p>Mecánica Orbital I <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>(link)</a> </p>
+<p>Mecánica Orbital II <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://riunet.upv.es/bitstream/handle/10251/158425/Mora%C3%B1o%20-%20%C3%93rbitas%20en%20tres%20dimensiones%3A%20Elementos%20orbitales.pdf?sequence=1&isAllowed=y#:~:text=Para%20definir%20una%20%C3%B3rbita%20en,semieje%20mayor1%20(a).'>(link)</a> </p>
+<p>Sistemas de Coordenadas <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html'>(link)</a> </p>
+<p>Memoria del proyecto <a target="_blank" type="application/pdf" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='../TFGprueba4.pdf'>(link)</a> </p>
 
-        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
 
-        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
 
-        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
 
         </>}</>):('')}
 
         <h2><icon onClick={() =>setTutorial((p)=>!p)}><FontAwesomeIcon icon={(tutorial)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Tutorial</icon></h2>
               {tutorial?(<>{<>
 
-                <h3>Resumen</h3>
-        <p>El objetivo del proyecto es el diseño de una aplicación web en la cual puedan visualizarse de forma intuitiva, didáctica y sencilla las diferentes características de los satélites que existen orbitando la tierra. Se trata de establecer una guía teórica y breves explicaciones sobre el funcionamiento de los mismos, así como la muestra de los mapas desde donde se pueda visualizar la información básica del satélite.</p>
-
-        <p>La principal fuente de información son los conocidos TLEs (Two-Lines-Element), un formato de datos con una lista de elementos para un objeto en un tiempo dado, que, junto al propagador (SGP4) proporciona todos los datos necesarios para la caracterización de las órbitas. La información de estos TLEs es oficialmente proporcionada de forma pública por la compañía Celestrak (coworker de Space-Track, proyecto inicialmente desarrollado por US Air Force). Además, la totalidad de componentes y librerías usadas en este proyecto son de uso público.</p>
-
-        <p>Existen multitud de funcionalidades que se han tratado de implementar en la medida de lo posible en la Web App: diferentes visualizados, filtrado de información, historia, comparaciones y cálculos, entre otras. Pero es el apartado de ‘familias’ de satélites el que se ha desarrollado in extenso, puesto que es el que tiene un especial interés de cara al uso de la página web en un futuro. Con la implementación de este apartado especial para las familias, se tratan campos como la cobertura, descripción de las órbitas o la ocupación del espacio usado.</p>
-
-        <p>Este proyecto no pretende más que aclarar el espacio exterior al usuario medio y ‘acercar’ la industria aeroespacial a aquellos que se interesen en el tema. Es por ello que se cataloga como un proyecto divulgativo, ya que, si bien es científico y trata cuestiones complejas, es para todos los públicos y no se requiere de profundo conocimiento previo para hacer uso del mismo. Para estudios más sofisticados y de elevada complejidad, existen herramientas más adecuadas que el proyecto que se plantea realizar.</p>
+                <Example></Example>
 
         </>}</>):('')}
         {espaciado}

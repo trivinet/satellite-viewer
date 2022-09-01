@@ -39,6 +39,11 @@
   outline: 1px solid blue;
 }  
 
+.mainDarkClose .tooltip {
+  font-size: 20px;
+  font-family: 'Righteous', cursive;
+}
+
 .mainDarkClose .hTLE {
   margin: 0%;
   padding:1%;
@@ -62,6 +67,36 @@
 
 .mainDarkClose .hTLE .nameTLE:hover{
   color:#A0FA7C;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .numberLineTLE:hover{
+  color:#F6C965;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .idTLE:hover{
+  color:#6497F5;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .classTLE:hover{
+  color:red;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .last2digYearTLE:hover{
+  color:#F6E101;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .numLaunchTLE:hover{
+  color:#D997F5;
+  background-color:'black';
+  font-size: larger;
+}
+.mainDarkClose .hTLE .pieceLaunchTLE:hover{
+  color:#2375A8;
   background-color:'black';
   font-size: larger;
 }

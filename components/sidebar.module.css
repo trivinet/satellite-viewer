@@ -9,6 +9,7 @@
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  z-index: 5;
   box-shadow:
   0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
   1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
@@ -177,6 +178,7 @@
   padding: 32px;
   border: 0px;
   opacity: 0.5;
+  z-index: 5;
   box-shadow:
   0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
   1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),

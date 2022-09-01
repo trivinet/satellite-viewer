@@ -9,6 +9,7 @@ import { Scrollbars } from 'react-custom-scrollbars';
 import { getLatLngObj,getSatelliteInfo } from 'tle.js';
 import generateIDs from '../pages/generateIDs';
 import Pos from '../pages/trace';
+import ReactTooltip from 'react-tooltip';
 
 /* const tle = `ISS (ZARYA)
   1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
@@ -39,7 +40,7 @@ import Pos from '../pages/trace';
 
 
 
-export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace}) {
+export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace,setTleInfoShow,setIDfam}) {
 
     //
     const [selectedSat, setSelectedSat] = React.useState(true);
@@ -67,7 +68,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     var itemsArchiveBuildInitial = [];
       for (let i = 0; i < activeSorted.length; i++) {
         itemsArchiveBuildInitial.push(
-        <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
+        <button onClick={() => {setMark(''),setSelectedFam(false),setSelectedFamInt(false),setTleInfoShow(true),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
           <a>{activeSorted[i].OBJECT_NAME}</a>
         </button>
         )
@@ -76,42 +77,42 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     var familias = [];
       for (let i = 0; i < 10; i++) {
         familias=[(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStations),setIDsel(IDStations),setCenter([0,0])}}><a>Estaciones</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStations),setIDsel(IDStations),setCenter([0,0])}}><a>Estaciones</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDScience),setIDsel(IDScience),setCenter([0,0])}}><a>Ciencia</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDScience),setIDsel(IDScience),setCenter([0,0])}}><a>Ciencia</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMeteo),setIDsel(IDMeteo),setCenter([0,0])}}><a>Meteorología</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMeteo),setIDsel(IDMeteo),setCenter([0,0])}}><a>Meteorología</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDNOAA),setIDsel(IDNOAA),setCenter([0,0])}}><a>NOAA</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDNOAA),setIDsel(IDNOAA),setCenter([0,0])}}><a>NOAA</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGPS),setIDsel(IDGPS),setCenter([0,0])}}><a>GPS</a>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGPS),setIDsel(IDGPS),setCenter([0,0])}}><a>GPS</a>
           </button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGlonass),setIDsel(IDGlonass),setCenter([0,0])}}><a>GLONASS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGlonass),setIDsel(IDGlonass),setCenter([0,0])}}><a>GLONASS</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGalileo),setIDsel(IDGalileo),setCenter([0,0])}}><a>GALILEO</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGalileo),setIDsel(IDGalileo),setCenter([0,0])}}><a>GALILEO</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDBeidou),setIDsel(IDBeidou),setCenter([0,0])}}><a>BEIDOU</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDBeidou),setIDsel(IDBeidou),setCenter([0,0])}}><a>BEIDOU</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIRNSS),setIDsel(IDIRNSS),setCenter([0,0])}}><a>IRNSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIRNSS),setIDsel(IDIRNSS),setCenter([0,0])}}><a>IRNSS</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDQZS),setIDsel(IDQZS),setCenter([0,0])}}><a>QZSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDQZS),setIDsel(IDQZS),setCenter([0,0])}}><a>QZSS</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDEgnos),setIDsel(IDEgnos),setCenter([0,0])}}><a>WAAS/EGNOS/MSAS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDEgnos),setIDsel(IDEgnos),setCenter([0,0])}}><a>WAAS/EGNOS/MSAS</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGNSS),setIDsel(IDGNSS),setCenter([0,0])}}><a>GNSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGNSS),setIDsel(IDGNSS),setCenter([0,0])}}><a>GNSS</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGeo),setIDsel(IDGeo),setCenter([0,0])}}><a>Geosíncronos</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGeo),setIDsel(IDGeo),setCenter([0,0])}}><a>Geosíncronos</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIridium),setIDsel(IDIridium),setCenter([0,0])}}><a>Iridium</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIridium),setIDsel(IDIridium),setCenter([0,0])}}><a>Iridium</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDInstelsat),setIDsel(IDInstelsat),setCenter([0,0])}}><a>Intelsat</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDInstelsat),setIDsel(IDInstelsat),setCenter([0,0])}}><a>Intelsat</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMolniya),setIDsel(IDMolniya),setCenter([0,0])}}><a>Molniya</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMolniya),setIDsel(IDMolniya),setCenter([0,0])}}><a>Molniya</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDOneWeb),setIDsel(IDOneWeb),setCenter([0,0])}}><a>Oneweb</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDOneWeb),setIDsel(IDOneWeb),setCenter([0,0])}}><a>Oneweb</a></button>
         ),(
-          <button onClick={() => {setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStarlink),setIDsel(IDStarlink),setCenter([0,0])}}><a>Starlink</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStarlink),setIDsel(IDStarlink),setCenter([0,0])}}><a>Starlink</a></button>
         )
       
       ]
@@ -120,7 +121,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     var IDsDisplayed=[];
     function displayIDs(IDsInput){
       for (let i = 0; i < IDsInput.length; i++) {
-        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
+        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setTleInfoShow(true),setIDfam(IDsInput[i]),setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
       }
       return(IDsDisplayed)
     }
@@ -134,7 +135,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
         if(event.target.value===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value.toUpperCase()===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value===activeSorted[i].NORAD_CAT_ID.toString().substring(0,event.target.value.length))
         {
           itemsArchiveBuild.push(
-          <button onClick={() => {setSelectedFam(false),setSelectedFamInt(false),/* setTotalPoints(totalPointsSaved),setInterval(intervalSaved), */setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
+          <button onClick={() => {setMark(''),setTleInfoShow(true),setSelectedFam(false),setSelectedFamInt(false),/* setTotalPoints(totalPointsSaved),setInterval(intervalSaved), */setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
             <a>{activeSorted[i].OBJECT_NAME}</a>
           </button>
           )
@@ -150,20 +151,21 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
      
     <nav className={dark?(styles.navDark):(styles.nav)}>
           <>
-            <input placeholder="Search..." onChange={handleChange} onClick={() =>setAvailableSat((p)=>true)}/>      
-            <p><icon onClick={() =>setSelectedSat((p)=>!p)}><FontAwesomeIcon icon={(selectedSat)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Selección</p>
+            <input placeholder="ID / nombre..." onChange={handleChange} data-tip data-for={'input'} onClick={() =>setAvailableSat((p)=>true)}/>
+            <ReactTooltip className={styles.tooltip} id={"input"} type='dark' html={true}>Busca por NORAD ID o nombre del satélite</ReactTooltip>     
+            <p data-tip data-for={'seleccion'}><icon onClick={() =>setSelectedSat((p)=>!p)}><FontAwesomeIcon icon={(selectedSat)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Selección</p>
+            <ReactTooltip className={styles.tooltip} id={"seleccion"} type='dark' html={true}>IDs seleccionados</ReactTooltip>
             {selectedSat?(selectedFamInt?(<>{<>
             {displayIDs(IDsel)}
             </>}</>):(<>{<>
             <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>ID: {IDsel}</p>
-            <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>
-              <p>Nombre: {assignTLE(IDsel).split('\n')[0]}</p>
-              <p>L1: {assignTLE(IDsel).split('\n')[1]}</p>
-              <p>L2: {assignTLE(IDsel).split('\n')[2]}</p>
-              <p>Fecha: {Date(Date.now())}</p>
-              <p>Latitud: {getLatLngObj(assignTLE(IDsel),Date.now()).lat} º</p>
-              <p>Longitud: {getLatLngObj(assignTLE(IDsel),Date.now()).lng} º</p>
-              <p>Altitud: {getSatelliteInfo(assignTLE(IDsel),Date.now(),getLatLngObj(assignTLE(IDsel),Date.now()).lat,getLatLngObj(assignTLE(IDsel),Date.now()).lng,0).height} km</p></p>
+            <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>Nombre: {assignTLE(IDsel).split('\n')[0]}</p>
+              {/* <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>L1: {assignTLE(IDsel).split('\n')[1]}</p>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>L2: {assignTLE(IDsel).split('\n')[2]}</p> */}
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>Fecha: {Date(Date.now())}</p>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>Latitud: {getLatLngObj(assignTLE(IDsel),Date.now()).lat.toString().substring(0,7)} º</p>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>Longitud: {getLatLngObj(assignTLE(IDsel),Date.now()).lng.toString().substring(0,7)} º</p>
+              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>Altitud: {getSatelliteInfo(assignTLE(IDsel),Date.now(),getLatLngObj(assignTLE(IDsel),Date.now()).lat,getLatLngObj(assignTLE(IDsel),Date.now()).lng,0).height.toString().substring(0,7)} km</p>
             </>}</>)):(<>{<>
             <p hidden={true}  style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>ID: {IDsel}</p>
             <p hidden={true} style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}>
@@ -172,9 +174,9 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
               <p>L2: {assignTLE(IDsel).split('\n')[2]}</p></p>
             </>}</>)}
 
-            <p><icon onClick={() =>setSettings((p)=>!p)}><FontAwesomeIcon icon={(settings)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Ajustes</p>
+            <p data-tip data-for={'ajustes'}><icon onClick={() =>setSettings((p)=>!p)}><FontAwesomeIcon icon={(settings)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/></icon>Ajustes</p><ReactTooltip className={styles.tooltip} id={"ajustes"} type='dark' html={true}>Ajusta valores tales como el intervalo de muestras, el número total de puntos, la visibilidad de la proyección o el sistema de referencia</ReactTooltip>
             {settings?(<>
-              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsInterval((p)=>!p)}><FontAwesomeIcon icon={(settingsInterval)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Intervalo</p>
+              <p data-tip data-for={'intervalo'} style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsInterval((p)=>!p)}><FontAwesomeIcon icon={(settingsInterval)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Intervalo</p><ReactTooltip className={styles.tooltip} id={"intervalo"} type='dark' html={true}>Tiempo entre muestras de ubicación del satélite (cuanto menor sea, más precisa será la traza)</ReactTooltip>
               {settingsInterval?(<>{<>
 
                   <buttonset className={styles.buttonset} onClick={() => {setInterval(10000),setIntervalSaved(10000)}}>10s</buttonset>
@@ -186,7 +188,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
 
               }</>):('')}
 
-              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsPoints((p)=>!p)}><FontAwesomeIcon icon={(settingsPoints)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Puntos Totales</p>
+              <p data-tip data-for={'totPts'} style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsPoints((p)=>!p)}><FontAwesomeIcon icon={(settingsPoints)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Puntos Totales</p><ReactTooltip className={styles.tooltip} id={"totPts"} type='dark' html={true}>Número total de muestras de ubicación del satélite (cuanto meyor sea, más detalles sobre la evolución de la traza)</ReactTooltip>
               {settingsPoints?(<>{<>
 
                   <buttonset className={styles.buttonset} onClick={() => {setTotalPoints(100),setTotalPointsSaved(100)}}>100</buttonset>
@@ -198,7 +200,7 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
 
               }</>):('')}
 
-              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsTraza3D((p)=>!p)}><FontAwesomeIcon icon={(settingsTraza3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Traza en 3D</p>
+              <p data-tip data-for={'traza'} style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsTraza3D((p)=>!p)}><FontAwesomeIcon icon={(settingsTraza3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Traza en 3D</p><ReactTooltip className={styles.tooltip} id={"traza"} type='dark' html={true}>Marca 'Visible' para poder ver la proyección de la órbita (traza) sobre la tierra</ReactTooltip>
               {settingsTraza3D?(<>{<>
 
                   <buttonset className={styles.buttonset} onClick={() => {setViewTrace(true),setViewTraceSaved(true)}}>Visible</buttonset>
@@ -206,21 +208,21 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
 
               }</>):('')}
 
-              <p style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsSistRef3D((p)=>!p)}><FontAwesomeIcon icon={(settingsSistRef3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Sistema de Referencia 3D</p>
+              <p data-tip data-for={'sistRef'} style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}}><icon onClick={() =>setSettingsSistRef3D((p)=>!p)}><FontAwesomeIcon icon={(settingsSistRef3D)?(faAnglesUp):(faAnglesDown)} width={'10px'} height={'10px'} cursor={'pointer'}/></icon> Sistema de Referencia 3D</p><ReactTooltip className={styles.tooltip} id={"sistRef"} type='dark' html={true}>Establece el sistema de referencia (ECEF: Earth Centered, Earth Fixed, ECI: Earth Centered Inertial, ECEF/ECI: Ambas proyecciones)</ReactTooltip>
               {settingsSistRef3D?(<>{<>
 
                   <buttonset className={styles.buttonset} onClick={() => {setViewMode('ECEF'),setViewModeSaved('ECEF')}}>ECEF</buttonset>
-                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('ECI'),setViewModeSaved(20000)}}>ECI</buttonset>
-                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('BOTH'),setViewModeSaved(20000)}}>ECI/ECEF</buttonset></>
+                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('ECI'),setViewModeSaved('ECI')}}>ECI</buttonset>
+                  <buttonset className={styles.buttonset} onClick={() => {setViewMode('BOTH'),setViewModeSaved('BOTH')}}>ECI/ECEF</buttonset></>
 
               }</>):('')}
             </>):('')}
 
-            <p><icon onClick={() =>setAvailableSat((p)=>!p)}><FontAwesomeIcon icon={(availableSats)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>SATéLITES</icon></p>
+            <p data-tip data-for={'sats'}><icon onClick={() =>setAvailableSat((p)=>!p)}><FontAwesomeIcon icon={(availableSats)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>SATéLITES</icon></p><ReactTooltip className={styles.tooltip} id={"sats"} type='dark' html={true}>Listado de satélites disponibles, ordenados por NORAD ID, usa la búsqueda para encontrar el que desees mostrar</ReactTooltip>
             
             {availableSats?(<>{itemsArchive}</>):('')}
 
-            <p><icon onClick={() =>setAvailableFam((p)=>!p)}><FontAwesomeIcon icon={(availableFam)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Familias</icon></p>
+            <p data-tip data-for={'familias'}><icon onClick={() =>setAvailableFam((p)=>!p)}><FontAwesomeIcon icon={(availableFam)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>Familias</icon></p><ReactTooltip className={styles.tooltip} id={"familias"} type='dark' html={true}>Listado de familias de satélites disponibles, organizados por empresa, por tipo de órbita o por funcionalidad, según del caso.</ReactTooltip>
             
             {availableFam?(<>{familias}</>):('')}
             

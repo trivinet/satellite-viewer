@@ -9,6 +9,7 @@ import Sidebar from '../components/sidebar'
 import assignTLE from './assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
 import { getSatelliteInfo,getLatLngObj } from 'tle.js';
+import TLEinfo from '../components/TLEinfo';
 
   
 const totalpoints = 200;
@@ -30,8 +31,10 @@ export default function SimpleMap(){
     const [mark,setMark] = useState('');
     const [viewMode,setViewMode] = useState('ECI');
     const [viewTrace, setViewTrace] = useState(true);
+    const [tleInfoShow,setTleInfoShow] = useState(true);
+    const [IDfam,setIDfam] = useState('');
 
-    function styleMap(sidebarOpen) {
+    /* function styleMap(sidebarOpen) {
         if (sidebarOpen){
             return({
                 height: '100vh',
@@ -47,6 +50,24 @@ export default function SimpleMap(){
             "padding-left":'100px',
             background: '#0F0F09'
         })}
+    } */
+
+    var tleInfoCont=[];
+
+  if(tleInfoShow){
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} ></TLEinfo>);
+    }
+  }else{tleInfoCont=[]}
+
+    function styleMap(sidebarOpen) {
+        return({
+            height: '100vh',
+            width: '100%',
+            "padding-right":'0px',
+            "padding-left":'0px',
+            background: '#0F0F09'
+    })
     }
 
   //marker
@@ -56,7 +77,7 @@ export default function SimpleMap(){
   //traza futuro
   const AnyReactComponentTraceFuture = ({ text,info,number }) => <div className={styles.markerTraceFuture}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
-  const AnyReactComponentTraceFamily = ({ text,info,number }) => <div className={styles.markerTraceFamily}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
+  const AnyReactComponentTraceFamily = ({ text,info,number,ID2 }) => <div onClick={() => {setMark(ID2.toString()),setTotalPoints(totalpoints),setIDfam(ID2.toString()),setTleInfoShow(true)}} className={styles.markerTraceFamily}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
 
   //traza pasado
@@ -91,6 +112,7 @@ export default function SimpleMap(){
 
   //crea markers
     markers.push(<AnyReactComponentTraceFamily
+          ID2={ID[i]}
           lat={posiciones[1].lat}
           lng={posiciones[1].lng}
           text="·"
@@ -170,11 +192,14 @@ export default function SimpleMap(){
       // Important! Always set the container height explicitly
      <> 
       <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace}/>
-    <div style={styleMap(sidebarOpen)}>
+      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
+      {tleInfoCont}
+    <div style={{height: '100vh',width: '100%',paddingRight:'0px'}}>
     <GoogleMapReact className="Mapa"
       bootstrapURLKeys={{ key: "AIzaSyDKrg6ygIgLkBGpUX29D9hc2OtKprEQvGY" }}
       options={{
+        zoomControl:false,
+        fullscreenControl: false,
         styles:
         !dark? 
         [ //lightTheme

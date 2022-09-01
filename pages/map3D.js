@@ -9,6 +9,7 @@ import Altitude from './altitude';
 import styles from '../styles/Home.module.css';
 import TimePoints from './getTimes';
 import { getMeanMotion } from 'tle.js';
+import TLEinfo from '../components/TLEinfo';
 
 
 const IDdefault=25544;
@@ -34,9 +35,17 @@ export default function PointMap() {
   const [mark,setMark] = useState('');
   const [viewMode,setViewMode] = useState('ECI');
   const [viewTrace, setViewTrace] = useState(true);
+  const [tleInfoShow,setTleInfoShow] = useState(true);
+  const [IDfam,setIDfam] = useState('');
 
- 
-  
+  var tleInfoCont=[];
+
+  if(tleInfoShow){
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} ></TLEinfo>);
+    }
+  }else{tleInfoCont=[]}
+
   if(selectedFam){
 
   var tle =[];
@@ -63,35 +72,35 @@ export default function PointMap() {
   var geometrySaved=[];
 
   
-  symbol = {
+  
+  var symbol = {
     type: "picture-marker", // autocasts as new PictureMarkerSymbol()
-    url: /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
-    /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
-    "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
-    width: 28,
-    height: 28
-  };  
+    width: 6,
+    height: 6,
+  
+    color:[208, 208, 208,0.6],
+  }; 
+
 
   for (let i = 0; i < ID.length; i++) {
  
   tle = assignTLE(ID[i]);
   if (tle!=''){
-  posiciones = Pos(tle,totalPoints,interval);
+  posiciones = Pos(tle,1,0);
   if (posiciones!=''){
 
-  for (let j = 0; j < posiciones.length; j++) {
-    altitudes.push(Altitude(tle,interval,j-Math.ceil(posiciones.length/2),posiciones[j].lat,posiciones[j].lng));
-  }
+  
+  altitudes.push(Altitude(tle,interval,0,posiciones[0].lat,posiciones[0].lng));
   
   geometry={
         type: 'point', // autocasts as new Point()
         x: posiciones[Math.ceil(posiciones.length/2)].lng,
         y: posiciones[Math.ceil(posiciones.length/2)].lat,
-        z: altitudes[Math.ceil(posiciones.length/2)]*1000
+        z: altitudes[i]*1000
         };   
   
-  vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
-    [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
+  vertLine =[[posiciones[0].lng,posiciones[0].lat,0],
+    [posiciones[0].lng,posiciones[0].lat,altitudes[i]*1000]];
 
   polylineVert = {
     type: "polyline", // autocasts as new Polyline()
@@ -100,8 +109,9 @@ export default function PointMap() {
       
   lineSymbolVert = {
     type: "simple-line", // autocasts as SimpleLineSymbol()
-    color: [160, 250, 124,0.98]/* [234, 128, 208,0.5] */,
-    width: 1
+    color: [153, 153, 153,0.46],
+      width: 1
+    /*  [160, 250, 124,0.98] [234, 128, 208,0.5]*/
   };
 
   polylineGraphicJsonVert = {
@@ -163,14 +173,18 @@ export default function PointMap() {
 
     lineSymbolPast = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [156,152,247]/* [255, 192, 49,0.5] */,
-      width: 1
+      color: [250,114,104,0.28],/* [234, 128, 208,0.5] *//* [255, 192, 49,0.5] */
+      width: 2
+      /* color: [156,152,247] [255, 192, 49,0.5] ,
+      width: 1 */
     };
 
     lineSymbolEciPast = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [255, 192, 49,0.5],
-      width: 1
+      color: [198,35,104,0.58],/* [255, 192, 49,0.5] */
+      width: 2 
+      /* color: [255, 192, 49,0.5],
+      width: 1 */
     };
 
     lineSymbolFuture = {
@@ -199,15 +213,24 @@ export default function PointMap() {
       z: altitudes[Math.ceil(posiciones.length/2)]*1000
     }; 
 
-    symbol = {
+    /* symbol = {
       type: "picture-marker", // autocasts as new PictureMarkerSymbol()
-      url: /* "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", */
-      /* "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , */
+      url:  "https://cdn-icons-png.flaticon.com/512/1042/1042820.png", 
+      "https://www.pngall.com/wp-content/uploads/2016/04/Satellite-PNG-File.png" , 
       "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png",
       width: 28,
       height: 28,
       color:'red'
-    };  
+    };  */ 
+    var symbol = {
+      type: "picture-marker", // autocasts as new PictureMarkerSymbol()
+      
+      width: 8,
+      height: 8,
+    
+      color:[250,143,223,0.9]/* [208, 208, 208,0.6] */
+    }; 
+  
       
     vertLine =[[posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,0],
     [posiciones[Math.ceil(posiciones.length/2)].lng,posiciones[Math.ceil(posiciones.length/2)].lat,altitudes[Math.ceil(posiciones.length/2)]*1000]];
@@ -219,8 +242,8 @@ export default function PointMap() {
       
     lineSymbolVert = {
       type: "simple-line", // autocasts as SimpleLineSymbol()
-      color: [245, 189, 34,0.96],
-      width: 4
+      color: [250,143,223,0.7],/* [245, 189, 34,0.96] */
+      width: 1.5
     };
 
     polylineGraphicJsonVert = {
@@ -295,8 +318,9 @@ export default function PointMap() {
       height: 6,
       
       /* color:'white', */
-      /* opacity: '0.7', */ 
-      color:[158, 222, 250,1],
+      /* opacity: '0.7', */
+    
+      color:[208, 208, 208,0.6],
     }; 
   
     var markersPast=[];
@@ -349,7 +373,40 @@ export default function PointMap() {
       symbol: lineSymbolEciPast
     };
 
+    /* let template = {
+      // autocasts as new PopupTemplate()
+      title: "Joselito",
+      content: "Launch number of",
+       actions: [
+        {
+          // Create a popup action to display the satellite track.
+          title: "Show Satellite Track",
+          id: "track",
+          className: "esri-icon-globe"
+        }
+      ]
+    };
 
+    let punto = {
+      geometry: geometry,
+      symbol: {
+        type: "picture-marker", // autocasts as new PictureMarkerSymbol()
+         url: "https://developers.arcgis.com/javascript/latest/sample-code/satellites-3d/live/satellite.png", 
+        width: 48,
+        height: 48
+      },
+      attributes: {
+        name: 'commonName',
+        jose: 'eljose'
+        year: fullLaunchYear,
+        id: noradId,
+        number: launchNum,
+        time: time,
+        line1: line1,
+        line2: line2
+      },
+      popupTemplate: template
+    }; */
 
     
     for (let i = 0; i < posiciones.length; i++) {
@@ -378,7 +435,7 @@ export default function PointMap() {
       } else {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol}];}
       break;
       case 'ECI':
-        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonEciPast , {geometry,symbol}]
+        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonEciPast ,/*  punto */{geometry,symbol}]
       break;
       case 'BOTH':
         if (viewTrace) {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture,polylineGraphicJsonEciPast]
@@ -406,6 +463,18 @@ export default function PointMap() {
         ui: {
           components:['attribution']
         },
+        popup: {
+          dockEnabled: true,
+          /* 
+          right:'10px',
+          top:'10px', */
+          dockOptions: {
+            buttonEnabled: false,
+          breakpoint: true,
+          position:"top-right"
+          },
+        defaultPopupTemplateEnabled: true
+        },
         environment:{
           lighting: {
             // enable shadows for all the objects in a scene
@@ -419,6 +488,26 @@ export default function PointMap() {
             max: 12000000000 // meters
           }
         }
+      },
+      popup: {
+        dockEnabled: true,
+        /* 
+        right:'10px',
+        top:'10px', */
+        dockOptions: {
+          buttonEnabled: false,
+        breakpoint: true,
+        position:"top-right"
+        },
+      defaultPopupTemplateEnabled: true
+      },
+      environment:{
+        lighting: {
+          // enable shadows for all the objects in a scene
+          directShadowsEnabled: false,
+          // set the date and a time of the day for the current camera location
+          //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+        }  
       }
   };
 
@@ -457,10 +546,10 @@ function styleMapTheme(dark) {
     }
     if (view.center !== center) {
       // zoom prop has changed, update view
-      console.log(center[1],center[0])
+      /* console.log(center[1],center[0]) */
       view.center = [center[1]+3,center[0]+3,altitudes[Math.ceil(posiciones.length/2)]*1000];
       /* view.zoom = 3; */
-      console.log(view)
+      /* console.log(view) */
     }
   }, [center]);
   
@@ -484,9 +573,9 @@ function styleMapTheme(dark) {
 
 
   return( <>
-  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace}/>
+  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-
+  {tleInfoCont}
   <div style={styleMap(sidebarOpen)} ref={ref}></div>
   </>
   )

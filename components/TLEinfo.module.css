@@ -1,0 +1,112 @@
+.navDark{
+  height: 15%;
+  color: #eaeaea;
+  position: fixed;
+  bottom:0;
+  left:500px;
+  z-index: 5;
+  display: flex;
+  flex-direction: row;
+  width: 500px;
+ /*  background-color: #2D333C; */ 
+  background-color: rgba(45, 51, 60, 0.24);
+  opacity: 0.2; 
+  overflow-x: hidden;
+  padding: 22px;
+  border: 0px;
+  /* border-right: 1px solid black; */
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
+  2px 3.2px 19.9px rgba(250, 130, 200, 0.034),
+  3.1px 5px 31.7px rgba(250, 130, 200, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08);
+}
+
+.navDark:hover {
+  opacity: 1;
+}
+
+.navDark::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.navDark::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.navDark::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
+
+.navDark .tooltip {
+  font-size: 14px;
+  /* font-family: 'Righteous', cursive; */
+}
+
+.navDark .hTLE {
+  margin: 0%;
+  padding:1%;
+  line-height: 0.5;
+  font-size: 12px;
+  cursor:pointer;
+  /* position: fixed; */
+  top:3%;
+  box-shadow:
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08);
+  border-radius:15px; /* 49% 49% 46% / 53% 50% 42% 53% */
+  border: 1px;
+  border-color: white;
+}
+
+.navDark .hTLE:hover{
+ /*  font-size: 25px; */
+  background-color: rgba(255, 64, 137, 0.36);
+  /* background-opacity:0.6; */
+}
+
+.navDark .hTLE .nameTLE:hover{
+  color:#A0FA7C;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .numberLineTLE:hover{
+  color:#F6C965;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .idTLE:hover{
+  color:#6497F5;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .classTLE:hover{
+  color:red;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .last2digYearTLE:hover{
+  color:#F6E101;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .numLaunchTLE:hover{
+  color:#D997F5;
+  background-color:'black';
+  font-size: larger;
+}
+.navDark .hTLE .pieceLaunchTLE:hover{
+  color:#2375A8;
+  background-color:'black';
+  font-size: larger;
+}
+
+
+

@@ -4,6 +4,7 @@ import assignTLE from './assignTLE'
 import Sidebar from '../components/sidebar'
 import Layout from '../components/layout'
 import React, { useState, useEffect } from 'react';
+import buscaNombre from './assignTLE2'
 
 
 const tle = `ISS (ZARYA)
@@ -16,6 +17,8 @@ export default function about(){
   const [dark,setDark] = useState(true);
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [ID,setID] = useState(25544);
+  const [nombre4,setNombre4] = useState('nada')
+
   function assignTheme(dark){
     {if(dark){
       if(sidebarOpen){
@@ -27,6 +30,9 @@ export default function about(){
           else {return (styles.mainClose)}
       }
   }}
+  var nombre = buscaNombre('25544');
+  var nombre2 = buscaNombre('900');
+  var nombre3 = buscaNombre('5');
   
   return(
     <> 
@@ -45,6 +51,11 @@ export default function about(){
         <h2>'hola'</h2>
         <h2>is dark? {dark?('YES'):('no')}</h2>
         <h2>is open? {sidebarOpen?('YES'):('no')}</h2>
+        <h2>{nombre}</h2>
+        <h2>{nombre2}</h2>
+        <h2>{nombre3}</h2>
+        <h2 onClick={()=>{setNombre4(buscaNombre((Math.floor(Math.random()*(51800 - 51700) + 51700)).toString()))}}>get cosas {nombre4}</h2>
+        <h2 onClick={()=>{setNombre4(assignTLE((Math.floor(Math.random()*(51800 - 51700) + 51700)).toString()))}}>get cosas {nombre4}</h2>
       </main>
       </div>
       </>

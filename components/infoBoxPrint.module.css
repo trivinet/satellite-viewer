@@ -12,6 +12,7 @@
   overflow-x: hidden;
   padding: 32px;
   border: 0px;
+  z-index:5;
   border-right: 1px solid black;
   box-shadow:
   0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
@@ -234,6 +235,7 @@
   font-size: 14px;
   padding: 8px 16px;
   height: 28px;
+  z-index:5;
   transition: all 0.8s ease;
   box-shadow:
   1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
