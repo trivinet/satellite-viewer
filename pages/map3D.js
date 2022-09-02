@@ -435,7 +435,7 @@ export default function PointMap() {
       } else {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol}];}
       break;
       case 'ECI':
-        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonEciPast ,/*  punto */{geometry,symbol}]
+        var graphics = [polylineGraphicJsonVert,polylineGraphicJsonEciPast ,/*  punto, */{geometry,symbol}]
       break;
       case 'BOTH':
         if (viewTrace) {var graphics = [polylineGraphicJsonVert,polylineGraphicJsonPast , {geometry,symbol},polylineGraphicJsonFuture,polylineGraphicJsonEciPast]

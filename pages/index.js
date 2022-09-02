@@ -18,7 +18,7 @@ export default function Home() {
   const [dark,setDark] = useState(true);
   const [sidebarOpen,setSidebarOpen] = useState(false);
 
-  function assignTheme(dark){
+  function assignTheme(dark,sidebarOpen){
     {if(dark){
       if(sidebarOpen){
       return (styles.mainDark)}
@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
     <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
-    <div className={styles.container}>
+    <div className={(dark)?(styles.containerDark):(styles.containerLight)}>
     
       <Head>
         <title>Satellite Viewer</title>
@@ -43,7 +43,7 @@ export default function Home() {
       
       {/* <a href='/about' className={styles.about}>About</a> */}
       <main className={assignTheme(dark,sidebarOpen)}>
-        <h1 className={styles.title} style={{'font-size':'86px'}}>
+        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'font-size':'86px'}}>
           Bienvenido a <a href="/" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Satellite Viewer <a className={styles.imageGifTitle}>
@@ -71,7 +71,7 @@ export default function Home() {
 
           <a href="/map" className={styles.card}>
           <div className={styles.imageGif}>
-            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
+            <img href = "/map" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
           </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
             <p>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
@@ -80,7 +80,7 @@ export default function Home() {
 
           <a href="/map3D" className={styles.card}>
           <div className={styles.imageGif}>
-            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
+            <img href = "/map3D" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
           </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/> */} Mapa 3D{/* </icon> */} {/* &darr; */}</h2>
             <p>
@@ -89,6 +89,9 @@ export default function Home() {
           </a>
 
           <a href="/satelites" className={styles.card}>
+          <div className={styles.imageGif}>
+            <img href = "/satelites" src ={'https://media4.giphy.com/media/drPdD8XyDK3EfEj12G/giphy.gif?cid=790b76117d33aa9883ba5ecc6185e3438ba2509dd24de2cc&rid=giphy.gif&ct=g'}/>
+          </div>
             <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} Satélites{/* </icon> */} {/* &darr; */}</h2>
             <p>Información miscelánea sobre satélites, tipos de traza, estadístico de países, etc. Se han cargado un total de {active.length} satélites</p>
           </a>

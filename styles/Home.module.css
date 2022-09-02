@@ -3,7 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Major+Mono+Display&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
-.container {
+.containerDark {
   padding: 0;
   height: '100vh';
   width: '100%';
@@ -11,36 +11,48 @@
   /* font-family: 'Major Mono Display', monospace; */
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
-  background-image: url("../styles/waveMap2.svg");
-  background-position: fixed;
  /*  transition-duration: 5s; */
-  transition: ease-in 0.5s;
+ 
+ background-image: url("../styles/waveMap2.svg");
+ background-position: fixed;
+ transition: ease-in 0.5s;
+  
 }
-
-.container:hover{
+.containerDark:hover{
   background-image: url("../styles/waveMap3.svg");
 }
 
-.container::-webkit-scrollbar {
-  width: 5px;
-  height: 8px;
-  background-color: black;
+.containerLight {
+  padding: 0;
+  height: '100vh';
+  width: '100%';
+  margin: 0px;
+  /* font-family: 'Major Mono Display', monospace; */
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+  font-size: '25px';
+ /*  transition-duration: 5s; */
+ background-image: url("../styles/waveMap2Light.svg");
+ background-position: fixed;
+ transition: ease-in 0.5s;
 }
 
-.container::-webkit-scrollbar-thumb {
-  background: red;
-}   
+.containerLight:hover{
+  background-image: url("../styles/waveMap3Light.svg");
+}
+ 
 
 .main {
   min-height: 100vh;
   flex: 1;
   display: flex;
-  background-color:#EFEDEE;
+  /* background-color: #2D333C; */
+  color:black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0px;
   padding-left:250px;
+  padding-right:0px;
   overflow-y: hidden;
 }
 
@@ -63,12 +75,13 @@
   min-height: 100vh;
   flex: 1;
   display: flex;
-  background-color:#EFEDEE;
+  color:black;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin: 0px;
   padding-left: 100px;
+  overflow-y: hidden;
 }
 .mainDarkClose {
   min-height: 100vh;
@@ -89,6 +102,8 @@
   radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
   /* background-image: url("../styles/waveMap.svg"); */
 }
+
+
 
 .mainDarkClose .grid .card {
   margin: 1rem;
@@ -184,6 +199,102 @@ background-color: rgba(53, 60, 75 0.25);
   height:auto;
 }
 
+.mainClose .grid .card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  background-color: #333;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
+  max-width: 300px;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
+
+backdrop-filter: blur(2px) saturate(180%);
+-webkit-backdrop-filter: blur(2px) saturate(180%);
+background-color: rgba(17, 25, 40, 0.25);
+/* border-radius: 12px;
+border: 1px solid rgba(255, 255, 255, 0.125); */
+
+}
+.main .grid .card:hover,
+.main .grid .card:focus,
+.main .grid .card:active {
+  /* color: #0070f3; */
+  border-color: #0070f3;
+  background-color:  rgba(0, 0, 0, 0);
+  max-width: 400px;
+  backdrop-filter: blur(12px) saturate(180%);
+-webkit-backdrop-filter: blur(12px) saturate(180%);
+background-color: rgba(53, 60, 75 0.25);
+}
+
+.mainClose .grid .card:hover,
+.mainClose .grid .card:focus,
+.mainClose .grid .card:active {
+  /* color: #0070f3; */
+  border-color: #0070f3;
+  background-color:  rgba(0, 0, 0, 0);
+  max-width: 400px;
+  backdrop-filter: blur(12px) saturate(180%);
+-webkit-backdrop-filter: blur(12px) saturate(180%);
+background-color: rgba(53, 60, 75 0.25);
+}
+
+.main .grid .card .imageGif {
+  position: relative;
+  top : -100%;
+  right: 0%;
+ 
+  z-index : 1;
+}
+
+.main .grid .card .imageGif img {
+  max-width: 1%;
+  max-height: 1%;
+  border-radius : 15px;
+  transition: max-width 0.3s;
+}
+
+.main .grid .card:hover .imageGif img {
+  max-width: 100%;
+  height:auto;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.mainClose .grid .card .imageGif {
+  position: relative;
+  top : -100%;
+  right: 0%;
+  
+  z-index : 1;
+}
+
+.mainClose .grid .card .imageGif img {
+  max-width: 1%;
+  max-height: 1%;
+  border-radius : 15px;
+  transition: max-width 0.3s;
+}
+
+.mainClose .grid .card:hover .imageGif img {
+  max-width: 100%;
+  height:auto;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+}
+
 /* .mainDarkClose :hover{
   background-image: url("../styles/waveMap2.svg");
 } */
@@ -206,6 +317,22 @@ background-color: rgba(53, 60, 75 0.25);
 
 .title .logo {
   color: white;
+  font-family: 'Righteous', cursive;
+  text-decoration: none;
+  /* box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08); */
+  transition: font-size 2s ease-out;
+}
+
+.titleLight .logo {
+  color: black;
   font-family: 'Righteous', cursive;
   text-decoration: none;
   /* box-shadow:
@@ -243,6 +370,23 @@ background-color: rgba(53, 60, 75 0.25);
   25px 40px 253px rgba(250, 114, 104, 0.08);
   border-radius:47% 49% 49% 46% / 53% 50% 42% 53% */
 }
+.titleLight {
+  margin: 1%;
+  line-height: 1.15;
+  font-size: 2rem;
+  position: fixed;
+  top:3%;
+  /* box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08);
+  border-radius:47% 49% 49% 46% / 53% 50% 42% 53% */
+}
 
 .title .imageGiftitle {
   position: fixed;
@@ -261,6 +405,26 @@ background-color: rgba(53, 60, 75 0.25);
 .title:hover .imageGifTitle img {
   max-width: 3%;
   top:'-300px';
+}
+
+.titleLight .imageGiftitle {
+  position: fixed;
+  right : '-3000px';
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  /* z-index : 1; */
+}
+
+.titleLight .imageGifTitle img {
+  max-width: 0%;
+  max-height: 0%;
+  border-radius : 15px;
+  transition: max-width 0.2s;
+}
+
+.titleLight:hover .imageGifTitle img {
+  max-width: 3%;
+  top:'-300px';
+  background-color: #2D333C;
 }
 
 .title,
@@ -320,68 +484,35 @@ background-color: rgba(53, 60, 75 0.25);
   background-color: rgba(17, 25, 40, 0.25);
 
 }
-
-
-
-
 .main .grid .card {
   margin: 1rem;
   padding: 1.5rem;
   text-align: left;
   color: inherit;
-  background-color: #FBEBE2;
+  background-color: #333;
   text-decoration: none;
-  border: 1px solid black;
+  border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
   max-width: 300px;
   box-shadow:
-  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
-  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
-  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
-  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
-  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
-  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
-  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
-  100px 100px 80px rgba(0, 0, 0, 0.07)
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
 ;
 
 
-}
-
-.mainClose .grid .card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  background-color: #FBEBE2;
-  text-decoration: none;
-  border: 1px solid black;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-  box-shadow:
-  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
-  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
-  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
-  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
-  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
-  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
-  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
-  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
-  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
-  100px 100px 80px rgba(0, 0, 0, 0.07)
-;
-
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
 
 }
 
-.hserver{
-  color:green;
-
-}
 
 .marker{
     font-size: 40px;
@@ -439,24 +570,6 @@ background-color: rgba(53, 60, 75 0.25);
   right:16px;
 }
 
-
-.main .grid .card:hover,
-.main .grid .card:focus,
-.main .grid .card:active {
-  /* color: #0070f3; */
-  border-color: #0070f3;
-  background-color: #aeaeae;
-  max-width: 400px;
-}
-
-.mainClose .grid .card:hover,
-.mainClose .grid .card:focus,
-.mainClose .grid .card:active {
-  /* color: #0070f3; */
-  border-color: #0070f3;
-  background-color: #aeaeae;
-  max-width: 400px;
-}
 
 .card h2 {
   margin: 0 0 1rem 0;

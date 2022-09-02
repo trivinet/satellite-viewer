@@ -1856,6 +1856,9 @@ href='../TFGprueba4.pdf'>(link)</a> </p>
 
         </>}</>):('')}
         {espaciado}
+        <a href="/about" style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
+            <h2 style={{'font-size':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
+          </a>
       </main>
       </div>
       </>
