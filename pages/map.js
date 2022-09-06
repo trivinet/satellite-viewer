@@ -16,12 +16,12 @@ const totalpoints = 200;
 const intervalo = 50000;
 const IDdefault=25544;
 const darkDefault = true;
-const defaultCenter = [Pos(assignTLE(IDdefault),1,intervalo)[0].lat,Pos(assignTLE(25544),1,intervalo)[0].lng];
+const defaultCenter = [38,-5];
 
 
 export default function SimpleMap(){
 
-    const [ID,setID] = useState(IDdefault);
+    const [ID,setID] = useState('');
     const [dark,setDark] = useState(true);
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [interval,setInterval] = useState(intervalo);
@@ -31,8 +31,17 @@ export default function SimpleMap(){
     const [mark,setMark] = useState('');
     const [viewMode,setViewMode] = useState('ECI');
     const [viewTrace, setViewTrace] = useState(true);
-    const [tleInfoShow,setTleInfoShow] = useState(true);
+    const [tleInfoShow,setTleInfoShow] = useState(false);
     const [IDfam,setIDfam] = useState('');
+    const [environment,setEnvironment] = useState({
+        lighting: {
+          // enable shadows for all the objects in a scene
+          directShadowsEnabled: false,
+          // set the date and a time of the day for the current camera location
+          //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+        }  
+      });
+  const [basemap,setBasemap] = useState("dark-gray-vector");
 
     /* function styleMap(sidebarOpen) {
         if (sidebarOpen){
@@ -79,7 +88,8 @@ export default function SimpleMap(){
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
   const AnyReactComponentTraceFamily = ({ text,info,number,ID2 }) => <div onClick={() => {setMark(ID2.toString()),setTotalPoints(totalpoints),setIDfam(ID2.toString()),setTleInfoShow(true)}} className={styles.markerTraceFamily}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} type='dark' html={true}>{info}</ReactTooltip></div>;
-
+  const AnyReactComponentTraceIDFam = ({ text,info,number }) => <div className={styles.markerTraceIDFam}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
+    <ReactTooltip id={"markerTooltip"+number} html={true}>{info}</ReactTooltip></div>;
   //traza pasado
   const AnyReactComponentTracePast = ({ text,info,number }) => <div className={styles.markerTracePast}><p data-tip data-for={"markerTooltip"+number}>{text}</p>
   <ReactTooltip id={"markerTooltip"+number} html={true}>{info}</ReactTooltip></div>;
@@ -117,7 +127,7 @@ export default function SimpleMap(){
           lat={posiciones[1].lat}
           lng={posiciones[1].lng}
           text="·"
-          info= {'ID: '+ ID[i] + ', name: ' + name}
+          info= {'ID: '+ ID[i] + ', Nombre: ' + name}
           number={i}
 />)}}
         if (mark!=''){
@@ -126,13 +136,13 @@ export default function SimpleMap(){
             var tiempos = TimePoints(totalPoints, interval);
             
             for (let i=0;i<totalPoints;i++){
-                markers.push(<AnyReactComponentTraceFuture
+                markers.push(<AnyReactComponentTraceIDFam
                     lat={posicionesMark[i].lat}
                     lng={posicionesMark[i].lng}
                     text='.'
-                    info= {'ID: '+ mark + ', name: ' + name + '<br/>' +
-                    posicionesMark[i].lat.toString().substring(0,7)+"º , "+posicionesMark[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(assignTLE(mark),Date.now(),getLatLngObj(assignTLE(mark),Date.now()).lat,getLatLngObj(assignTLE(mark),Date.now()).lng,0).height.toString().substring(0,9) + 'km' +'<br />'+
-                     '\ time:' + tiempos[i] }
+                    info= {'ID: '+ mark + ', Nombre: ' + name + '<br/>' +
+                    'lat: '+posicionesMark[i].lat.toString().substring(0,7)+"º , "+'lng: '+posicionesMark[i].lng.toString().substring(0,7) +"º, "+ 'alt: ' +getSatelliteInfo(assignTLE(mark),Date.now(),getLatLngObj(assignTLE(mark),Date.now()).lat,getLatLngObj(assignTLE(mark),Date.now()).lng,0).height.toString().substring(0,9) + 'km' +'<br />'+
+                     '\ Época: ' + tiempos[i] }
                     number={ID.length+i}
                   />)
             }
@@ -141,15 +151,16 @@ export default function SimpleMap(){
                 lat={posicionesMark[Math.ceil(totalPoints/2)].lat}
                 lng={posicionesMark[Math.ceil(totalPoints/2)].lng}
                 text='.'
-                info= {'ID: '+ mark + ', name: ' + name + '<br/>' +
+                info= {'ID: '+ mark + ', Nombre: ' + name + '<br/>' +
                 posicionesMark[Math.ceil(totalPoints/2)].lat.toString().substring(0,7)+"º , "+posicionesMark[Math.ceil(totalPoints/2)].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(assignTLE(mark),Date.now(),getLatLngObj(assignTLE(mark),Date.now()).lat,getLatLngObj(assignTLE(mark),Date.now()).lng,0).height.toString().substring(0,9) + 'km' +'<br />'+
-                 '\ time:' + tiempos[Math.ceil(totalPoints/2)] }
+                 '\ Época:' + tiempos[Math.ceil(totalPoints/2)] }
                 number={ID.length+totalPoints}
               />)
             
         }
   }else{
-
+    var markers=[];
+    if (ID!=''){
   const tle = assignTLE(ID); 
 
   const name = tle.split('\n')[0];
@@ -161,7 +172,6 @@ export default function SimpleMap(){
   const tiempos = TimePoints(totalPoints, interval);
 
   //crea markers
-  var markers=[];
   markers.push(<AnyReactComponent
     lat={posiciones[Math.ceil(posiciones.length/2)].lat}
     lng={posiciones[Math.ceil(posiciones.length/2)].lng}
@@ -171,9 +181,9 @@ export default function SimpleMap(){
           lat={posiciones[i].lat}
           lng={posiciones[i].lng}
           text="·"
-          info= {'ID: '+ ID + ', name: ' + name + '<br/>' +
-            posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+'<br />'+
-           '\ time:' + tiempos[i] }
+          info= {'ID: '+ ID + ', Nombre: ' + name + '<br/>' +
+            'lat: ' + posiciones[i].lat.toString().substring(0,7)+"º , lng: "+posiciones[i].lng.toString().substring(0,7) +"º, alt: "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+'<br />'+
+           '\ Época: ' + tiempos[i] }
           number={i}
         />)
   }
@@ -182,17 +192,17 @@ export default function SimpleMap(){
       lat={posiciones[i].lat}
       lng={posiciones[i].lng}
       text="·"
-      info={'ID: '+ ID + ', name: ' + name + '<br/>' + posiciones[i].lat.toString().substring(0,7)+"º , "+posiciones[i].lng.toString().substring(0,7) +"º, "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+ '<br />' + "time: " + tiempos[i]}
+      info={'ID: '+ ID + ', Nombre: ' + name + '<br/>' + 'lat: '+posiciones[i].lat.toString().substring(0,7)+"º , lng: "+posiciones[i].lng.toString().substring(0,7) +"º, alt: "+ getSatelliteInfo(tle,Date.now(),posiciones[i].lat,posiciones[i].lng,0).height.toString().substring(0,9) + 'km'+ '<br />' + "Época: " + tiempos[i]}
       number={i}
     />)
   }
-}
+}}
   //config mapa
   const handleApiLoaded = (map, maps) => {};
     return (
       // Important! Always set the container height explicitly
      <> 
-      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
       <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
       {tleInfoCont}
     <div style={{height: '100vh',width: '100%',paddingRight:'0px'}}>
@@ -239,7 +249,7 @@ export default function SimpleMap(){
                       "visibility": "on"
                   },
                   {
-                      "color": "#e3e3e3"
+                      "color": '#BABABA'/* "#e3e3e3" */
                   }
               ]
           },

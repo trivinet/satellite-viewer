@@ -62,88 +62,98 @@ export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     
 
 
-
+//SATÉLITES
     var activeSorted = active.sort((a,b) => a.OBJECT_NAME - b.OBJECT_NAME);
 
     var itemsArchiveBuildInitial = [];
       for (let i = 0; i < activeSorted.length; i++) {
         itemsArchiveBuildInitial.push(
-        <button onClick={() => {setMark(''),setSelectedFam(false),setSelectedFamInt(false),setTleInfoShow(true),setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
+        <button onClick={() => {setMark(''),setSelectedFam(false),setSelectedFamInt(false),setTleInfoShow(true)/* ,setTotalPoints(totalPointsSaved),setInterval(intervalSaved) */,setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
           <a>{activeSorted[i].OBJECT_NAME}</a>
         </button>
         )
       }
     
+      /* setTleInfoShow(true),setIDfam(IDsInput[i]),setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])} */
+
+
+//SATÉLITES INPUT
+
+      const [itemsArchive,setItemsArchive] = useState(itemsArchiveBuildInitial);
+    
+      function handleChange(event) {
+        var itemsArchiveBuild=[];
+        if(event.target.value===''){setItemsArchive(itemsArchiveBuildInitial)} else{
+        for (let i = 0; i < activeSorted.length; i++) {
+          if(event.target.value===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value.toUpperCase()===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value===activeSorted[i].NORAD_CAT_ID.toString().substring(0,event.target.value.length))
+          {
+            itemsArchiveBuild.push(
+            <button onClick={() => {setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setMark(''),setTleInfoShow(true),setSelectedFam(false),setSelectedFamInt(false)/* ,setTotalPoints(totalPointsSaved),setInterval(intervalSaved) */,setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
+              <a>{activeSorted[i].OBJECT_NAME}</a>
+            </button>
+            )
+          }}
+          setItemsArchive(itemsArchiveBuild);
+          return(itemsArchive)
+      }
+    }
+
+//FAMILIAS
     var familias = [];
       for (let i = 0; i < 10; i++) {
         familias=[(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStations),setIDsel(IDStations),setCenter([0,0])}}><a>Estaciones</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true)/* ,setTotalPoints(1) */,setID(IDStations),setIDsel(IDStations),setCenter([0,0])}}><a>Estaciones</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDScience),setIDsel(IDScience),setCenter([0,0])}}><a>Ciencia</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true)/* ,setTotalPoints(1) */,setID(IDScience),setIDsel(IDScience),setCenter([0,0])}}><a>Ciencia</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMeteo),setIDsel(IDMeteo),setCenter([0,0])}}><a>Meteorología</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true)/* ,setTotalPoints(1) */,setID(IDMeteo),setIDsel(IDMeteo),setCenter([0,0])}}><a>Meteorología</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDNOAA),setIDsel(IDNOAA),setCenter([0,0])}}><a>NOAA</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true)/* ,setTotalPoints(1) */,setID(IDNOAA),setIDsel(IDNOAA),setCenter([0,0])}}><a>NOAA</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGPS),setIDsel(IDGPS),setCenter([0,0])}}><a>GPS</a>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDGPS),setIDsel(IDGPS),setCenter([0,0])}}><a>GPS</a>
           </button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGlonass),setIDsel(IDGlonass),setCenter([0,0])}}><a>GLONASS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDGlonass),setIDsel(IDGlonass),setCenter([0,0])}}><a>GLONASS</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGalileo),setIDsel(IDGalileo),setCenter([0,0])}}><a>GALILEO</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDGalileo),setIDsel(IDGalileo),setCenter([0,0])}}><a>GALILEO</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDBeidou),setIDsel(IDBeidou),setCenter([0,0])}}><a>BEIDOU</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDBeidou),setIDsel(IDBeidou),setCenter([0,0])}}><a>BEIDOU</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIRNSS),setIDsel(IDIRNSS),setCenter([0,0])}}><a>IRNSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDIRNSS),setIDsel(IDIRNSS),setCenter([0,0])}}><a>IRNSS</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDQZS),setIDsel(IDQZS),setCenter([0,0])}}><a>QZSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDQZS),setIDsel(IDQZS),setCenter([0,0])}}><a>QZSS</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDEgnos),setIDsel(IDEgnos),setCenter([0,0])}}><a>WAAS/EGNOS/MSAS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDEgnos),setIDsel(IDEgnos),setCenter([0,0])}}><a>WAAS/EGNOS/MSAS</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGNSS),setIDsel(IDGNSS),setCenter([0,0])}}><a>GNSS</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDGNSS),setIDsel(IDGNSS),setCenter([0,0])}}><a>GNSS</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDGeo),setIDsel(IDGeo),setCenter([0,0])}}><a>Geosíncronos</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDGeo),setIDsel(IDGeo),setCenter([0,0])}}><a>Geosíncronos</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDIridium),setIDsel(IDIridium),setCenter([0,0])}}><a>Iridium</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDIridium),setIDsel(IDIridium),setCenter([0,0])}}><a>Iridium</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDInstelsat),setIDsel(IDInstelsat),setCenter([0,0])}}><a>Intelsat</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDInstelsat),setIDsel(IDInstelsat),setCenter([0,0])}}><a>Intelsat</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDMolniya),setIDsel(IDMolniya),setCenter([0,0])}}><a>Molniya</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDMolniya),setIDsel(IDMolniya),setCenter([0,0])}}><a>Molniya</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDOneWeb),setIDsel(IDOneWeb),setCenter([0,0])}}><a>Oneweb</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDOneWeb),setIDsel(IDOneWeb),setCenter([0,0])}}><a>Oneweb</a></button>
         ),(
-          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),setTotalPoints(1),setID(IDStarlink),setIDsel(IDStarlink),setCenter([0,0])}}><a>Starlink</a></button>
+          <button onClick={() => {setMark(''),setTleInfoShow(false),setSelectedFam(true),setSelectedFamInt(true),/* setTotalPoints(1), */setID(IDStarlink),setIDsel(IDStarlink),setCenter([0,0])}}><a>Starlink</a></button>
         )
       
       ]
       }
 
+//IDS FAMILIAS
+
     var IDsDisplayed=[];
     function displayIDs(IDsInput){
       for (let i = 0; i < IDsInput.length; i++) {
-        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setTleInfoShow(true),setIDfam(IDsInput[i]),setMark(IDsInput[i]),setTotalPoints(totalPointsSaved),setInterval(intervalSaved),setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
+        IDsDisplayed.push(<button style={{fontSize:'12px',marginLeft:'18px',padding:'5px'}} onClick={() => {setTleInfoShow(true),setIDfam(IDsInput[i]),setMark(IDsInput[i]),/* setTotalPoints(totalPointsSaved),setInterval(intervalSaved), */setCenter([Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lat,Pos(assignTLE(IDsInput[i]),1,intervalSaved)[0].lng])}} ><a>{assignTLE(IDsInput[i]).split('\n')[0]}, {IDsInput[i]}</a></button>)
       }
       return(IDsDisplayed)
     }
 
-    const [itemsArchive,setItemsArchive] = useState(itemsArchiveBuildInitial);
     
-    function handleChange(event) {
-      var itemsArchiveBuild=[];
-      if(event.target.value===''){setItemsArchive(itemsArchiveBuildInitial)} else{
-      for (let i = 0; i < activeSorted.length; i++) {
-        if(event.target.value===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value.toUpperCase()===activeSorted[i].OBJECT_NAME.substring(0,event.target.value.length)||event.target.value===activeSorted[i].NORAD_CAT_ID.toString().substring(0,event.target.value.length))
-        {
-          itemsArchiveBuild.push(
-          <button onClick={() => {setMark(''),setTleInfoShow(true),setSelectedFam(false),setSelectedFamInt(false),/* setTotalPoints(totalPointsSaved),setInterval(intervalSaved), */setID(activeSorted[i].NORAD_CAT_ID),setIDsel(activeSorted[i].NORAD_CAT_ID),setCenter([Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lat,Pos(assignTLE(activeSorted[i].NORAD_CAT_ID),1,intervalSaved)[0].lng])}}>
-            <a>{activeSorted[i].OBJECT_NAME}</a>
-          </button>
-          )
-        }}
-        setItemsArchive(itemsArchiveBuild);
-        return(itemsArchive)
-    }
-  }
 
   return (
     

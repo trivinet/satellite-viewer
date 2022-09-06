@@ -6,10 +6,20 @@ import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAtom,
 import ReactTooltip from 'react-tooltip';
 
   var darkSidebarDefault = true;
-export default function Sidebar({setDark,setSidebarOpen}) {
+export default function Sidebar({setDark,setSidebarOpen,setBasemap,setEnvironment}) {
 
     const [darkSidebar, setDarkSidebar] = React.useState(darkSidebarDefault);
     const [sidebarOpenProp, setSidebarOpenProp] = React.useState(false);
+    /* const [basemapProp,setBasemapProp] = React.useState("dark-gray-vector");
+    const [environmentProp,setEnvironmentProp] = React.useState({
+      lighting: {
+        // enable shadows for all the objects in a scene
+        directShadowsEnabled: false,
+        // set the date and a time of the day for the current camera location
+        //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+      }  
+    }); */
+
       return (  
         <>  
     <nav className={darkSidebar?(sidebarOpenProp?(styles.navDark):(styles.navDarkClose)):(sidebarOpenProp?(styles.nav):(styles.navClose))}>
@@ -34,7 +44,27 @@ export default function Sidebar({setDark,setSidebarOpen}) {
           <Link href="/docu">
               <a>Documentación</a>
           </Link>
-      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p)  }}>Theme</button>
+      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p) ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
+setEnvironment({
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+})):((setBasemap('satellite'),
+setEnvironment({
+  background: {
+    type: "color",
+    color: [255, 252, 244, 1]
+  },
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+}))) }}>Theme</button>
       </>):(<>
           <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>ABRIR</ReactTooltip>
           {/* <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={faSearch} width={'20px'} height={'20px'} cursor={'pointer'}></FontAwesomeIcon></icon> */}
@@ -53,7 +83,27 @@ export default function Sidebar({setDark,setSidebarOpen}) {
           <Link href="/docu">
           <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Docu</ReactTooltip></icon>
           </Link>
-      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
+      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p),(!darkSidebar)?(setBasemap('dark-gray-vector'),
+setEnvironment({
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+})):((setBasemap('satellite'),
+setEnvironment({
+  background: {
+    type: "color",
+    color: [255, 252, 244, 1]
+  },
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+}))) }}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
       
       </>)}
       

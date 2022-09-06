@@ -1268,6 +1268,15 @@ export default function Docu(){
   const [satelites, setSatelites] = React.useState(false);
   const [enlaces, setEnlaces] = React.useState(false);
   const [tutorial, setTutorial] = React.useState(false);
+  const [environment,setEnvironment] = useState({
+    lighting: {
+      // enable shadows for all the objects in a scene
+      directShadowsEnabled: false,
+      // set the date and a time of the day for the current camera location
+      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+    }  
+  });
+const [basemap,setBasemap] = useState("dark-gray-vector");
 
   function assignTheme(dark){
     {if(dark){
@@ -1313,7 +1322,7 @@ export default function Docu(){
   return(
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
   <div className={styles.container}>
      <Head>
         <title>Documentación</title>

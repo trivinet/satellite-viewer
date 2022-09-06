@@ -16,6 +16,15 @@ const tle = `ISS (ZARYA)
 export default function about(){
   const [dark,setDark] = useState(true);
   const [sidebarOpen,setSidebarOpen] = useState(false);
+  const [environment,setEnvironment] = useState({
+    lighting: {
+      // enable shadows for all the objects in a scene
+      directShadowsEnabled: false,
+      // set the date and a time of the day for the current camera location
+      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+    }  
+  });
+const [basemap,setBasemap] = useState("dark-gray-vector");
 
   function assignTheme(sidebarOpen){
       if(sidebarOpen){
@@ -29,7 +38,7 @@ export default function about(){
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
       <main className={assignTheme(sidebarOpen)}>
       <h1 className={styles.title} style={{'font-size':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>

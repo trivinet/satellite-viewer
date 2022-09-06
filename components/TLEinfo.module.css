@@ -1,5 +1,5 @@
 .navDark{
-  height: 15%;
+  height: 17%;
   color: #eaeaea;
   position: fixed;
   bottom:0;
@@ -9,11 +9,12 @@
   flex-direction: row;
   width: 500px;
  /*  background-color: #2D333C; */ 
-  background-color: rgba(45, 51, 60, 0.24);
-  opacity: 0.2; 
+  /* background-color: rgba(45, 51, 60, 0.24); */
+  opacity: 0.6; 
   overflow-x: hidden;
   padding: 22px;
   border: 0px;
+  border-radius: 15px;
   /* border-right: 1px solid black; */
   box-shadow:
   0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
@@ -50,7 +51,7 @@
 
 .navDark .hTLE {
   margin: 0%;
-  padding:1%;
+  padding:2%;
   line-height: 0.5;
   font-size: 12px;
   cursor:pointer;

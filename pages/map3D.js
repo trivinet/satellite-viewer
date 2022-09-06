@@ -37,8 +37,39 @@ export default function PointMap() {
   const [viewTrace, setViewTrace] = useState(true);
   const [tleInfoShow,setTleInfoShow] = useState(true);
   const [IDfam,setIDfam] = useState('');
+  const [environment,setEnvironment] = useState({
+        lighting: {
+          // enable shadows for all the objects in a scene
+          directShadowsEnabled: false,
+          // set the date and a time of the day for the current camera location
+          //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+        }  
+      });
+  const [basemap,setBasemap] = useState("dark-gray-vector");
 
   var tleInfoCont=[];
+
+  /* if(dark){setBasemap('dark-gray-vector')
+setEnvironment({
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+})}else{setBasemap('satellite')
+setEnvironment({
+  background: {
+    type: "color",
+    color: [255, 252, 244, 1]
+  },
+  lighting: {
+    // enable shadows for all the objects in a scene
+    directShadowsEnabled: false,
+    // set the date and a time of the day for the current camera location
+    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+  }  
+})} */
 
   if(tleInfoShow){
     if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
@@ -86,7 +117,7 @@ export default function PointMap() {
  
   tle = assignTLE(ID[i]);
   if (tle!=''){
-  posiciones = Pos(tle,1,0);
+  posiciones = Pos(tle,0.5,0);
   if (posiciones!=''){
 
   
@@ -271,6 +302,7 @@ export default function PointMap() {
 
   }}
   }else{
+
   var tle = assignTLE(ID);
   var posiciones = Pos(tle,totalPoints,interval);
   var tiempos = TimePoints(totalPoints, interval);
@@ -449,45 +481,22 @@ export default function PointMap() {
 
   }
 
-  
-
-
   var map = {
-    basemap: (dark)?("dark-gray-vector"):("satellite"),
+    basemap: "dark-gray-vector",
     ground: "world-elevation",
-  };
-  var options = {
-      view: {
-        center:defaultCenter,
-        zoom: 2,
-        ui: {
-          components:['attribution']
-        },
-        popup: {
-          dockEnabled: true,
-          /* 
-          right:'10px',
-          top:'10px', */
-          dockOptions: {
-            buttonEnabled: false,
-          breakpoint: true,
-          position:"top-right"
-          },
-        defaultPopupTemplateEnabled: true
-        },
-        environment:{
-          lighting: {
-            // enable shadows for all the objects in a scene
-            directShadowsEnabled: false,
-            // set the date and a time of the day for the current camera location
-            //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-          }  
-        },
-        constraints: {
-          altitude: {
-            max: 12000000000 // meters
-          }
-        }
+  };/* ):(map = {
+    basemap: "satellite",
+    ground: "world-elevation",
+  }); */
+
+   
+
+  var options={
+    view: {
+      center:defaultCenter,
+      zoom: 2,
+      ui: {
+        components:['attribution']
       },
       popup: {
         dockEnabled: true,
@@ -508,33 +517,125 @@ export default function PointMap() {
           // set the date and a time of the day for the current camera location
           //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
         }  
+      },
+      constraints: {
+        altitude: {
+          max: 12000000000 // meters
+        }
       }
-  };
-
-  function styleMap(sidebarOpen) {
-        return({
-            height: '100vh',
-            width: '100%',
-            background:'black',
-            padding:{
-              right:0},
-            margin:0,
-            'overflowY':'hidden'
-    })
+    },
+    popup: {
+      dockEnabled: true,
+      /* 
+      right:'10px',
+      top:'10px', */
+      dockOptions: {
+        buttonEnabled: false,
+      breakpoint: true,
+      position:"top-right"
+      },
+    defaultPopupTemplateEnabled: true
+    },
+    environment:{
+      
+      lighting: {
+        // enable shadows for all the objects in a scene
+        directShadowsEnabled: false,
+        // set the date and a time of the day for the current camera location
+        //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+      }  
     }
-
-
-function styleMapTheme(dark) {
-  if (dark){
+}/* ):(options = {
+  view: {
+    center:defaultCenter,
+    zoom: 2,
+    ui: {
+      components:['attribution']
+    },
+    popup: {
+      dockEnabled: true,
+      dockOptions: {
+        buttonEnabled: false,
+      breakpoint: true,
+      position:"top-right"
+      },
+    defaultPopupTemplateEnabled: true
+    },
+    environment:{
+      background: {
+        type: "color",
+        color: [255, 252, 244, 1]
+      },
+      lighting: {
+        // enable shadows for all the objects in a scene
+        directShadowsEnabled: false,
+        // set the date and a time of the day for the current camera location
+        //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+      }  
+    },
+    constraints: {
+      altitude: {
+        max: 12000000000 // meters
+      }
+    }
+  },
+  popup: {
+    dockEnabled: true,
+    dockOptions: {
+      buttonEnabled: false,
+    breakpoint: true,
+    position:"top-right"
+    },
+  defaultPopupTemplateEnabled: true
+  },
+  environment:{
+    lighting: {
+      // enable shadows for all the objects in a scene
+      directShadowsEnabled: false,
+      // set the date and a time of the day for the current camera location
+      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+    }  
   }
-  else {
-    map.basemap='satellite'
-  }
-}
+}) */
 
   
 
+  function styleMap() {
+    if(dark){
+      return({
+      height: '100vh',
+      width: '100%',
+      background:'black',
+      padding:{
+        right:0},
+      margin:0,
+      'overflowY':'hidden'
+})}else{return({
+  height: '100vh',
+  width: '100%',
+  background:'#FFFCF4',
+  padding:{
+    right:0},
+  margin:0,
+  'overflowY':'hidden',
+  color:'#FFFCF4'
+})}}
+
+
+
   
+
+    /* useEffect(() => {
+      if (!ref) {
+        // view hasn't been created yet
+        return;
+      }
+      if (ref.basemap!=basemap) {
+        
+        ref.basemap = basemap;
+        
+      }
+    }, [basemap]); */
 
   
   const [ref,view] = useScene(map, options);
@@ -552,6 +653,23 @@ function styleMapTheme(dark) {
       /* console.log(view) */
     }
   }, [center]);
+
+
+  
+
+  useEffect(() => {
+    if (!view) {
+      // view hasn't been created yet
+      return;
+    }
+    if (view.environment!=environment) {
+      // zoom prop has changed, update view
+      /* console.log(center[1],center[0]) */
+      view.environment=environment;
+      /* view.zoom = 3; */
+      /* console.log(view) */
+    }
+  }, [environment]);
   
 
 
@@ -574,9 +692,9 @@ function styleMapTheme(dark) {
 
   return( <>
   <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
   {tleInfoCont}
-  <div style={styleMap(sidebarOpen)} ref={ref}></div>
+  <div style={styleMap()} ref={ref}></div>
   </>
   )
 }
