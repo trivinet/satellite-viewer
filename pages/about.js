@@ -2,7 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Docu.module.css'
 import assignTLE from './assignTLE'
 import Sidebar from '../components/sidebar'
-import React, { useState} from 'react';
+import React from 'react';
 
 
 const tle = `ISS (ZARYA)
@@ -12,9 +12,9 @@ const tle = `ISS (ZARYA)
 
 
 export default function about(){
-  const [dark,setDark] = useState(true);
-  const [sidebarOpen,setSidebarOpen] = useState(false);
-  const [environment,setEnvironment] = useState({
+  const [dark,setDark] = React.useState(true);
+  const [sidebarOpen,setSidebarOpen] = React.useState(false);
+  const [environment,setEnvironment] = React.useState({
     lighting: {
       // enable shadows for all the objects in a scene
       directShadowsEnabled: false,
@@ -22,7 +22,7 @@ export default function about(){
       //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
     }  
   });
-const [basemap,setBasemap] = useState("dark-gray-vector");
+const [basemap,setBasemap] = React.useState("dark-gray-vector");
 
 function assignTheme(dark){
   {if(dark){
