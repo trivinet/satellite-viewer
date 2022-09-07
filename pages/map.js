@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import GoogleMapReact from 'google-map-react';
 import styles from '../styles/Home.module.css';
-import Pos from './trace';
+import Pos from '../components/trace';
 import ReactTooltip from 'react-tooltip';
-import TimePoints from './getTimes';
+import TimePoints from '../components/getTimes';
 import Layout from '../components/layout'
 import Sidebar from '../components/sidebar'
-import assignTLE from './assignTLE'
+import assignTLE from '../components/assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
 import { getSatelliteInfo,getLatLngObj } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';

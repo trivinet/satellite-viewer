@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Tle(){
+export default function tle(){
 
     const [info, setInfo] = useState(null);
     const [isLoading,setIsLoading] = useState(true)
@@ -9,7 +9,6 @@ export default function Tle(){
     .then((response) => response.json())
     .then((info) => {
         
-
         setInfo(info); // ⬅️ Guardar datos
 
         setIsLoading(false); // ⬅️ Desactivar modo "cargando"

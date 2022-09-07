@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/satelites3.module.css'
-import assignTLE from './assignTLE'
+import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
 import Layout from '../components/layout'
 import { getLatLngObj } from "tle.js";
@@ -8,12 +8,12 @@ import InfoBoxPrint from '../components/infoBoxPrint'
 import { useState,useCallback } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
-import active from './active.json'
+import active from '../components/active.json'
 import { Scrollbars } from 'react-custom-scrollbars';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
 import { PieChart, Pie, Sector } from "recharts";
 import MUIDataTable from "mui-datatables";
-import active2 from './active2.json';
+import active2 from '../components/active2.json';
 
 
 

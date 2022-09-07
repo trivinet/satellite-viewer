@@ -1,7 +1,7 @@
 import styles from './TLEinfo.module.css'
 import React, { useState, useEffect } from 'react';
 import ReactTooltip from 'react-tooltip';
-import assignTLE from '../pages/assignTLE';
+import assignTLE from './assignTLE';
 
 /* const tleDefault = assignTLE(25544);  */
 

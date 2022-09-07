@@ -1,14 +1,10 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Tle from './tle'
-import Link from 'next/link'
-import Layout from '../components/layout'
 import Sidebar from '../components/sidebar'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook,faBookOpen,faMap,faSatellite,faAtom } from '@fortawesome/free-solid-svg-icons'
-import active from './active.json'
+import active from '../components/active.json'
 import { Scrollbars } from 'react-custom-scrollbars';
 
 

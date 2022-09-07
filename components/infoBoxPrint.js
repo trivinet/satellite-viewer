@@ -1,14 +1,14 @@
 import styles from './infoBoxPrint.module.css'
 import React, { useState, useEffect } from 'react';
-import active from '../pages/active.json';
-import assignTLE from '../pages/assignTLE';
+import active from './active.json';
+import assignTLE from './assignTLE';
 import Sidebar from './sidebar';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 import { Scrollbars } from 'react-custom-scrollbars';
 import { getLatLngObj,getSatelliteInfo } from 'tle.js';
-import generateIDs from '../pages/generateIDs';
-import Pos from '../pages/trace';
+import generateIDs from './generateIDs';
+import Pos from './trace';
 import ReactTooltip from 'react-tooltip';
 
 /* const tle = `ISS (ZARYA)

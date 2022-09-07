@@ -1,7 +1,7 @@
 import { getSatelliteInfo } from "tle.js";
 
 
-export default function Altitude(tle,interval,i,lat,long) {
+export default function altitude(tle,interval,i,lat,long) {
   
   var altitude = [];
   

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useMap, useGraphics,useWebScene,useScene,useEvents } from "esri-loader-hooks";
 import InfoBoxPrint from '../components/infoBoxPrint';
 import Sidebar from '../components/sidebar'
-import assignTLE from './assignTLE'
-import Pos from './trace';
-import Altitude from './altitude';
+import assignTLE from '../components/assignTLE'
+import Pos from '../components/trace';
+import Altitude from '../components/altitude';
 import styles from '../styles/Home.module.css';
-import TimePoints from './getTimes';
+import TimePoints from '../components/getTimes';
 import { getMeanMotion } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
 

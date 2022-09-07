@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import styles from '../styles/Docu.module.css'
-import assignTLE from './assignTLE'
+import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
 import Layout from '../components/layout'
 import React, { useState, useEffect } from 'react';
