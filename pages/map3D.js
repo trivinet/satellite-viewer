@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useMap, useGraphics,useWebScene,useScene,useEvents } from "esri-loader-hooks";
 import InfoBoxPrint from '../components/infoBoxPrint';
 import Sidebar from '../components/sidebar'
-import {pointGraphicJson,polygonGraphicJson} from "./graphics";
 import assignTLE from './assignTLE'
 import Pos from './trace';
 import Altitude from './altitude';
