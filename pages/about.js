@@ -53,8 +53,8 @@ function assignTheme(dark){
         </a></a>  
         </h1> 
         
-        <p>Esta página ha sido producto de un Trabajo de Fin de Grado para la <a href={'https://www.upc.edu/es'} style={{textDecoration:'underline'}} target='_blank'>Universidad Politécnica de Cataluña</a>, en la <a style={{textDecoration:'underline'}} href={'https://eetac.upc.edu/es'} target='_blank'>Escuela de Ingeniería Técnica y Aeroespacial de Castelldefels</a> (EETAC), titulación en Grado de Sistemas Aeroespaciales</p>
-        <h2 href={'https://twitter.com/sats_viewer'} target='_blank'>Podrás encontrar más infomarción sobre la página en Twitter</h2>
+        <p>Esta página ha sido producto de un Trabajo de Fin de Grado para la <a href={'https://www.upc.edu/es'} style={{textDecoration:'underline'}} target='_blank' rel="noreferrer">Universidad Politécnica de Cataluña</a>, en la <a style={{textDecoration:'underline'}} href={'https://eetac.upc.edu/es'} target='_blank' rel="noreferrer">Escuela de Ingeniería Técnica y Aeroespacial de Castelldefels</a> (EETAC), titulación en Grado de Sistemas Aeroespaciales</p>
+        <h2 href={'https://twitter.com/sats_viewer'} target='_blank' rel="noreferrer">Podrás encontrar más infomarción sobre la página en Twitter</h2>
         <p></p>
         <p></p>
         <p></p>

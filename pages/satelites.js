@@ -2064,7 +2064,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   <Line type="monotone" dot={false} dataKey="inorbit" stroke="#FA9968" />
                 </LineChart>
               
-                <div><p style={{position: 'absolute', bottom:'-40px' ,right: '10px', fontSize:'18px'}}>Fuente: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <div><p style={{position: 'absolute', bottom:'-40px' ,right: '10px', fontSize:'18px'}}>Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://celestrak.org/satcat/boxscore.php'>Celestrak.com/</a></p></div>
 
           </>}</>):('')}
@@ -2105,7 +2105,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   />
                 </PieChart>
 
-                <p style={{position: 'relative', bottom:'30px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'30px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a rel="noreferrer" target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
 
           </>}</>):('')}
@@ -2158,7 +2158,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                 </div>
 
                 {seleccionaGraph(activeIndexBar)}
-                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
         
         </>}</>):('')}
@@ -2184,7 +2184,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   />
                 </PieChart>
 
-                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
 
         </>}</>):('')}
@@ -2196,7 +2196,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         <Tooltip content={<CustomTooltipBar />} />
       </BarChart>
 
-      <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+      <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
         
         </>}</>):('')}
