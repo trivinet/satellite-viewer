@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 import ReactTooltip from 'react-tooltip';
 import YouTube from 'react-youtube';
+import Link from 'next/link'
 
 const texto = ` 
 Resumen
@@ -1332,10 +1333,10 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
       
       <main className={assignTheme(dark,sidebarOpen)}>
         <h1 className={styles.title} style={{'fontSize':'66px'}}>
-          <a href="/docu" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
+        <a href="/docu" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Documentación<a className={styles.imageGifTitle}>
-            <img href = "/docu" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
+            <img src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>
         </h1>
 
@@ -1520,7 +1521,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
         generalmente por la misma razón que los ejes X no coinciden.</p>
 
         <img href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html" src ={'https://es.mathworks.com/help/aerotbx/ug/eci_ecef1.gif'}/>
-        <p style={{textAlign:'center'}}>Figura obtenida de MathWorks, enlace en <a style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" rel="noreferrer" href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html">este link</a></p>
+        <p style={{textAlign:'center'}}>Figura obtenida de MathWorks, enlace en <Link style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" rel="noreferrer" href = "https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html">este link</Link></p>
 
         <p>Aunque aún no sea trivial plasmarlo, en las representaciones 3D de las órbitas
         que se harán en la aplicación existirá una diferencia radical en la vista de ambos
@@ -1568,12 +1569,12 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
         <p>Estos propagadores predicen el efecto de las perturbaciones causadas por la
         forma de la tierra (que, erróneamente, es tratada como una esfera perfecta), el
         rozamiento, la radiación y los efectos gravitacionales causados por otros
-        cuerpos, tales como la luna o el sol (véase <a style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://hmong.es/wiki/SGP4' target="_blank" rel="noreferrer">este link</a>
+        cuerpos, tales como la luna o el sol (véase <Link style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://hmong.es/wiki/SGP4' target="_blank" rel="noreferrer">este link</Link>
         para más información). Se estima que el propagador tiene un
         error de menos de 1km, pero crece diariamente entre 1 y 3 km, la razón principal
-        por la que los datos son continuamente actualizados (referencia en <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://en.wikipedia.org/wiki/Two-line_element_set'>este link</a>).</p>
+        por la que los datos son continuamente actualizados (referencia en <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://en.wikipedia.org/wiki/Two-line_element_set'>este link</Link>).</p>
         <p>Dichos propagadores conllevan una carga matemática y física que se escapa de
         los límites de este proyecto, por lo que no se entrará en detalle en los cálculos
         que éste efectúa. Sin embargo, era de vital importancia remarcar algunos datos
@@ -1581,13 +1582,13 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
         singularidades de los datos orbitales. Entre ellas, la razón por la que los TLEs
         son actualizados diariamente (como se ha mencionado, el propagador conlleva
         errores que crecen con el tiempo, y se han de corregir). Para más información,
-        la página de <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://celestrak.org/'>Celestrak</a>, referenciada en multitud de ocasiones, tiene
+        la página de <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://celestrak.org/'>Celestrak</Link>, referenciada en multitud de ocasiones, tiene
         documentación extensa sobre propagadores, códigos originales de la compañía
-        NORAD (desarrolladora del producto, <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://www.norad.mil/'>NORAD</a>) y librerías actualizadas sobre el
-        propagador <a style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" rel="noreferrer"
-        href='https://github.com/shashwatak/satellite-js'>satellite.js</a>, entre las que se encuentra la que se usará para este proyecto,
+        NORAD (desarrolladora del producto, <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://www.norad.mil/'>NORAD</Link>) y librerías actualizadas sobre el
+        propagador <Link style={{color:'#B9EEFF',textDecoration: 'underline'}} target="_blank" rel="noreferrer"
+        href='https://github.com/shashwatak/satellite-js'>satellite.js</Link>, entre las que se encuentra la que se usará para este proyecto,
         mencionada en el apartado de Cálculos.</p>
 
         </>}</>):('')}
@@ -1598,8 +1599,8 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
                 <h3>Definición</h3>
         <p>La astrodinámica o mecánica orbital es la aplicación de la balística y la mecánica
         celeste a los problemas prácticos relativos al movimiento de cohetes y otras
-        naves espaciales (<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>link</a>). Está basada en las leyes de Newton y en la ley de la
+        naves espaciales (<Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>link</Link>). Está basada en las leyes de Newton y en la ley de la
         gravitación universal. Esta pretende hacer un estudio exhaustivo sobre las
         trayectorias de las naves espaciales, además de la multitud de maniobras, y es
         la herramienta principal de los planificadores de misiones espaciales.</p>
@@ -1614,9 +1615,9 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
         determinar una órbita (éste usa un modelo de dos masas siguiendo las leyes de
         movimiento de Newton). Con esta denominación se suele hacer referencia a seis
         parámetros básicos, también denominados como elementos keplerianos (como tributo 
-        a Kepler (<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://es.wikipedia.org/wiki/Elementos_orbitales#:~:text=Los%20elementos%20orbitales%20son%20los,utilizando%20una%20%C3%B3rbita%20de%20Kepler'>link</a>)), que a continuación se definen para el caso de  (<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://en.wikipedia.org/wiki/Geocentric_orbit'>órbitas geocéntricas</a>):</p>
+        a Kepler (<Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://es.wikipedia.org/wiki/Elementos_orbitales#:~:text=Los%20elementos%20orbitales%20son%20los,utilizando%20una%20%C3%B3rbita%20de%20Kepler'>link</Link>)), que a continuación se definen para el caso de  (<Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://en.wikipedia.org/wiki/Geocentric_orbit'>órbitas geocéntricas</Link>):</p>
 
         <p>a. Longitud del nodo ascendente (☊ o Ω)</p> 
         <p>Ángulo formado entre el primer
@@ -1677,8 +1678,8 @@ que conforman los TLEs.</p>
 la codificación de una lista de elementos orbitales de un objeto orbital terrestre
 (y únicamente terrestre) para un instante en el tiempo, también conocido como
 la época (llamada así en astronomía a una fecha en concreto, en ocasiones
-medida en milisegundos a partir del 1 de enero del 2000 a las 00:00 según UTC (<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-        href='https://en.wikipedia.org/wiki/Epoch_(astronomy)'>link</a>)
+medida en milisegundos a partir del 1 de enero del 2000 a las 00:00 según UTC (<Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+        href='https://en.wikipedia.org/wiki/Epoch_(astronomy)'>link</Link>)
 ). Gracias a este dato, es posible la correcta representación de un satélite
 dado en el instante deseado. A partir de ese instante, el error puede crecer
 progresivamente con el tiempo, por lo que dichos TLEs son actualizados
@@ -1791,8 +1792,8 @@ muy elevada, y deben ser minuciosamente generados.</p>
 <p>Esta librería comentada, a su vez, tiene unos tiempos de procesado en
 ocasiones elevados para obtener resultados que se quieren de forma casi
 inmediata. Por esta razón, y para obtener los parámetros de forma más clara y
-rápida, se hace uso de una segunda librería llamada <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://github.com/davidcalhoun/tle.js/'>tle.js</a> tle.js, la cual depende
+rápida, se hace uso de una segunda librería llamada <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://github.com/davidcalhoun/tle.js/'>tle.js</Link> tle.js, la cual depende
 directamente de la primera, pero está desglosada en funciones concretas que
 facilitan aún más el uso. Además, esta librería está desarrollada enteramente por
 David Calhoun, uno desarrolladores principales de la mencionada inicialmente,
@@ -1813,9 +1814,9 @@ mostrar las librerías escogidas y la razón por la que se ha hecho.</p>
         <h2><icon onClick={() =>setSatelites((p)=>!p)}><FontAwesomeIcon icon={(satelites)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Fuente de información satelital</icon></h2>
               {satelites?(<>{<>
 
-                <p>Las formas de acceder a estos TLEs son oficialmente dos: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='http://www.celestrak.org/'>Celestrak</a> y <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://www.space-track.org/'>SpaceTrack</a>. Ambas corporaciones están dotadas de la información pública (existe
+                <p>Las formas de acceder a estos TLEs son oficialmente dos: <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='http://www.celestrak.org/'>Celestrak</Link> y <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://www.space-track.org/'>SpaceTrack</Link>. Ambas corporaciones están dotadas de la información pública (existe
 información clasificada y elementos militares de acceso restringido) sobre los
 satélites que orbitan la tierra. La fuente de información es la Fuerza Espacial de
 los Estados Unidos, la cual lleva supervisando, controlando y almacenando
@@ -1838,20 +1839,20 @@ programación.</p>
         <h2><icon onClick={() =>setEnlaces((p)=>!p)}><FontAwesomeIcon icon={(enlaces)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Enlaces variados y suplemento de documentación</icon></h2>
               {enlaces?(<>{<>
 
-        <p>Documento original formación TLEs <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://celestrak.org/NORAD/documentation/ADCOM%20DO%20Form%2012.pdf'>(link)</a> </p>   
-        <p>Controversia Parámetro CHECKSUM <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://celestrak.org/NORAD/documentation/checksum.php'>(link)</a> </p>    
-<p>Propagador <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://celestrak.org/NORAD/documentation/spacetrk.pdf'>(link)</a> </p> 
-<p>Mecánica Orbital I <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>(link)</a> </p>
-<p>Mecánica Orbital II <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://riunet.upv.es/bitstream/handle/10251/158425/Mora%C3%B1o%20-%20%C3%93rbitas%20en%20tres%20dimensiones%3A%20Elementos%20orbitales.pdf?sequence=1&isAllowed=y#:~:text=Para%20definir%20una%20%C3%B3rbita%20en,semieje%20mayor1%20(a).'>(link)</a> </p>
-<p>Sistemas de Coordenadas <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html'>(link)</a> </p>
-<p>Memoria del proyecto <a target="_blank" rel="noreferrer" type="application/pdf" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
-href='../TFGprueba4.pdf'>(link)</a> </p>
+        <p>Documento original formación TLEs <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/ADCOM%20DO%20Form%2012.pdf'>(link)</Link> </p>   
+        <p>Controversia Parámetro CHECKSUM <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/checksum.php'>(link)</Link> </p>    
+<p>Propagador <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://celestrak.org/NORAD/documentation/spacetrk.pdf'>(link)</Link> </p> 
+<p>Mecánica Orbital I <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://es.wikipedia.org/wiki/Astrodin%C3%A1mica'>(link)</Link> </p>
+<p>Mecánica Orbital II <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://riunet.upv.es/bitstream/handle/10251/158425/Mora%C3%B1o%20-%20%C3%93rbitas%20en%20tres%20dimensiones%3A%20Elementos%20orbitales.pdf?sequence=1&isAllowed=y#:~:text=Para%20definir%20una%20%C3%B3rbita%20en,semieje%20mayor1%20(a).'>(link)</Link> </p>
+<p>Sistemas de Coordenadas <Link target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='https://es.mathworks.com/help/aerotbx/ug/coordinate-systems-for-navigation.html'>(link)</Link> </p>
+<p>Memoria del proyecto <Link target="_blank" rel="noreferrer" type="application/pdf" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+href='../TFGprueba4.pdf'>(link)</Link> </p>
 
 
 
@@ -1865,9 +1866,9 @@ href='../TFGprueba4.pdf'>(link)</a> </p>
 
         </>}</>):('')}
         {espaciado}
-        <a href="/about" style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
+        <Link href="/about" style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
             <h2 style={{'font-size':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
-          </a>
+          </Link>
       </main>
       </div>
       </>
