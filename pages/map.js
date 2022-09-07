@@ -131,7 +131,6 @@ export default function SimpleMap(){
           number={i}
 />)}}}
         if (mark!=''){
-            console.log(mark)
             name = assignTLE(mark).split('\n')[0];
             var posicionesMark=Pos(assignTLE(mark),totalPoints,interval);
             var tiempos = TimePoints(totalPoints, interval);

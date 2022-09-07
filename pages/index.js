@@ -70,7 +70,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           <div className={styles.imageGif}>
             <img href = "/docu" src ={'https://s6.gifyu.com/images/gifDocu.gif'}/>
           </div>
-            <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
             <p>Encuentra información en profundidad sobre TLEs, Mecánica Orbital y más.</p>
           </a>
 
@@ -78,7 +78,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           <div className={styles.imageGif}>
             <img href = "/map" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
           </div>
-            <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
             <p>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
             <i> </i>
           </a>
@@ -87,7 +87,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           <div className={styles.imageGif}>
             <img href = "/map3D" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
           </div>
-            <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/> */} Mapa 3D{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/> */} Mapa 3D{/* </icon> */} {/* &darr; */}</h2>
             <p>
             Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 3D interactivo con todos los satélites disponibles en tiempo real.
             </p>
@@ -97,11 +97,11 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           <div className={styles.imageGif}>
             <img href = "/satelites" src ={'https://media4.giphy.com/media/drPdD8XyDK3EfEj12G/giphy.gif?cid=790b76117d33aa9883ba5ecc6185e3438ba2509dd24de2cc&rid=giphy.gif&ct=g'}/>
           </div>
-            <h2 style={{'font-size':'36px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} Satélites{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} Satélites{/* </icon> */} {/* &darr; */}</h2>
             <p>Información miscelánea sobre satélites, tipos de traza, estadístico de países, etc. Se han cargado un total de {active.length} satélites</p>
           </a>
           <a href="/about" className={styles.card} style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
-            <h2 style={{'font-size':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'fontSize':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
           </a>
 
           {/* style={{position:'fixed', bottom:'5%',right:'15%', borderEndEndRadius:'43%', borderTopLeftRadius:'57%', borderEndStartRadius:'53%' , borderTopRightRadius:'73%', borderEndStartRadius:'35%', borderBottomLeftRadius:'60%', borderBottomRightRadius:'42%', borderBottomRightRadius:'48%', backgroundImage:'-webkit-linear-gradient(225deg, #9c27b0 20%, #aeaeae 100%)', padding:'1.5%'}} */} 
