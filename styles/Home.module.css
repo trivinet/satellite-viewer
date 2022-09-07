@@ -64,6 +64,7 @@
   color:#eaeaea;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   align-items: center;
   margin: 0px;
   padding-left:250px;
@@ -78,6 +79,7 @@
   color:black;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   align-items: center;
   margin: 0px;
   padding-left: 100px;
@@ -91,6 +93,7 @@
   color:#eaeaea;
   flex-direction: column;
   justify-content: center;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   align-items: center;
   margin: 0px;
   padding-left: 100px;
@@ -113,6 +116,7 @@
   background-color: #333;
   text-decoration: none;
   border: 1px solid #eaeaea;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
   max-width: 300px;
@@ -206,6 +210,7 @@ background-color: rgba(53, 60, 75 0.25);
   color: inherit;
   background-color: #333;
   text-decoration: none;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
@@ -357,6 +362,7 @@ background-color: rgba(53, 60, 75 0.25);
   margin: 1%;
   line-height: 1.15;
   font-size: 2rem;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   position: fixed;
   top:3%;
   /* box-shadow:
@@ -375,6 +381,7 @@ background-color: rgba(53, 60, 75 0.25);
   line-height: 1.15;
   font-size: 2rem;
   position: fixed;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   top:3%;
   /* box-shadow:
   0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
@@ -464,6 +471,7 @@ background-color: rgba(53, 60, 75 0.25);
   background-color: #333;
   text-decoration: none;
   border: 1px solid #eaeaea;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
   max-width: 300px;
@@ -492,6 +500,7 @@ background-color: rgba(53, 60, 75 0.25);
   background-color: #333;
   text-decoration: none;
   border: 1px solid #eaeaea;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
   max-width: 300px;
