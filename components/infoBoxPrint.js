@@ -40,7 +40,7 @@ import ReactTooltip from 'react-tooltip';
 
 
 
-export default function infoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace,setTleInfoShow,setIDfam}) {
+export default function InfoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace,setTleInfoShow,setIDfam}) {
 
     //
     const [selectedSat, setSelectedSat] = React.useState(true);

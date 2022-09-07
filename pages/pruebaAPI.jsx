@@ -1,7 +1,7 @@
 
 import { useState } from "react";
 
-export default function cogeTLE(){
+export default function CogeTLE(){
 
     const [todosTLE,setTodosTLE]=useState('');
   const [TLEisLoading,setTLEIsLoading] = useState(true)

@@ -11,7 +11,7 @@ const tle = `ISS (ZARYA)
 
 
 
-export default function about(){
+export default function About(){
   const [dark,setDark] = React.useState(true);
   const [sidebarOpen,setSidebarOpen] = React.useState(false);
   const [environment,setEnvironment] = React.useState({
