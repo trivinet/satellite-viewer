@@ -48,7 +48,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
       
       {/* <a href='/about' className={styles.about}>About</a> */}
       <main className={assignTheme(dark,sidebarOpen)}>
-        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'font-size':'86px'}}>
+        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'fontSize':'86px'}}>
           Bienvenido a <a href="/" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Satellite Viewer <a className={styles.imageGifTitle}>

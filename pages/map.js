@@ -111,7 +111,7 @@ export default function SimpleMap(){
     for (let i = 0; i < ID.length; i++) {
 
     var tle = assignTLE(ID[i]); 
-
+    if (tle!=''){
     var name = tle.split('\n')[0];
   
   //calcula (lat,long)
@@ -121,7 +121,7 @@ export default function SimpleMap(){
     var tiempos = TimePoints(1, interval);
 
   //crea markers
-  if (posiciones[1].lat){
+  if (posiciones!=''){
     markers.push(<AnyReactComponentTraceFamily
           ID2={ID[i]}
           lat={posiciones[1].lat}
@@ -129,8 +129,9 @@ export default function SimpleMap(){
           text="·"
           info= {'ID: '+ ID[i] + ', Nombre: ' + name}
           number={i}
-/>)}}
+/>)}}}
         if (mark!=''){
+            console.log(mark)
             name = assignTLE(mark).split('\n')[0];
             var posicionesMark=Pos(assignTLE(mark),totalPoints,interval);
             var tiempos = TimePoints(totalPoints, interval);
