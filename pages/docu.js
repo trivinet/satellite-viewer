@@ -1333,11 +1333,11 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
       
       <main className={assignTheme(dark,sidebarOpen)}>
         <h1 className={styles.title} style={{'fontSize':'66px'}}>
-        <a href="/docu" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
+        <Link href="/docu" ><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Documentación<a className={styles.imageGifTitle}>
             <img src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
-        </a></a>
+        </a></a></Link>
         </h1>
 
         <h2 onClick={() =>setContexto((p)=>!p)}><icon><FontAwesomeIcon icon={(contexto)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Contexto</icon></h2>
