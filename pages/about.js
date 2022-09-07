@@ -2,9 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Docu.module.css'
 import assignTLE from './assignTLE'
 import Sidebar from '../components/sidebar'
-import Layout from '../components/layout'
-import React, { useState, useEffect } from 'react';
-import buscaNombre from './assignTLE2'
+import React, { useState} from 'react';
 
 
 const tle = `ISS (ZARYA)
@@ -26,24 +24,32 @@ export default function about(){
   });
 const [basemap,setBasemap] = useState("dark-gray-vector");
 
-  function assignTheme(sidebarOpen){
+function assignTheme(dark){
+  {if(dark){
+    if(dark,sidebarOpen){
+    return (styles.mainDark)}
+    else {return (styles.mainDarkClose)}}
+    else{
       if(sidebarOpen){
-      return (styles.mainDark)}
-      else {return (styles.mainDarkClose)}}
+        return (styles.main)}
+        else {return (styles.mainClose)}
+    }
+}}
   
   return(
     <> 
+    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
   <div className={styles.container}>
      <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
-      <main className={assignTheme(sidebarOpen)}>
-      <h1 className={styles.title} style={{'font-size':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
+      
+      <main className={assignTheme(dark,sidebarOpen)}>
+      <h1 className={styles.title} style={{'fontSize':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}ABOUT <a className={styles.imageGifTitle}>
-            <img href = "/" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
+            <img href = "/about" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>  
         </h1> 
         
