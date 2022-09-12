@@ -113,8 +113,9 @@ setEnvironment({
 
 
   for (let i = 0; i < ID.length; i++) {
- 
+  console.log(ID[i])
   tle = assignTLE(ID[i]);
+  console.log(tle)
   if (tle!=''){
   posiciones = Pos(tle,0.5,0);
   if (posiciones!=''){
