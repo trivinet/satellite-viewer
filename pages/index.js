@@ -70,8 +70,8 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           <div className={styles.imageGif}>
             <img href = "/docu" src ={'https://s6.gifyu.com/images/gifDocu.gif'}/>
           </div>
-            <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
-            <p>Encuentra información en profundidad sobre TLEs, Mecánica Orbital y más.</p>
+            <h2 style={{'fontSize':'36px', 'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
+            <p style={{'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>Encuentra información en profundidad sobre TLEs, Mecánica Orbital y más.</p>
           </a>
 
           <a href="/map" className={styles.card}>
@@ -79,7 +79,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
             <img href = "/map" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
           </div>
             <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
-            <p>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
+            <p style={{'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
             <i> </i>
           </a>
 
