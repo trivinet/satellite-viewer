@@ -473,6 +473,7 @@ background-color: rgba(53, 60, 75 0.25);
   justify-content: center;
   flex-wrap: wrap;
   max-width: 900px;
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
 }
 
 .mainDark .grid .card {
