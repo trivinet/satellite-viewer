@@ -107,7 +107,18 @@
   /* background-image: url("../styles/waveMap.svg"); */
 }
 
-
+.main .grid {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+.mainDarkClose .grid {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+.mainDark .grid {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
+.mainClose .grid {
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+}
 
 .mainDarkClose .grid .card {
   margin: 1rem;
