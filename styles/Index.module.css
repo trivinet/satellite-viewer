@@ -12,7 +12,7 @@
   font-size: '25px';
  /*  transition-duration: 5s; */
  
- background-image: url("../styles/backgroundDark.svg");
+ background: url("../styles/backgroundDark.svg");
  background-size: cover;
  transition: ease-in 0.5s;
   
