@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/Index.module.css'
 import Sidebar from '../components/sidebar'
 import { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,7 +52,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
           Bienvenido a <a href="/" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Satellite Viewer <a className={styles.imageGifTitle}>
-            {/* <Image href = "/" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/> */}
+            <img href = "/" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>  
         </h1>
         {/* <h2 style={{position:'fixed', bottom:'5%',right:'5%', borderEndEndRadius:'43%', borderTopLeftRadius:'57%', borderEndStartRadius:'53%' , borderTopRightRadius:'73%', borderEndStartRadius:'35%', borderBottomLeftRadius:'60%', borderBottomRightRadius:'42%', borderBottomRightRadius:'48%', backgroundImage:'-webkit-linear-gradient(225deg, #9c27b0 20%, #aeaeae 100%)', padding:'1.5%'}}>Servidor <hserver className={styles.hserver}>{} ON</hserver></h2> */}
@@ -68,7 +68,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
         <div className={styles.grid}>
           <a href="/docu" className={styles.card}>
           <div className={styles.imageGif}>
-            {/* <Image href = "/docu" src ={'https://s6.gifyu.com/images/gifDocu.gif'}/> */}
+            <img href = "/docu" src ={'https://s6.gifyu.com/images/gifDocu.gif'}/>
           </div>
             <h2 style={{'fontSize':'36px', 'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>{/* <icon><FontAwesomeIcon icon={faBook} width={'100px'} cursor={'pointer'}/> */} Documentación{/* </icon> */} {/* &darr; */}</h2>
             <p style={{'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>Encuentra información en profundidad sobre TLEs, Mecánica Orbital y más.</p>
@@ -76,7 +76,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
 
           <a href="/map" className={styles.card}>
           <div className={styles.imageGif}>
-            {/* <Image href = "/map" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/> */}
+            <img href = "/map" src ={'https://s6.gifyu.com/images/gifMap2D.gif'}/>
           </div>
             <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faMap} width={'100px'} cursor={'pointer'}/> */} Mapa 2D{/* </icon> */} {/* &darr; */}</h2>
             <p style={{'fontFamily':['Alumni Sans Pinstripe', 'sans-serif']}}>Aprende sobre trazas, objetos orbitales y ubicaciones en un mapa 2D interactivo con todos los satélites disponibles en tiempo real.</p>
@@ -85,7 +85,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
 
           <a href="/map3D" className={styles.card}>
           <div className={styles.imageGif}>
-            {/* <Image href = "/map3D" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/> */}
+            <img href = "/map3D" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
           </div>
             <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faAtom} width={'100px'} cursor={'pointer'}/> */} Mapa 3D{/* </icon> */} {/* &darr; */}</h2>
             <p>
@@ -95,7 +95,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
 
           <a href="/satelites" className={styles.card}>
           <div className={styles.imageGif}>
-            {/* <Image href = "/satelites" src ={'https://media4.giphy.com/media/drPdD8XyDK3EfEj12G/giphy.gif?cid=790b76117d33aa9883ba5ecc6185e3438ba2509dd24de2cc&rid=giphy.gif&ct=g'}/> */}
+            <img href = "/satelites" src ={'https://media4.giphy.com/media/drPdD8XyDK3EfEj12G/giphy.gif?cid=790b76117d33aa9883ba5ecc6185e3438ba2509dd24de2cc&rid=giphy.gif&ct=g'}/>
           </div>
             <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} Satélites{/* </icon> */} {/* &darr; */}</h2>
             <p>Información miscelánea sobre satélites, tipos de traza, estadístico de países, etc. Se han cargado un total de {active.length} satélites</p>
