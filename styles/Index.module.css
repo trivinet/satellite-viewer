@@ -11,8 +11,8 @@
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
  /*  transition-duration: 5s; */
- 
- background: url("https://svgshare.com/i/nHN.svg");
+ overflow-y: hidden;
+ background: url("https://svgshare.com/i/nH3.svg");
  background-size: cover;
  transition: ease-in 0.5s;
   
@@ -30,9 +30,10 @@
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
  /*  transition-duration: 5s; */
- background-image: url("https://svgshare.com/i/nHC.svg");
+ background: url("https://svgshare.com/i/nHZ.svgs");
  background-size: cover;
  transition: ease-in 0.5s;
+ overflow-y: hidden;
 }
 
 /* .containerLight:hover{
@@ -426,7 +427,9 @@ background-color: rgba(53, 60, 75 0.25);
 .title {
   text-align: center;
 }
-
+.titleLight {
+  text-align: center;
+}
 
 
 .grid {
