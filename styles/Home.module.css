@@ -13,7 +13,7 @@
   font-size: '25px';
  /*  transition-duration: 5s; */
  
- background-image: url("../styles/waveMap2");
+ background-image: url("../styles/waveMap2.svg");
  background-position: fixed;
  transition: ease-in 0.5s;
   
@@ -31,7 +31,7 @@
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
  /*  transition-duration: 5s; */
- background-image: url("../styles/waveMap2Light");
+ background-image: url("../styles/waveMap2Light.svg");
  background-position: fixed;
  transition: ease-in 0.5s;
 }
