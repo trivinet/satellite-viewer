@@ -1324,7 +1324,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
-  <div className={styles.container}>
+  <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>Documentación</title>
         <link rel="icon" href="/favicon.ico" />
@@ -1332,7 +1332,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
 
       
       <main className={assignTheme(dark,sidebarOpen)}>
-        <h1 className={styles.title} style={{'fontSize':'66px'}}>
+        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'fontSize':'66px'}}>
         <Link href="/docu" ><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Documentación<a className={styles.imageGifTitle}>
@@ -1866,9 +1866,9 @@ href='../TFGprueba4.pdf'>(link)</Link> </p>
 
         </>}</>):('')}
         {espaciado}
-        <Link href="/about" style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
-            <h2 style={{'font-size':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
-          </Link>
+        <a href="/about" /* className={styles.card} */ style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
+            <h2 style={{'fontSize':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
+        </a>
       </main>
       </div>
       </>

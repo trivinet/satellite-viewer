@@ -100,7 +100,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
             <h2 style={{'fontSize':'36px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} Satélites{/* </icon> */} {/* &darr; */}</h2>
             <p>Información miscelánea sobre satélites, tipos de traza, estadístico de países, etc. Se han cargado un total de {active.length} satélites</p>
           </a>
-          <a href="/about" className={styles.card} style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
+          <a href="/about" /* className={styles.card} */ style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
             <h2 style={{'fontSize':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
           </a>
 

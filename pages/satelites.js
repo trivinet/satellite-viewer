@@ -2017,7 +2017,7 @@ const [activeIndex, setActiveIndex] = useState(0);
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
-  <div className={styles.container}>
+  <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>Satélites</title>
         <link rel="icon" href="/favicon.ico" />
@@ -2025,10 +2025,8 @@ const [activeIndex, setActiveIndex] = useState(0);
 
       
       <main className={assignTheme(dark,sidebarOpen)}>
-        <h1 className={styles.title} style={{'font-size':'66px'}}>
-          <a href="/docu" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
-            <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
-        </a> */}Satélites<a className={styles.imageGifTitle}>
+        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'font-size':'66px'}}>
+          <a href="/docu" className={styles.logo}>Satélites<a className={styles.imageGifTitle}>
             <img href = "/docu" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>
         </h1>
