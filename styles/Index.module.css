@@ -17,9 +17,9 @@
  transition: ease-in 0.5s;
   
 }
-.containerDark:hover{
+/* .containerDark:hover{
   background-image: url("../styles/waveMap3.svg");
-}
+} */
 
 .containerLight {
   padding: 0;
@@ -35,9 +35,9 @@
  transition: ease-in 0.5s;
 }
 
-.containerLight:hover{
+/* .containerLight:hover{
   background-image: url("../styles/waveMap3Light.svg");
-}
+} */
  
 
 .main {
