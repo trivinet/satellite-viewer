@@ -42,7 +42,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
     
       <Head>
         <title>Satellite Viewer</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" type="image/svg+xml"/>
       </Head>
       
       
