@@ -5,16 +5,16 @@ import Sidebar from '../components/sidebar'
 import Layout from '../components/layout'
 import { getLatLngObj } from "tle.js";
 import InfoBoxPrint from '../components/infoBoxPrint'
-import { useState,useCallback } from 'react'
+import { useState,useCallback, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAnglesUp,faAnglesDown } from '@fortawesome/free-solid-svg-icons'
 import active from '../components/active.json'
 import { Scrollbars } from 'react-custom-scrollbars';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts';
-import { PieChart, Pie, Sector } from "recharts";
-import MUIDataTable from "mui-datatables";
-import active2 from '../components/active2.json';
-
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, Cell } from 'recharts'
+import { PieChart, Pie, Sector } from "recharts"
+import MUIDataTable from "mui-datatables"
+import active2 from '../components/active2.json'
+import { darkGlobal } from '../pages/_app'
 
 
 const columns = [
@@ -1733,31 +1733,25 @@ const dataPaises=[{ name: "EEUU", value: 3415, description: '' },
 
 
 export default function Satelites(){
-  const [dark,setDark] = useState(true);
+  const [dark,setDark] = useState(darkGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
-  const [environment,setEnvironment] = useState({
-    lighting: {
-      // enable shadows for all the objects in a scene
-      directShadowsEnabled: false,
-      // set the date and a time of the day for the current camera location
-      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-    }  
-  });
-const [basemap,setBasemap] = useState("dark-gray-vector");
-const [historico,setHistorico] = useState (false);
-const [usos,setUsos] = useState (false);
-const [orbits,setOrbits] = useState (false);
-const [paises,setPaises] = useState (false);
-const [families,setFamilies] = useState (false);
-const [buscador,setBuscador] = useState (false);
+  const [historico,setHistorico] = useState (false);
+  const [usos,setUsos] = useState (false);
+  const [orbits,setOrbits] = useState (false);
+  const [paises,setPaises] = useState (false);
+  const [families,setFamilies] = useState (false);
+  const [buscador,setBuscador] = useState (false);
 
-const options = {
-  filterType: 'checkbox',
-  
-};
+  useEffect(() => {
+    darkGlobal = dark;}, [dark]);
+
+  const options = {
+    filterType: 'checkbox',
+    
+  };
 
 
-const renderActiveShape = (props) => {
+  const renderActiveShape = (props) => {
   const RADIAN = Math.PI / 180;
   const {
           cx, cy, midAngle, innerRadius, outerRadius, startAngle, endAngle,
@@ -2016,7 +2010,7 @@ const [activeIndex, setActiveIndex] = useState(0);
   return(
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
   <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>Satélites</title>
@@ -2203,7 +2197,7 @@ const [activeIndex, setActiveIndex] = useState(0);
               {buscador?(<>{<>
               <div style={{maxWidth: '1200px'}}>
                 <MUIDataTable
-                  title={"Employee List"}
+                  title={"Lista de Satélites"}
                   data={data}
                   columns={columns}
                   options={options}

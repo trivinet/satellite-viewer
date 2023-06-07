@@ -1,27 +1,21 @@
 import Head from 'next/head'
 import styles from '../styles/Index.module.css'
 import Sidebar from '../components/sidebar'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBook,faBookOpen,faMap,faSatellite,faAtom } from '@fortawesome/free-solid-svg-icons'
 import active from '../components/active.json'
-import { Scrollbars } from 'react-custom-scrollbars';
+import { Scrollbars } from 'react-custom-scrollbars'
+import {darkGlobal} from '../pages/_app'
 
 
 
 export default function Home() {
 
-  const [dark,setDark] = useState(true);
+  const [dark,setDark] = useState(darkGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
-  const [environment,setEnvironment] = useState({
-    lighting: {
-      // enable shadows for all the objects in a scene
-      directShadowsEnabled: false,
-      // set the date and a time of the day for the current camera location
-      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-    }  
-  });
-const [basemap,setBasemap] = useState("dark-gray-vector");
+  
+  /* const [basemap,setBasemap] = useState(dark ? "dark-gray-vector" : 'satellite'); */
 
   function assignTheme(dark,sidebarOpen){
     {if(dark){
@@ -35,9 +29,13 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
       }
   }}
 
+  useEffect(() => {
+    darkGlobal = dark;}, [dark]);
+
+
   return (
     <>
-    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
+    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} /* setBasemap={setBasemap} setEnvironment={setEnvironment} *//>
     <div className={(dark)?(styles.containerDark):(styles.containerLight)}>
     
       <Head>
@@ -101,7 +99,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
             <p>Información miscelánea sobre satélites, tipos de traza, estadístico de países, etc. Se han cargado un total de {active.length} satélites</p>
           </a>
           <a href="/about" /* className={styles.card} */ style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
-            <h2 style={{'fontSize':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
+            <h4 style={{'fontSize':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h4>
           </a>
 
           {/* style={{position:'fixed', bottom:'5%',right:'15%', borderEndEndRadius:'43%', borderTopLeftRadius:'57%', borderEndStartRadius:'53%' , borderTopRightRadius:'73%', borderEndStartRadius:'35%', borderBottomLeftRadius:'60%', borderBottomRightRadius:'42%', borderBottomRightRadius:'48%', backgroundImage:'-webkit-linear-gradient(225deg, #9c27b0 20%, #aeaeae 100%)', padding:'1.5%'}} */} 

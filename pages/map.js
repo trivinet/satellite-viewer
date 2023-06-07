@@ -10,7 +10,7 @@ import assignTLE from '../components/assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
 import { getSatelliteInfo,getLatLngObj } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-
+import {darkGlobal} from '../pages/_app'
   
 const totalpoints = 200;
 const intervalo = 50000;
@@ -22,7 +22,7 @@ const defaultCenter = [38,-5];
 export default function SimpleMap(){
 
     const [ID,setID] = useState('');
-    const [dark,setDark] = useState(true);
+    const [dark,setDark] = useState(darkGlobal);
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [interval,setInterval] = useState(intervalo);
     const [totalPoints,setTotalPoints] = useState(totalpoints);
@@ -33,15 +33,26 @@ export default function SimpleMap(){
     const [viewTrace, setViewTrace] = useState(true);
     const [tleInfoShow,setTleInfoShow] = useState(false);
     const [IDfam,setIDfam] = useState('');
-    const [environment,setEnvironment] = useState({
+    /* const [environment,setEnvironment] = useState(dark ? {
         lighting: {
           // enable shadows for all the objects in a scene
           directShadowsEnabled: false,
           // set the date and a time of the day for the current camera location
           //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
         }  
-      });
-  const [basemap,setBasemap] = useState("dark-gray-vector");
+      } : {
+        background: {
+          type: "color",
+          color: [255, 252, 244, 1]
+        },
+        lighting: {
+          // enable shadows for all the objects in a scene
+          directShadowsEnabled: false,
+          // set the date and a time of the day for the current camera location
+          //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+        }  
+      }); */
+  /* const [basemap,setBasemap] = useState("dark-gray-vector"); */
 
     /* function styleMap(sidebarOpen) {
         if (sidebarOpen){
@@ -197,12 +208,17 @@ export default function SimpleMap(){
     />)
   }
 }}
+
+    useEffect(() => {
+        darkGlobal = dark;
+    }, [dark]);
+
   //config mapa
   const handleApiLoaded = (map, maps) => {};
     return (
       // Important! Always set the container height explicitly
      <> 
-      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
+      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen} /* setBasemap={setBasemap} setEnvironment={setEnvironment} *//>
       <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
       {tleInfoCont}
     <div style={{height: '100vh',width: '100%',paddingRight:'0px'}}>

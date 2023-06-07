@@ -3,7 +3,7 @@ import styles from '../styles/Docu.module.css'
 import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
 import React from 'react';
-
+import { darkGlobal } from '../pages/_app'
 
 const tle = `ISS (ZARYA)
 1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
@@ -12,21 +12,15 @@ const tle = `ISS (ZARYA)
 
 
 export default function About(){
-  const [dark,setDark] = React.useState(true);
+  const [dark,setDark] = React.useState(darkGlobal);
   const [sidebarOpen,setSidebarOpen] = React.useState(false);
-  const [environment,setEnvironment] = React.useState({
-    lighting: {
-      // enable shadows for all the objects in a scene
-      directShadowsEnabled: false,
-      // set the date and a time of the day for the current camera location
-      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-    }  
-  });
-const [basemap,setBasemap] = React.useState("dark-gray-vector");
+
+  React.useEffect(() => {
+    darkGlobal = dark;}, [dark]);
 
 function assignTheme(dark){
   {if(dark){
-    if(dark,sidebarOpen){
+    if(sidebarOpen){
     return (styles.mainDark)}
     else {return (styles.mainDarkClose)}}
     else{
@@ -38,15 +32,15 @@ function assignTheme(dark){
   
   return(
     <> 
-    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
-  <div className={styles.container}>
+    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
       <main className={assignTheme(dark,sidebarOpen)}>
-      <h1 className={styles.title} style={{'fontSize':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
+      <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'fontSize':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}ABOUT <a className={styles.imageGifTitle}>
             <img href = "/about" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
@@ -54,7 +48,7 @@ function assignTheme(dark){
         </h1> 
         
         <p>Esta página ha sido producto de un Trabajo de Fin de Grado para la <a href={'https://www.upc.edu/es'} style={{textDecoration:'underline'}} target='_blank' rel="noreferrer">Universidad Politécnica de Cataluña</a>, en la <a style={{textDecoration:'underline'}} href={'https://eetac.upc.edu/es'} target='_blank' rel="noreferrer">Escuela de Ingeniería Técnica y Aeroespacial de Castelldefels</a> (EETAC), titulación en Grado de Sistemas Aeroespaciales</p>
-        <h2 href={'https://twitter.com/sats_viewer'} target='_blank' rel="noreferrer">Podrás encontrar más infomarción sobre la página en Twitter</h2>
+        <h2 href={'https://twitter.com/sats_viewer'} target='_blank' rel="noreferrer" /* style= { dark ?{'background':'grey'} : {'background' : 'orange'}} */>Podrás encontrar más infomarción sobre la página en Twitter</h2>
         <p></p>
         <p></p>
         <p></p>

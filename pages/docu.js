@@ -11,6 +11,7 @@ import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAngle
 import ReactTooltip from 'react-tooltip';
 import YouTube from 'react-youtube';
 import Link from 'next/link'
+import {darkGlobal} from '../pages/_app'
 
 const texto = ` 
 Resumen
@@ -1257,7 +1258,7 @@ const tle = `0 STARLINK-2360
 
 
 export default function Docu(){
-  const [dark,setDark] = useState(true);
+  const [dark,setDark] = useState(darkGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
 
   const [contexto, setContexto] = React.useState(false);
@@ -1269,16 +1270,8 @@ export default function Docu(){
   const [satelites, setSatelites] = React.useState(false);
   const [enlaces, setEnlaces] = React.useState(false);
   const [tutorial, setTutorial] = React.useState(false);
-  const [environment,setEnvironment] = useState({
-    lighting: {
-      // enable shadows for all the objects in a scene
-      directShadowsEnabled: false,
-      // set the date and a time of the day for the current camera location
-      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-    }  
-  });
-const [basemap,setBasemap] = useState("dark-gray-vector");
-
+  useEffect(() => {
+    darkGlobal = dark;}, [dark]);
   function assignTheme(dark){
     {if(dark){
       if(sidebarOpen){
@@ -1323,7 +1316,7 @@ const [basemap,setBasemap] = useState("dark-gray-vector");
   return(
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
   <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>Documentación</title>

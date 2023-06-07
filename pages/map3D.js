@@ -9,7 +9,7 @@ import styles from '../styles/Home.module.css';
 import TimePoints from '../components/getTimes';
 import { getMeanMotion } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-
+import {darkGlobal} from '../pages/_app'
 
 const IDdefault=25544;
 const totalpoints = 100;
@@ -29,14 +29,50 @@ export default function PointMap() {
   const [totalPoints,setTotalPoints] = useState(totalpoints);
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [selectedFam, setSelectedFam] = useState(false);
-  const [dark, setDark] = useState(true);
+  const [dark, setDark] = useState(darkGlobal);
   const [center,setCenter] = useState(defaultCenter);
   const [mark,setMark] = useState('');
   const [viewMode,setViewMode] = useState('ECI');
   const [viewTrace, setViewTrace] = useState(true);
   const [tleInfoShow,setTleInfoShow] = useState(true);
   const [IDfam,setIDfam] = useState('');
-  const [environment,setEnvironment] = useState({
+  var environment = [];
+  var basemap = [];
+
+  dark ?  environment = {
+    lighting: {
+      // enable shadows for all the objects in a scene
+      directShadowsEnabled: false,
+      // set the date and a time of the day for the current camera location
+      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+    }  
+  } : environment = {
+    background: {
+      type: "color",
+      color: [255, 252, 244, 1]
+    },
+    lighting: {
+      // enable shadows for all the objects in a scene
+      directShadowsEnabled: false,
+      // set the date and a time of the day for the current camera location
+      //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+    }  
+  }
+  dark ? basemap = "dark-gray-vector" : 'satellite';
+
+
+  /* const [environment,setEnvironment] = useState(dark ? {
+        lighting: {
+          // enable shadows for all the objects in a scene
+          directShadowsEnabled: false,
+          // set the date and a time of the day for the current camera location
+          //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
+        }  
+      } : {
+        background: {
+          type: "color",
+          color: [255, 252, 244, 1]
+        },
         lighting: {
           // enable shadows for all the objects in a scene
           directShadowsEnabled: false,
@@ -44,7 +80,7 @@ export default function PointMap() {
           //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
         }  
       });
-  const [basemap,setBasemap] = useState("dark-gray-vector");
+      const [basemap,setBasemap] = useState(dark ? "dark-gray-vector" : 'satellite'); */
 
   var tleInfoCont=[];
 
@@ -69,6 +105,9 @@ setEnvironment({
     //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
   }  
 })} */
+
+  
+
 
   if(tleInfoShow){
     if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
@@ -671,7 +710,9 @@ setEnvironment({
     }
   }, [environment]);
   
-
+  useEffect(() => {
+    darkGlobal = dark;
+  }, [dark]);
 
   /* useEffect(() => {
     if (!view) {
@@ -692,7 +733,7 @@ setEnvironment({
 
   return( <>
   <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} setBasemap={setBasemap} setEnvironment={setEnvironment}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} /* setBasemap={setBasemap} setEnvironment={setEnvironment} *//>
   {tleInfoCont}
   <div style={styleMap()} ref={ref}></div>
   </>

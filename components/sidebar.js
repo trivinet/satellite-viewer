@@ -2,23 +2,19 @@ import Link from 'next/link';
 import styles from './sidebar.module.css';
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAtom,faSatellite } from '@fortawesome/free-solid-svg-icons';
-import ReactTooltip from 'react-tooltip';
+import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAtom,faSatellite } from '@fortawesome/free-solid-svg-icons'
+import ReactTooltip from 'react-tooltip'
+import {darkGlobal} from '../pages/_app'
 
-  var darkSidebarDefault = true;
-export default function Sidebar({setDark,setSidebarOpen,setBasemap,setEnvironment}) {
 
-    const [darkSidebar, setDarkSidebar] = React.useState(darkSidebarDefault);
+export default function Sidebar({setDark,setSidebarOpen}) {
+
+    const [darkSidebar, setDarkSidebar] = React.useState(darkGlobal);
     const [sidebarOpenProp, setSidebarOpenProp] = React.useState(false);
-    /* const [basemapProp,setBasemapProp] = React.useState("dark-gray-vector");
-    const [environmentProp,setEnvironmentProp] = React.useState({
-      lighting: {
-        // enable shadows for all the objects in a scene
-        directShadowsEnabled: false,
-        // set the date and a time of the day for the current camera location
-        //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-      }  
-    }); */
+
+    useEffect(() => {
+      darkGlobal = darkSidebar;
+  }, [darkSidebar]);
 
       return (  
         <>  
@@ -44,7 +40,7 @@ export default function Sidebar({setDark,setSidebarOpen,setBasemap,setEnvironmen
           <Link href="/docu">
               <a>Documentación</a>
           </Link>
-      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p) ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
+      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p) /* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
 setEnvironment({
   lighting: {
     // enable shadows for all the objects in a scene
@@ -64,7 +60,7 @@ setEnvironment({
     // set the date and a time of the day for the current camera location
     //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
   }  
-}))) }}>Theme</button>
+}))) */ }}>Theme</button>
       </>):(<>
           <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>ABRIR</ReactTooltip>
           {/* <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={faSearch} width={'20px'} height={'20px'} cursor={'pointer'}></FontAwesomeIcon></icon> */}
@@ -83,7 +79,7 @@ setEnvironment({
           <Link href="/docu">
           <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Docu</ReactTooltip></icon>
           </Link>
-      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p),(!darkSidebar)?(setBasemap('dark-gray-vector'),
+      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)/* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
 setEnvironment({
   lighting: {
     // enable shadows for all the objects in a scene
@@ -103,7 +99,7 @@ setEnvironment({
     // set the date and a time of the day for the current camera location
     //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
   }  
-}))) }}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
+})))  */}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
       
       </>)}
       
