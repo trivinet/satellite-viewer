@@ -33,6 +33,11 @@ export default function SimpleMap(){
     const [viewTrace, setViewTrace] = useState(true);
     const [tleInfoShow,setTleInfoShow] = useState(false);
     const [IDfam,setIDfam] = useState('');
+
+    useEffect(() => {
+        darkGlobal = dark;
+    }, [dark]);
+
     /* const [environment,setEnvironment] = useState(dark ? {
         lighting: {
           // enable shadows for all the objects in a scene
@@ -75,8 +80,8 @@ export default function SimpleMap(){
     var tleInfoCont=[];
 
   if(tleInfoShow){
-    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
-    tleInfoCont=(<TLEinfo ID={ID} ></TLEinfo>);
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark}></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} dark={dark}></TLEinfo>);
     }
   }else{tleInfoCont=[]}
 
@@ -209,9 +214,7 @@ export default function SimpleMap(){
   }
 }}
 
-    useEffect(() => {
-        darkGlobal = dark;
-    }, [dark]);
+    
 
   //config mapa
   const handleApiLoaded = (map, maps) => {};

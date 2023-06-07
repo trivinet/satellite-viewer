@@ -6,17 +6,17 @@ import assignTLE from './assignTLE';
 /* const tleDefault = assignTLE(25544);  */
 
 
-export default function TLEinfo(ID) {
+export default function TLEinfo({ID,dark}) {
 
   /* console.log(ID.ID); */
-  const tle = assignTLE(ID.ID);
+  const tle = assignTLE(ID);
   /* console.log(tle); */
 
   return (
     
     <>
      
-    <nav className={styles.navDark}>
+    <nav className={dark?styles.navDark:styles.nav}>
           
     <h2 className={styles.hTLE} style={{width:'500px'}}><p><a className={styles.nameTLE} data-tip data-for={'name'}>{tle.split('\n')[0]}</a></p>
 <p><a className={styles.numberLineTLE} data-tip data-for={'numberLine'}>{tle.split('\n')[1].substring(0,1)} </a>
