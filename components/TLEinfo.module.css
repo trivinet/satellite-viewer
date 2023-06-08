@@ -1,9 +1,9 @@
 .navDark{
-  height: 17%;
+  height: 130px;
   color: #eaeaea;
   position: fixed;
   bottom:0;
-  left:500px;
+  left:15%;
   z-index: 5;
   display: flex;
   flex-direction: row;
@@ -112,11 +112,11 @@
 
 
 .nav{
-  height: 17%;
+  height: 130px;
   color: rgba(20,20,20,1);
   position: fixed;
   bottom:0;
-  left:500px;
+  left:15%;
   z-index: 5;
   display: flex;
   flex-direction: row;
