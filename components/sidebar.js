@@ -79,7 +79,7 @@ setEnvironment({
           <Link href="/docu">
           <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Docu</ReactTooltip></icon>
           </Link>
-      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)/* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
+      <button onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><icon /* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
 setEnvironment({
   lighting: {
     // enable shadows for all the objects in a scene
@@ -99,7 +99,7 @@ setEnvironment({
     // set the date and a time of the day for the current camera location
     //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
   }  
-})))  */}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
+})))  */><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
       
       </>)}
       

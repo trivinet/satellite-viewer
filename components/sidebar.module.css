@@ -53,6 +53,7 @@
 
 .navDark > a:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 .navDark > icon {
@@ -148,6 +149,7 @@
 
 .navDark > button:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 .navDark::-webkit-scrollbar {
@@ -232,6 +234,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navDarkClose > a:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 .navDarkClose > icon {
@@ -264,6 +267,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navDarkClose > icon:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 
@@ -311,6 +315,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navDarkClose > button:hover {
   background-color: black;
+  cursor: pointer;
 }
 
 
@@ -405,6 +410,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .nav > a:hover {
   background-color: #aeaeae;
+  cursor: pointer;
 }
 .nav > button {
   margin: 8px 0;
@@ -439,6 +445,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .nav > button:hover {
   background-color: #aeaeae;
+  cursor: pointer;
 }
 
 .nav > i {
@@ -494,6 +501,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .nav > icon:hover {
   background-color: #aeaeae;
+  cursor: pointer;
 }
 
 .navClose {
@@ -559,6 +567,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navClose > a:hover {
   background-color: #aeaeae;
+  cursor: pointer;
 }
 .navClose > button {
   margin: 8px 0;
@@ -593,6 +602,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navClose > button:hover {
   background-color: #aeaeae;
+  cursor: pointer;
 }
 
 .navClose > i {
@@ -648,5 +658,5 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 .navClose > icon:hover {
   background-color: #aeaeae;
-  
+  cursor: pointer;
 }
