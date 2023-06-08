@@ -1,5 +1,5 @@
 .navDark {
-  height: 60%;
+  height: 390px;
   color: #eaeaea;
   position: fixed;
   top:20%;
@@ -172,7 +172,7 @@
 
 
 .navDarkClose {
-  height: 60%;
+  height: 390px;
   color: #eaeaea;
   position: fixed;
   top:20%;
@@ -348,7 +348,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 
 
 .nav {
-  height: 60%;
+  height: 390px;
   color: black;
   position: fixed;
   display: flex;
@@ -505,7 +505,7 @@ radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
 }
 
 .navClose {
-  height: 60%;
+  height: 390px;
   color: black;
   position: fixed;
   display: flex;
