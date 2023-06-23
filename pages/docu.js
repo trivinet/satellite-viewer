@@ -11,7 +11,7 @@ import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAngle
 import ReactTooltip from 'react-tooltip';
 import YouTube from 'react-youtube';
 import Link from 'next/link'
-import {darkGlobal} from '../pages/_app'
+import {darkGlobal, lngGlobal} from '../pages/_app'
 
 const texto = ` 
 Resumen
@@ -1259,6 +1259,7 @@ const tle = `0 STARLINK-2360
 
 export default function Docu(){
   const [dark,setDark] = useState(darkGlobal);
+  const [lng,setLng] = useState(lngGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
 
   const [contexto, setContexto] = React.useState(false);
@@ -1270,8 +1271,12 @@ export default function Docu(){
   const [satelites, setSatelites] = React.useState(false);
   const [enlaces, setEnlaces] = React.useState(false);
   const [tutorial, setTutorial] = React.useState(false);
+  
   useEffect(() => {
     darkGlobal = dark;}, [dark]);
+  useEffect(() => {
+    lngGlobal = lng;}, [lng]);
+
   function assignTheme(dark){
     {if(dark){
       if(sidebarOpen){
@@ -1315,8 +1320,7 @@ export default function Docu(){
 
   return(
     <> 
-  {/* <div style={{ height: '100vh' , width: '100%'}}> */}
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} lng={lng}/>
   <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>Documentación</title>

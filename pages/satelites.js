@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/satelites3.module.css'
 import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
+import Language from '../components/language'
 import Layout from '../components/layout'
 import { getLatLngObj } from "tle.js";
 import InfoBoxPrint from '../components/infoBoxPrint'
@@ -14,7 +15,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { PieChart, Pie, Sector } from "recharts"
 import MUIDataTable from "mui-datatables"
 import active2 from '../components/active2.json'
-import { darkGlobal } from '../pages/_app'
+import { darkGlobal, lngGlobal } from '../pages/_app'
 
 
 const columns = [
@@ -1734,6 +1735,7 @@ const dataPaises=[{ name: "EEUU", value: 3415, description: '' },
 
 export default function Satelites(){
   const [dark,setDark] = useState(darkGlobal);
+  const [lng,setLng] = useState(lngGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [historico,setHistorico] = useState (false);
   const [usos,setUsos] = useState (false);
@@ -1744,6 +1746,9 @@ export default function Satelites(){
 
   useEffect(() => {
     darkGlobal = dark;}, [dark]);
+  
+  useEffect(() => {
+    lngGlobal = lng;}, [lng]);
 
   const options = {
     filterType: 'checkbox',
@@ -2011,21 +2016,22 @@ const [activeIndex, setActiveIndex] = useState(0);
     <> 
   {/* <div style={{ height: '100vh' , width: '100%'}}> */}
   <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <Language setLng={setLng}></Language>
   <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
-        <title>Satélites</title>
+        <title>Satellites</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       
       <main className={assignTheme(dark,sidebarOpen)}>
         <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'font-size':'66px'}}>
-          <a href="/docu" className={styles.logo}>Satélites<a className={styles.imageGifTitle}>
+          <a href="/docu" className={styles.logo}>{(lng=='ESP')?("Satélites"):("Satellites")}<a className={styles.imageGifTitle}>
             <img href = "/docu" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>
         </h1>
 
-        <h2 onClick={() =>setHistorico((p)=>!p)}><icon><FontAwesomeIcon icon={(historico)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Histórico</icon></h2>
+        <h2 onClick={() =>setHistorico((p)=>!p)}><icon><FontAwesomeIcon icon={(historico)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Histórico"):(" Historic")}</icon></h2>
               {historico?(<>{<>
 
                 <LineChart
@@ -2061,7 +2067,7 @@ const [activeIndex, setActiveIndex] = useState(0);
 
           </>}</>):('')}
 
-        <h2><icon onClick={() =>setUsos((p)=>!p)}><FontAwesomeIcon icon={(usos)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Usos</icon></h2>
+        <h2><icon onClick={() =>setUsos((p)=>!p)}><FontAwesomeIcon icon={(usos)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Funcionalidad"):(" Functionality")}</icon></h2>
               {usos?(<>{<>
             
                 <PieChart width={1100} height={500} margin={0}>
@@ -2103,7 +2109,7 @@ const [activeIndex, setActiveIndex] = useState(0);
           </>}</>):('')}
 
 
-        <h2><icon onClick={() =>setOrbits((p)=>!p)}><FontAwesomeIcon icon={(orbits)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Tipos de órbita</icon></h2>
+        <h2><icon onClick={() =>setOrbits((p)=>!p)}><FontAwesomeIcon icon={(orbits)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Tipos de órbita"):(" Types of orbit")}</icon></h2>
               {orbits?(<>{<>
                 <div>
 
@@ -2155,7 +2161,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         
         </>}</>):('')}
 
-        <h2><icon onClick={() =>setFamilies((p)=>!p)}><FontAwesomeIcon icon={(families)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Familias más importantes</icon></h2>
+        <h2><icon onClick={() =>setFamilies((p)=>!p)}><FontAwesomeIcon icon={(families)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Familias más importantes"):(" Most important families")}</icon></h2>
               {families?(<>{<>
 
                 <PieChart width={1100} height={500} margin={0}>
@@ -2181,7 +2187,7 @@ const [activeIndex, setActiveIndex] = useState(0);
 
         </>}</>):('')}
 
-        <h2><icon onClick={() =>setPaises((p)=>!p)}><FontAwesomeIcon icon={(paises)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Distribución por países</icon></h2>
+        <h2><icon onClick={() =>setPaises((p)=>!p)}><FontAwesomeIcon icon={(paises)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Distribución por países"):(" Satellites per country")}</icon></h2>
               {paises?(<>{<>
                 <BarChart width={1100} height={400} data={dataPaises}>
         <Bar dataKey="value" fill="#FA9968" />
@@ -2193,7 +2199,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         
         </>}</>):('')}
 
-        <h2><icon onClick={() =>setBuscador((p)=>!p)}><FontAwesomeIcon icon={(buscador)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/> Buscador</icon></h2>
+        <h2><icon onClick={() =>setBuscador((p)=>!p)}><FontAwesomeIcon icon={(buscador)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Base de datos"):(" Database")}</icon></h2>
               {buscador?(<>{<>
               <div style={{maxWidth: '1200px'}}>
                 <MUIDataTable
@@ -2207,7 +2213,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         
         
         <a href="/about" style={{position:'fixed',bottom:'5%',right:'5%',width:'4.2%',height:'6%',padding:'0.8%',margin:'0px'}}>
-            <h2 style={{'font-size':'20px'}}>{/* <icon><FontAwesomeIcon icon={faSatellite} width={'100px'} cursor={'pointer'}/> */} About{/* </icon> */} {/* &darr; */}</h2>
+            <h2 style={{'font-size':'20px'}}>{(lng=='ESP')?("Acerca de"):("About")}</h2>
           </a>
       </main>
       </div>

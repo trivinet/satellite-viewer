@@ -9,7 +9,8 @@ import styles from '../styles/Home.module.css';
 import TimePoints from '../components/getTimes';
 import { getMeanMotion } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-import {darkGlobal} from '../pages/_app'
+import {darkGlobal, lngGlobal} from '../pages/_app'
+import Language from '../components/language';
 
 const IDdefault=25544;
 const totalpoints = 100;
@@ -30,6 +31,7 @@ export default function PointMap() {
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [selectedFam, setSelectedFam] = useState(false);
   const [dark, setDark] = useState(darkGlobal);
+  const [lng, setLng] = useState(lngGlobal);
   const [center,setCenter] = useState(defaultCenter);
   const [mark,setMark] = useState('');
   const [viewMode,setViewMode] = useState('ECI');
@@ -110,8 +112,8 @@ setEnvironment({
 
 
   if(tleInfoShow){
-    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} ></TLEinfo>);}else{
-    tleInfoCont=(<TLEinfo ID={ID} ></TLEinfo>);
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark} lng={lng}></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} dark={dark} lng={lng}></TLEinfo>);
     }
   }else{tleInfoCont=[]}
 
@@ -714,6 +716,9 @@ setEnvironment({
     darkGlobal = dark;
   }, [dark]);
 
+  useEffect(() => {
+    lngGlobal = lng;
+  }, [lng]);
   /* useEffect(() => {
     if (!view) {
       // view hasn't been created yet
@@ -732,8 +737,11 @@ setEnvironment({
 
 
   return( <>
-  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} /* setBasemap={setBasemap} setEnvironment={setEnvironment} *//>
+  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
+  setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} 
+  setIDfam={setIDfam} lng={lng}/>
+  <Language setLng={setLng}></Language>
+  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}  lng={lng}/>
   {tleInfoCont}
   <div style={styleMap()} ref={ref}></div>
   </>

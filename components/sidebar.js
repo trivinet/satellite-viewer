@@ -7,7 +7,7 @@ import ReactTooltip from 'react-tooltip'
 import {darkGlobal} from '../pages/_app'
 
 
-export default function Sidebar({setDark,setSidebarOpen}) {
+export default function Sidebar({setDark,setSidebarOpen, lng}) {
 
     const [darkSidebar, setDarkSidebar] = React.useState(darkGlobal);
     const [sidebarOpenProp, setSidebarOpenProp] = React.useState(false);
@@ -20,86 +20,54 @@ export default function Sidebar({setDark,setSidebarOpen}) {
         <>  
     <nav className={darkSidebar?(sidebarOpenProp?(styles.navDark):(styles.navDarkClose)):(sidebarOpenProp?(styles.nav):(styles.navClose))}>
     
-    {sidebarOpenProp?(<>{/* <input placeholder="Search..." /> */}
+    {sidebarOpenProp?(<>
 
-          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip place={'top'} id={"markerTooltipMenu"} html={true}>CERRAR</ReactTooltip>
+          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip place={'top'} id={"markerTooltipMenu"} html={true}>{(lng=='ESP')?('CERRAR'):('CLOSE')}</ReactTooltip>
 
           <Link href="/"> 
-            <a>MENÚ</a>
-            
+            <a>{(lng=='ESP')?('MENÚ'):('MENU')}</a>
           </Link>
+
           <Link href="/map">
-              <a>Map 2D</a>
+              <a>{(lng=='ESP')?('Mapa 2D'):('2D Map')}</a>
           </Link>
+          
           <Link href="/map3D">
-              <a>Map 3D</a>
+              <a>{(lng=='ESP')?('Mapa 3D'):('3D Map')}</a>
           </Link>
+
           <Link href="/satelites">
-              <a>Satélites</a>
+              <a>{(lng=='ESP')?('Satélites'):('Satellites')}</a>
           </Link>
+
           <Link href="/docu">
-              <a>Documentación</a>
+              <a>{(lng=='ESP')?('Documentación'):('Documentation')}</a>
           </Link>
-      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p) /* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
-setEnvironment({
-  lighting: {
-    // enable shadows for all the objects in a scene
-    directShadowsEnabled: false,
-    // set the date and a time of the day for the current camera location
-    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-  }  
-})):((setBasemap('satellite'),
-setEnvironment({
-  background: {
-    type: "color",
-    color: [255, 252, 244, 1]
-  },
-  lighting: {
-    // enable shadows for all the objects in a scene
-    directShadowsEnabled: false,
-    // set the date and a time of the day for the current camera location
-    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-  }  
-}))) */ }}>Theme</button>
+      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}>{(lng=='ESP')?('Tema'):('Theme')}</button>
       </>):(<>
-          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>ABRIR</ReactTooltip>
-          {/* <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={faSearch} width={'20px'} height={'20px'} cursor={'pointer'}></FontAwesomeIcon></icon> */}
+          <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>{(lng=='ESP')?('ABRIR'):('OPEN')}</ReactTooltip>
+          
           <Link href="/">
-          <icon id={'house'}><FontAwesomeIcon icon={faHouse} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipHome"} ></FontAwesomeIcon> <ReactTooltip id={"markerTooltipHome"} html={true}>MENÚ</ReactTooltip></icon>
+          <icon id={'house'} ><FontAwesomeIcon icon={faHouse} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipHome"}></FontAwesomeIcon> <ReactTooltip id={"markerTooltipHome"} html={true}>{(lng=='ESP')?('MENÚ'):('MENU')}</ReactTooltip></icon>
           </Link>
+
           <Link href="/map">
-          <icon><FontAwesomeIcon icon={faMap} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap"} html={true}>Map 2D</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faMap} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap"} html={true}>{(lng=='ESP')?('Mapa 2D'):('2D Map')}</ReactTooltip></icon>
           </Link>
+
           <Link href="/map3D">
-          <icon><FontAwesomeIcon icon={faAtom} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap3"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap3"} html={true}>Map 3D</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faAtom} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipMap3"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipMap3"} html={true}>{(lng=='ESP')?('Mapa 3D'):('3D Map')}</ReactTooltip></icon>
           </Link>
+
           <Link href="/satelites">
-          <icon><FontAwesomeIcon icon={faSatellite} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipSats"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipSats"} html={true}>Sats</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faSatellite} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipSats"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipSats"} html={true}>{(lng=='ESP')?('Satélites'):('Satellites')}</ReactTooltip></icon>
           </Link>
+
           <Link href="/docu">
-          <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>Docu</ReactTooltip></icon>
+          <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>{(lng=='ESP')?('Documentación'):('Documentation')}</ReactTooltip></icon>
           </Link>
-      <button><icon onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)/* ,(!darkSidebar)?(setBasemap('dark-gray-vector'),
-setEnvironment({
-  lighting: {
-    // enable shadows for all the objects in a scene
-    directShadowsEnabled: false,
-    // set the date and a time of the day for the current camera location
-    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-  }  
-})):((setBasemap('satellite'),
-setEnvironment({
-  background: {
-    type: "color",
-    color: [255, 252, 244, 1]
-  },
-  lighting: {
-    // enable shadows for all the objects in a scene
-    directShadowsEnabled: false,
-    // set the date and a time of the day for the current camera location
-    //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
-  }  
-})))  */}}><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>Tema</ReactTooltip></icon></button>
+
+      <button onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><icon><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>{(lng=='ESP')?('Tema'):('Theme')}</ReactTooltip></icon></button>
       
       </>)}
       
