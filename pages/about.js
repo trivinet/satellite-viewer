@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import styles from '../styles/Docu.module.css'
-import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
-import React from 'react';
-import { darkGlobal } from '../pages/_app'
+import Language from '../components/language'
+import React, {useEffect, useState} from 'react'
+import {darkGlobal, lngGlobal} from '../pages/_app'
 
 const tle = `ISS (ZARYA)
 1 25544U 98067A   22200.18518544  .00008537  00000+0  15726-3 0  9998
@@ -12,34 +12,41 @@ const tle = `ISS (ZARYA)
 
 
 export default function About(){
-  const [dark,setDark] = React.useState(darkGlobal);
-  const [sidebarOpen,setSidebarOpen] = React.useState(false);
+  /* const [dark,setDark] = useState(darkGlobal); */
+  const [dark,setDark] = useState(darkGlobal);
+  console.log(darkGlobal?('true'):('false'))
+  const [lng,setLng] = useState(lngGlobal);
+  const [sidebarOpen,setSidebarOpen] = useState(false);
 
-  React.useEffect(() => {
-    darkGlobal = dark;}, [dark]);
+  useEffect(() => {
+    darkGlobal = dark,
+    console.log(darkGlobal?('true'):('false'));}, [dark]);
+  useEffect(() => {
+    lngGlobal = lng;}, [lng]);
 
-function assignTheme(dark){
-  {if(dark){
-    if(sidebarOpen){
-    return (styles.mainDark)}
-    else {return (styles.mainDarkClose)}}
-    else{
+  function assignTheme(){
+    {if(dark){
       if(sidebarOpen){
-        return (styles.main)}
-        else {return (styles.mainClose)}
-    }
-}}
+      return (styles.mainDark)}
+      else {return (styles.mainDarkClose)}}
+      else{
+        if(sidebarOpen){
+          return (styles.main)}
+          else {return (styles.mainClose)}
+      }
+  }}
   
   return(
     <> 
-    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} lng={lng}/>
+    
   <div className={(dark)?(styles.container):(styles.containerLight)}>
      <Head>
         <title>About</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       
-      <main className={assignTheme(dark,sidebarOpen)}>
+      <main className={assignTheme()}>
       <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'fontSize':'86px'}}><a className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}ABOUT <a className={styles.imageGifTitle}>
@@ -57,6 +64,7 @@ function assignTheme(dark){
         <p>Septiembre del 2022</p>
       </main>
       </div>
+      <Language setLng={setLng}/>
       </>
   )
 }

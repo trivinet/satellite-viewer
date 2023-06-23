@@ -8,9 +8,10 @@ import Layout from '../components/layout'
 import Sidebar from '../components/sidebar'
 import assignTLE from '../components/assignTLE'
 import InfoBoxPrint from '../components/infoBoxPrint';
+import Language from '../components/language';
 import { getSatelliteInfo,getLatLngObj } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-import {darkGlobal} from '../pages/_app'
+import {darkGlobal, lngGlobal} from '../pages/_app'
   
 const totalpoints = 200;
 const intervalo = 50000;
@@ -22,6 +23,7 @@ const defaultCenter = [38,-5];
 export default function SimpleMap(){
 
     const [ID,setID] = useState('');
+    const [lng,setLng] = useState(lngGlobal);
     const [dark,setDark] = useState(darkGlobal);
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [interval,setInterval] = useState(intervalo);
@@ -37,7 +39,9 @@ export default function SimpleMap(){
     useEffect(() => {
         darkGlobal = dark;
     }, [dark]);
-
+    useEffect(() => {
+        lngGlobal = lng;
+    }, [lng]);
     /* const [environment,setEnvironment] = useState(dark ? {
         lighting: {
           // enable shadows for all the objects in a scene
@@ -80,8 +84,8 @@ export default function SimpleMap(){
     var tleInfoCont=[];
 
   if(tleInfoShow){
-    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark}></TLEinfo>);}else{
-    tleInfoCont=(<TLEinfo ID={ID} dark={dark}></TLEinfo>);
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark} lng={lng}></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} dark={dark} lng={lng}></TLEinfo>);
     }
   }else{tleInfoCont=[]}
 
@@ -221,8 +225,11 @@ export default function SimpleMap(){
     return (
       // Important! Always set the container height explicitly
      <> 
-      <Sidebar style={{ opacity: '1'}} setDark={setDark} setSidebarOpen={setSidebarOpen} /* setBasemap={setBasemap} setEnvironment={setEnvironment} *//>
-      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} setIDfam={setIDfam}/>
+      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} lng={lng}/>
+      <Language setLng={setLng}></Language>
+      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
+      setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} 
+      setIDfam={setIDfam}  lng={lng}/>
       {tleInfoCont}
     <div style={{height: '100vh',width: '100%',paddingRight:'0px'}}>
     <GoogleMapReact className="Mapa"

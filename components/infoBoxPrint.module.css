@@ -1,6 +1,6 @@
 .navDark {
-  height: 90%;
-  top:5%;
+  height: 85%;
+  top:7%;
   color: #eaeaea;
   position: fixed;
   right:0;
@@ -8,10 +8,10 @@
   flex-direction: column;
   width: 250px;
  /*  background-color: #2D333C; */ 
- background-color: rgba(45, 51, 60, 0.24);
+  background-color: rgba(45, 51, 60, 0.24);
   opacity: 0.4; 
   overflow-x: hidden;
-  padding: 32px;
+  padding: 0px 32px;
   border: 0px;
   border-radius: 20px;
   z-index:5;
@@ -145,6 +145,7 @@
   background: #333;
   border-radius: 4px;
   font-size: 14px;
+  cursor: pointer;
   padding: 12px 16px;
   text-transform: uppercase;
   font-weight: 600;
@@ -201,8 +202,8 @@
 }
 
 .nav {
-  height: 90%;
-  top:5%;
+  height: 85%;
+  top:7%;
   color: black;
   position: fixed;
   right:0;
@@ -211,7 +212,7 @@
   overflow-x: hidden;
   width: 250px;
   background-color:#EFEDEE;
-  padding: 32px;
+  padding: 0px 32px;
   border: 0px;
   border-radius:15px;
   border-right: 1px solid #eaeaea;
@@ -376,6 +377,7 @@
   font-size: 14px;
   padding: 12px 16px;
   text-transform: uppercase;
+  cursor: pointer;
   font-weight: 600;
   letter-spacing: 0.025em;
   border: 1px solid black;

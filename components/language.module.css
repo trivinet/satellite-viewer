@@ -1,0 +1,54 @@
+.nav {
+    height: 50px;
+    position: fixed;
+    width: 170px;
+    right: 20px;
+    top: 5px;
+    flex: 1;
+    display: flex;
+    z-index: 5;
+    opacity: 20%;
+    color:black;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    padding-left:0px;
+    padding-right:0px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+
+  .nav:hover{
+    opacity: 1;
+  }
+
+  .nav .buttonL {
+    border: 0;
+    width: 45px;
+    cursor: pointer;
+    margin:0;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .nav .buttonL:hover{
+    width: 60px;
+    height: 36px;
+    margin:0;
+    padding: 0;
+  }
+
+  .nav .buttonL .imageLan{
+    width:45px;
+    height: 27px;
+    margin:0;
+    padding: 0;
+  }
+
+  .nav .buttonL .imageLan:hover{
+    width: 55px;
+    height: 33px;
+    margin:0;
+    padding: 0;
+  }
