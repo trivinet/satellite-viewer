@@ -12,14 +12,14 @@ export default function TLEinfo({ID,dark, lng}) {
   const tle = assignTLE(ID);
   /* console.log(tle); */
 
-
+  const [bisiesto, setBisiesto] = useState(false);
 
   function dia (stringEpoch, last2epoch) {
     var mes;
     var dia;
     var hora;
     var minuto;
-    const [bisiesto, setBisiesto] = useState(false);
+    
     var resto = '0.'+stringEpoch.substring(4,13);
     var atr = 'th';
 
