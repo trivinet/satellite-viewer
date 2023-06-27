@@ -2217,7 +2217,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         
         
         <Link href="/about">
-            <h4 style={{position: 'absolute', top: '95%', right:'5%','fontSize':'20px', padding: '0px', margin: '0px', height:'15px'}}>{(lng=='ESP')?('Acerca de'):('About')}</h4>
+            <h4 style={{position: 'fixed', top: '95%', right:'5%','fontSize':'20px', padding: '0px', margin: '0px', height:'15px'}}>{(lng=='ESP')?('Acerca de'):('About')}</h4>
         </Link>
       </main>
       </div>
