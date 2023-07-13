@@ -1944,10 +1944,11 @@ const [activeIndex, setActiveIndex] = useState(0);
     if (active && payload && payload.length) {
       return (
         <div className={styles.tooltip} style={{backgroundColor:'rgba(250, 62, 144, 0.3)',padding:'10px',borderRadius:'15px',width:'240px'}} >
-          <p style={{fontSize:'25px'}}>{`${label} :`}</p>
-          <p style={{fontSize:'15px'}}>{`${payload[0].value} satélites en catálogo`}</p>
-          <p style={{fontSize:'15px'}}>{`${payload[1].value} satélites deteriorados`}</p>
-          <p style={{fontSize:'15px'}}>{`${payload[2].value} satélites en órbita`}</p>
+          <p style={{fontSize:'25px', fontWeight: 'bold'}}>{`${label} :`}</p>
+          <p style={{fontSize:'15px', fontWeight: 'bold'}}>{(lng=='ESP')?(`${payload[0].value} satélites en catálogo`):(`${payload[0].value} satellites in catalogue`)}</p>
+          <p style={{fontSize:'15px', fontWeight: 'bold' }}>{(lng=='ESP')?(`${payload[1].value} satélites deteriorados`):(`${payload[1].value} 
+          deteriorated satellites`)}</p>
+          <p style={{fontSize:'15px', fontWeight: 'bold'}}>{(lng=='ESP')?(`${payload[2].value} satélites en órbita`):(`${payload[2].value} satellites in orbit`)}</p>
         </div>
       );
     }

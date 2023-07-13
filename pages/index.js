@@ -79,7 +79,7 @@ export default function Home() {
           </a>
           </Link>
 
-          <Link href="/map3d">
+          <Link href="/map3D">
           <a className={styles.card}>
           <div className={styles.imageGif}>
             <img href = "/map3D" src ={'https://s6.gifyu.com/images/gifMap3D94990f84b961d5f6.gif'}/>
