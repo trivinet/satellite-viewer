@@ -11,12 +11,11 @@ import InfoBoxPrint from '../components/infoBoxPrint';
 import Language from '../components/language';
 import { getSatelliteInfo,getLatLngObj } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-import {darkGlobal, lngGlobal} from '../pages/_app'
+import {lightGlobal, lngGlobal} from '../pages/_app'
   
 const totalpoints = 200;
 const intervalo = 50000;
 const IDdefault=25544;
-const darkDefault = true;
 const defaultCenter = [38,-5];
 
 
@@ -24,7 +23,7 @@ export default function SimpleMap(){
 
     const [ID,setID] = useState('');
     const [lng,setLng] = useState(lngGlobal);
-    const [dark,setDark] = useState(darkGlobal);
+    const [light,setLight] = useState(lightGlobal);
     const [sidebarOpen,setSidebarOpen] = useState(false);
     const [interval,setInterval] = useState(intervalo);
     const [totalPoints,setTotalPoints] = useState(totalpoints);
@@ -37,8 +36,8 @@ export default function SimpleMap(){
     const [IDfam,setIDfam] = useState('');
 
     useEffect(() => {
-        darkGlobal = dark;
-    }, [dark]);
+        lightGlobal = light;
+    }, [light]);
     useEffect(() => {
         lngGlobal = lng;
     }, [lng]);
@@ -84,8 +83,8 @@ export default function SimpleMap(){
     var tleInfoCont=[];
 
   if(tleInfoShow){
-    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark} lng={lng}></TLEinfo>);}else{
-    tleInfoCont=(<TLEinfo ID={ID} dark={dark} lng={lng}></TLEinfo>);
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} light={light} lng={lng}></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} light={light} lng={lng}></TLEinfo>);
     }
   }else{tleInfoCont=[]}
 
@@ -225,9 +224,9 @@ export default function SimpleMap(){
     return (
       // Important! Always set the container height explicitly
      <> 
-      <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} lng={lng}/>
+      <Sidebar setLight={setLight} setSidebarOpen={setSidebarOpen} lng={lng}/>
       <Language setLng={setLng}></Language>
-      <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
+      <InfoBoxPrint setID={setID} light={light} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
       setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} 
       setIDfam={setIDfam}  lng={lng}/>
       {tleInfoCont}
@@ -238,7 +237,7 @@ export default function SimpleMap(){
         zoomControl:false,
         fullscreenControl: false,
         styles:
-        !dark? 
+        light? 
         [ //lightTheme
           {
               "featureType": "administrative",

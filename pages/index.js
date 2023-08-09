@@ -5,38 +5,38 @@ import Sidebar from '../components/sidebar'
 import Language from '../components/language'
 import { useState, useEffect } from 'react'
 import active from '../components/active.json'
-import {darkGlobal, lngGlobal} from '../pages/_app'
+import {lightGlobal, lngGlobal} from '../pages/_app'
 
 
 
 export default function Home() {
 
-  const [dark,setDark] = useState(darkGlobal);
+  const [light,setLight] = useState(lightGlobal);
   const [lng,setLng] = useState(lngGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
 
-  function assignTheme(dark,sidebarOpen){
-    {if(dark){
+  function assignTheme(light,sidebarOpen){
+    {if(light){
       if(sidebarOpen){
-      return (styles.mainDark)}
-      else {return (styles.mainDarkClose)}}
+      return (styles.main)}
+      else {return (styles.mainClose)}}
       else{
         if(sidebarOpen){
-          return (styles.main)}
-          else {return (styles.mainClose)}
+          return (styles.mainDark)}
+          else {return (styles.mainDarkClose)}
       }
   }}
 
   useEffect(() => {
-    darkGlobal = dark}, [dark]);
+    lightGlobal = light}, [light]);
   useEffect(() => {
     lngGlobal = lng;}, [lng]);
 
   return (
     <>
-    <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen} lng={lng}/>
+    <Sidebar setLight={setLight} setSidebarOpen={setSidebarOpen} lng={lng}/>
     <Language setLng={setLng}></Language>
-    <div className={(dark)?(styles.containerDark):(styles.containerLight)}>
+    <div className={(light)?(styles.containerLight):(styles.containerDark)}>
     
       <Head>
         <title>Satellite Viewer</title>
@@ -44,9 +44,9 @@ export default function Home() {
       </Head>
       
       
-      <main className={assignTheme(dark,sidebarOpen)}>
+      <main className={assignTheme(light,sidebarOpen)}>
       
-        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'fontSize':'86px'}}>
+        <h1 className={(light)?(styles.titleLight):(styles.title)} style={{'fontSize':'86px'}}>
           {(lng=='ESP')?('Bienvenido a '):('Welcome to')}<a href="/" className={styles.logo}>{/* <a className={styles.imageGifTitle}>
             <img href = "/" src ={'https://upload.wikimedia.org/wikipedia/commons/f/f2/ISS_spacecraft_model_1.png'}/>
         </a> */}Satellite Viewer <a className={styles.imageGifTitle}>

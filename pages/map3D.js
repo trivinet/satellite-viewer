@@ -9,13 +9,12 @@ import styles from '../styles/Home.module.css';
 import TimePoints from '../components/getTimes';
 import { getMeanMotion } from 'tle.js';
 import TLEinfo from '../components/TLEinfo';
-import {darkGlobal, lngGlobal} from '../pages/_app'
+import {lightGlobal, lngGlobal} from '../pages/_app'
 import Language from '../components/language';
 
 const IDdefault=25544;
 const totalpoints = 100;
 const intervalo = 50000;
-const darkDefault = true;
 const defaultCenter = [0, 0];
 const velAngTierra = 9/2154100 ; //º/ms
 const periodoTierra = (23*60*60+56*60+4)*1000 ; //período tierra en ms
@@ -30,7 +29,7 @@ export default function PointMap() {
   const [totalPoints,setTotalPoints] = useState(totalpoints);
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [selectedFam, setSelectedFam] = useState(false);
-  const [dark, setDark] = useState(darkGlobal);
+  const [light, setLight] = useState(lightGlobal);
   const [lng, setLng] = useState(lngGlobal);
   const [center,setCenter] = useState(defaultCenter);
   const [mark,setMark] = useState('');
@@ -41,7 +40,7 @@ export default function PointMap() {
   var environment = [];
   var basemap = [];
 
-  dark ?  environment = {
+  !light ?  environment = {
     lighting: {
       // enable shadows for all the objects in a scene
       directShadowsEnabled: false,
@@ -60,7 +59,7 @@ export default function PointMap() {
       //date: new Date("Sun Mar 15 2019 16:00:00 GMT+0100 (CET)")
     }  
   }
-  dark ? basemap = "dark-gray-vector" : 'satellite';
+  !light ? basemap = "dark-gray-vector" : 'satellite';
 
 
   /* const [environment,setEnvironment] = useState(dark ? {
@@ -112,8 +111,8 @@ setEnvironment({
 
 
   if(tleInfoShow){
-    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} dark={dark} lng={lng}></TLEinfo>);}else{
-    tleInfoCont=(<TLEinfo ID={ID} dark={dark} lng={lng}></TLEinfo>);
+    if(selectedFam){tleInfoCont=(<TLEinfo ID={IDfam} light={light} lng={lng}></TLEinfo>);}else{
+    tleInfoCont=(<TLEinfo ID={ID} light={light} lng={lng}></TLEinfo>);
     }
   }else{tleInfoCont=[]}
 
@@ -642,7 +641,7 @@ setEnvironment({
   
 
   function styleMap() {
-    if(dark){
+    if(!light){
       return({
       height: '100vh',
       width: '100%',
@@ -713,8 +712,8 @@ setEnvironment({
   }, [environment]);
   
   useEffect(() => {
-    darkGlobal = dark;
-  }, [dark]);
+    lightGlobal = light;
+  }, [light]);
 
   useEffect(() => {
     lngGlobal = lng;
@@ -737,11 +736,11 @@ setEnvironment({
 
 
   return( <>
-  <InfoBoxPrint setID={setID} dark={dark} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
+  <InfoBoxPrint setID={setID} light={light} setInterval={setInterval} setTotalPoints={setTotalPoints} setSelectedFam={setSelectedFam} 
   setCenter={setCenter} setMark={setMark} setViewMode={setViewMode} setViewTrace={setViewTrace} setTleInfoShow={setTleInfoShow} 
   setIDfam={setIDfam} lng={lng}/>
   <Language setLng={setLng}></Language>
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}  lng={lng}/>
+  <Sidebar setLight={setLight} setSidebarOpen={setSidebarOpen}  lng={lng}/>
   {tleInfoCont}
   <div style={styleMap()} ref={ref}></div>
   </>

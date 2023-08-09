@@ -33,7 +33,7 @@ import ReactTooltip from 'react-tooltip';
 
 
 
-export default function InfoBoxPrint({setID,dark,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace,setTleInfoShow,setIDfam, lng}) {
+export default function InfoBoxPrint({setID,light,setInterval,setTotalPoints,setSelectedFam,setCenter,setMark,setViewMode,setViewTrace,setTleInfoShow,setIDfam, lng}) {
 
     //
     const [selectedSat, setSelectedSat] = React.useState(true);
@@ -156,7 +156,7 @@ export default function InfoBoxPrint({setID,dark,setInterval,setTotalPoints,setS
     
     <>
      
-    <nav className={dark?(styles.navDark):(styles.nav)}>
+    <nav className={light?(styles.nav):(styles.navDark)}>
           <>
             <input placeholder={lng=='ESP'?("ID / nombre..."):("ID / name..." )} onChange={handleChange} data-tip data-for={'input'} onClick={() =>setAvailableSat((p)=>true)}/>
             <ReactTooltip className={styles.tooltip} id={"input"} type='dark' html={true}>{lng=='ESP'?("Busca por NORAD ID o nombre del satélite"):("Search by NORAD ID or satellite name")}</ReactTooltip>     

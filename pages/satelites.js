@@ -16,14 +16,14 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Responsi
 import { PieChart, Pie, Sector } from "recharts"
 import MUIDataTable from "mui-datatables"
 import active2 from '../components/active2.json'
-import { darkGlobal, lngGlobal } from '../pages/_app'
+import { lightGlobal, lngGlobal } from '../pages/_app'
 
 
 
 
 
 export default function Satelites(){
-  const [dark,setDark] = useState(darkGlobal);
+  const [light,setLight] = useState(lightGlobal);
   const [lng,setLng] = useState(lngGlobal);
   const [sidebarOpen,setSidebarOpen] = useState(false);
   const [historico,setHistorico] = useState (false);
@@ -34,7 +34,7 @@ export default function Satelites(){
   const [buscador,setBuscador] = useState (false);
 
   useEffect(() => {
-    darkGlobal = dark;}, [dark]);
+    lightGlobal = light;}, [light]);
   
   useEffect(() => {
     lngGlobal = lng;}, [lng]);
@@ -1720,7 +1720,7 @@ export default function Satelites(){
   ];
   var dataOrbitLEO = [
     { name: (lng == 'ESP')?("Inclinada no-polar"):('Inclined nonpolar'), value: 2580 , description: (lng == 'ESP')?('Inclinación de hasta 75º o mayores a 105º, para el caso de órbita retrógrada'):('Inclination up to 75º or greater than 105º, in the case of retrograde orbit.')},
-    { name: (lng == 'ESP')?("Heliosíncrona"):('Sun-synchronous orbit (SSO)/heliosynchronous'), value: 1410, description: (lng == 'ESP')?('Órbita polar cuyos puntos de paso por los polos coinciden siempre con la misma posición relativa del sol, o, de igual forma, que pasan por la misma ubicación a la misma hora local.'):
+    { name: (lng == 'ESP')?("Heliosíncrona"):('Sun-synchronous orbit (SSO) / heliosynchronous'), value: 1410, description: (lng == 'ESP')?('Órbita polar cuyos puntos de paso por los polos coinciden siempre con la misma posición relativa del sol, o, de igual forma, que pasan por la misma ubicación a la misma hora local.'):
     ('Polar orbit whose points of passage through the poles always coincide with the same relative position of the sun, or, similarly, which pass through the same location at the same local time.') },
     { name: "Polar", value: 673 , description: (lng == 'ESP')?('Inclinación igual o mayor a 75º'):('Inclination equal or greater than 75º') },
     { name: (lng == 'ESP')?("Ecuatorial"):('Equatorial'), value: 18 , description: (lng == 'ESP')?('Inclinación entre 20º y -20º'):('Inclination between 20º and -20º')},
@@ -1779,7 +1779,7 @@ export default function Satelites(){
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(dark)?('#F9F7F6'):('black')}>{payload.name}</text>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(!light)?('#F9F7F6'):('black')}>{payload.name}</text>
       <Sector
         cx={cx}
         cy={cy}
@@ -1800,8 +1800,8 @@ export default function Satelites(){
       />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
       <circle cx={ex} cy={ey} r={3} fill={fill} stroke="FA7268" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>{`${value} satélites`}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>{(lng == 'ESP')?(`${value} satélites`):(`${value} satellites`)}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>
         {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
@@ -1826,7 +1826,7 @@ const renderActiveShape2 = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(dark)?('#F9F7F6'):('black')}>{payload.name}</text>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(!light)?('#F9F7F6'):('black')}>{payload.name}</text>
       <Sector
         cx={cx}
         cy={cy}
@@ -1847,8 +1847,8 @@ const renderActiveShape2 = (props) => {
       />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
       <circle cx={ex} cy={ey} r={3} fill={fill} stroke="FA7268" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>{`${value} satélites`}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>{(lng == 'ESP')?(`${value} satélites`):(`${value} satellites`)}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>
         {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
@@ -1873,7 +1873,7 @@ const renderActiveShape3 = (props) => {
 
   return (
     <g>
-      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(dark)?('#F9F7F6'):('black')}>{payload.name}</text>
+      <text x={cx} y={cy} dy={8} textAnchor="middle" fontFamily='Righteous' fill={(!light)?('#F9F7F6'):('black')}>{payload.name}</text>
       <Sector
         cx={cx}
         cy={cy}
@@ -1894,8 +1894,8 @@ const renderActiveShape3 = (props) => {
       />
       <path d={`M${sx},${sy}L${mx},${my}L${ex},${ey}`} stroke={fill} fill="none" />
       <circle cx={ex} cy={ey} r={3} fill={fill} stroke="FA7268" />
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>{`${value} satélites`}</text>
-      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(dark)?('#F9F7F6'):('black')}>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>{(lng == 'ESP')?(`${value} satélites`):(`${value} satellites`)}</text>
+      <text x={ex + (cos >= 0 ? 1 : -1) * 3} y={ey} fontFamily='Righteous' dy={18} textAnchor={textAnchor} fill={(!light)?('#F9F7F6'):('black')}>
         {`(${(percent * 100).toFixed(2)}%)`}
       </text>
     </g>
@@ -1928,15 +1928,15 @@ const [activeIndex, setActiveIndex] = useState(0);
     [setActiveIndex3]
   );
 
-  function assignTheme(dark){
-    {if(dark){
+  function assignTheme(light){
+    {if(light){
       if(sidebarOpen){
-      return (styles.mainDark)}
-      else {return (styles.mainDarkClose)}}
+      return (styles.main)}
+      else {return (styles.mainClose)}}
       else{
         if(sidebarOpen){
-          return (styles.main)}
-          else {return (styles.mainClose)}
+          return (styles.mainDark)}
+          else {return (styles.mainDarkClose)}
       }
   }}
 
@@ -1957,13 +1957,12 @@ const [activeIndex, setActiveIndex] = useState(0);
   };
   
   const CustomTooltipBar = ({ active, payload, label }) => {
+    
     if (active && payload && payload.length) {
-      console.log(payload[0]);
       return (
-        
         <div className={styles.tooltip} style={{backgroundColor:'rgba(250, 62, 144, 0.3)',padding:'10px',borderRadius:'15px',width:'240px'}} >
           <p style={{fontSize:'25px'}}>{`${payload[0].payload.name} :`}</p>
-          <p style={{fontSize:'15px'}}>{`${payload[0].value} satélites en catálogo`}</p>
+          <p style={{fontSize:'15px'}}>{(lng == 'ESP')?(`${payload[0].value} satélites en catálogo`):(`${payload[0].value} satellites in the catalogue`)}</p>
           <p style={{fontSize:'15px'}}>{`${payload[0].payload.description}`}</p>
         </div>
       );
@@ -1988,31 +1987,31 @@ const [activeIndex, setActiveIndex] = useState(0);
     case 0:
       return(<BarChart width={1100} height={400} data={dataOrbitLEO}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>)
     break;
     case 1:
       return(<BarChart width={1100} height={400} data={dataOrbitGEO}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>)
     break;
     case 2:
       return(<BarChart width={1100} height={400} data={dataOrbitMEO}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>)
     break;
     case 3:
       return(<BarChart width={1100} height={400} data={dataOrbitHEO}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>)
     break;
     default:
       return(<BarChart width={1100} height={400} data={dataOrbitHEO}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>)
     }
   }
@@ -2020,17 +2019,17 @@ const [activeIndex, setActiveIndex] = useState(0);
 
   return(
     <> 
-  <Sidebar setDark={setDark} setSidebarOpen={setSidebarOpen}/>
+  <Sidebar setLight={setLight} setSidebarOpen={setSidebarOpen}/>
   <Language setLng={setLng}></Language>
-  <div className={(dark)?(styles.container):(styles.containerLight)}>
+  <div className={(light)?(styles.containerLight):(styles.container)}>
      <Head>
         <title>Satellites</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       
-      <main className={assignTheme(dark,sidebarOpen)}>
-        <h1 className={(dark)?(styles.title):(styles.titleLight)} style={{'font-size':'66px'}}>
+      <main className={assignTheme(light,sidebarOpen)}>
+        <h1 className={(light)?(styles.titleLight):(styles.title)} style={{'font-size':'66px'}}>
           <a href="/docu" className={styles.logo}>{(lng=='ESP')?("Satélites"):("Satellites")}<a className={styles.imageGifTitle}>
             <img href = "/docu" src ={'https://static.wixstatic.com/media/2185e4_20d09071e3f04c5b9dc41ed7f6a4556f~mv2.gif'}/>
         </a></a>
@@ -2067,7 +2066,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   <Line type="monotone" dot={false} dataKey="inorbit" stroke="#FA9968" />
                 </LineChart>
               
-                <div><p style={{position: 'absolute', bottom:'-40px' ,right: '10px', fontSize:'18px'}}>Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <div><p style={{position: 'absolute', bottom:'-40px' ,right: '10px', fontSize:'18px'}}>{(lng == 'ESP')?('Fuente: '):('Source: ')}<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
         href='https://celestrak.org/satcat/boxscore.php'>Celestrak.com/</a></p></div>
 
           </>}</>):('')}
@@ -2108,7 +2107,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   />
                 </PieChart>
 
-                <p style={{position: 'relative', bottom:'30px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a rel="noreferrer" target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'30px' ,right: '0px', fontSize:'18px'}}>{(lng == 'ESP')?('*Sólo satélites activos son tenidos en cuenta. Fuente:'):('*Only active satellites are being counted. Source:')}<a rel="noreferrer" target="_blank" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
 
           </>}</>):('')}
@@ -2117,33 +2116,7 @@ const [activeIndex, setActiveIndex] = useState(0);
         <h2><icon onClick={() =>setOrbits((p)=>!p)}><FontAwesomeIcon icon={(orbits)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Tipos de órbita"):(" Types of orbit")}</icon></h2>
               {orbits?(<>{<>
                 <div>
-
-                {/* <PieChart width={1100} height={800}>
-                  <Pie
-                    data={dataOrbit1}
-                    dataKey="value"
-                    cx={550}
-                    cy={400}
-                    outerRadius={150}
-                    fill="#FA7268"
-                    stroke='none'
-                    paddingAngle={5}
-                  />
-                  <Pie
-                    data={dataOrbit2}
-                    dataKey="value"
-                    cx={550}
-                    cy={400}
-                    innerRadius={160}
-                    outerRadius={300}
-                    fill="#C62368"
-                    paddingAngle={5}
-                    stroke='none'
-                    label
-                  />
-                </PieChart>
- */}
-
+                <p style={{/* textAlign:'center', */ fontSize: '18px'}}>{(lng == 'ESP')?("Haz click en la barra deseada para ver los subtipos"):("Click on the desired type to see the subtypes")}</p>
                 <BarChart width={1150} height={400} data={dataOrbit}>
                         <Bar dataKey="value" onClick={handleClick}>
                           {dataOrbit.map((_, index) => (
@@ -2154,14 +2127,15 @@ const [activeIndex, setActiveIndex] = useState(0);
                             />
                           ))}
                         </Bar>
-                        <Tooltip content={<CustomTooltipBar />} />
+                        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar/>} />
                 </BarChart>
-                <p style={{fontFamily:'Righteous'}}>{`Satélites de órbita tipo "${activeItemBar.name}": ${activeItemBar.value}`}</p>
+                <p style={{fontFamily:'Righteous'}}>{(lng == 'ESP')?(`Satélites de órbita tipo "${activeItemBar.name}": ${activeItemBar.value}`):
+                (`Satellites of Orbit type "${activeItemBar.name}": ${activeItemBar.value}`)}</p>
 
                 </div>
 
                 {seleccionaGraph(activeIndexBar)}
-                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>{(lng == 'ESP')?('*Sólo satélites activos son tenidos en cuenta. Fuente:'):('*Only active satellites are being counted. Source:')}<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
         
         </>}</>):('')}
@@ -2187,7 +2161,7 @@ const [activeIndex, setActiveIndex] = useState(0);
                   />
                 </PieChart>
 
-                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+                <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>{(lng == 'ESP')?('*Sólo satélites activos son tenidos en cuenta. Fuente:'):('*Only active satellites are being counted. Source:')}<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
 
         </>}</>):('')}
@@ -2196,10 +2170,10 @@ const [activeIndex, setActiveIndex] = useState(0);
               {paises?(<>{<>
                 <BarChart width={1100} height={400} data={dataPaises}>
         <Bar dataKey="value" fill="#FA9968" />
-        <Tooltip content={<CustomTooltipBar />} />
+        <Tooltip cursor={{fill: 'transparent'}} content={<CustomTooltipBar />} />
       </BarChart>
 
-      <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>*Sólo satélites activos son tenidos en cuenta. Fuente: <a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
+      <p style={{position: 'relative', bottom:'-20px' ,right: '0px', fontSize:'18px'}}>{(lng == 'ESP')?('*Sólo satélites activos son tenidos en cuenta. Fuente:'):('*Only active satellites are being counted. Source:')}<a target="_blank" rel="noreferrer" style={{color:'#B9EEFF',textDecoration: 'underline'}} 
                   href='https://www.ucsusa.org/resources/satellite-database'>ucsusa.com/</a></p>
         
         </>}</>):('')}

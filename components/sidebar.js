@@ -4,21 +4,21 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars,faHouse,faChevronLeft,faSearch,faMap,faInfo,faMoon,faSun,faAtom,faSatellite } from '@fortawesome/free-solid-svg-icons'
 import ReactTooltip from 'react-tooltip'
-import {darkGlobal} from '../pages/_app'
+import {lightGlobal} from '../pages/_app'
 
 
-export default function Sidebar({setDark,setSidebarOpen, lng}) {
+export default function Sidebar({setLight,setSidebarOpen, lng}) {
 
-    const [darkSidebar, setDarkSidebar] = React.useState(darkGlobal);
+    const [lightSidebar, setLightSidebar] = React.useState(lightGlobal);
     const [sidebarOpenProp, setSidebarOpenProp] = React.useState(false);
 
     useEffect(() => {
-      darkGlobal = darkSidebar;
-  }, [darkSidebar]);
+      lightGlobal = lightSidebar;
+  }, [lightSidebar]);
 
       return (  
         <>  
-    <nav className={darkSidebar?(sidebarOpenProp?(styles.navDark):(styles.navDarkClose)):(sidebarOpenProp?(styles.nav):(styles.navClose))}>
+    <nav className={lightSidebar?(sidebarOpenProp?(styles.nav):(styles.navClose)):(sidebarOpenProp?(styles.navDark):(styles.navDarkClose))}>
     
     {sidebarOpenProp?(<>
 
@@ -43,7 +43,7 @@ export default function Sidebar({setDark,setSidebarOpen, lng}) {
           <Link href="/docu">
               <a>{(lng=='ESP')?('Documentación'):('Documentation')}</a>
           </Link>
-      <button onClick={()=>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}>{(lng=='ESP')?('Tema'):('Theme')}</button>
+      <button onClick={()=>{setLight((p)=>!p),setLightSidebar((p)=>!p)}}>{(lng=='ESP')?('Tema'):('Theme')}</button>
       </>):(<>
           <icon onClick={() =>{setSidebarOpen((p)=>!p),setSidebarOpenProp((p)=>!p)}}><FontAwesomeIcon icon={sidebarOpenProp?(faChevronLeft):(faBars)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={'markerTooltipMenu'}/></icon><ReactTooltip id={"markerTooltipMenu"} html={true}>{(lng=='ESP')?('ABRIR'):('OPEN')}</ReactTooltip>
           
@@ -67,7 +67,7 @@ export default function Sidebar({setDark,setSidebarOpen, lng}) {
           <icon><FontAwesomeIcon icon={faInfo} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipDoc"}></FontAwesomeIcon><ReactTooltip id={"markerTooltipDoc"} html={true}>{(lng=='ESP')?('Documentación'):('Documentation')}</ReactTooltip></icon>
           </Link>
 
-      <button onClick={() =>{setDark((p)=>!p),setDarkSidebar((p)=>!p)}}><icon><FontAwesomeIcon icon={darkSidebar?(faSun):(faMoon)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>{(lng=='ESP')?('Tema'):('Theme')}</ReactTooltip></icon></button>
+      <button onClick={() =>{setLight((p)=>!p),setLightSidebar((p)=>!p)}}><icon><FontAwesomeIcon icon={lightSidebar?(faMoon):(faSun)} width={'20px'} height={'20px'} cursor={'pointer'} data-tip data-for={"markerTooltipTheme"}></FontAwesomeIcon><ReactTooltip place={'top'} id={"markerTooltipTheme"} html={true}>{(lng=='ESP')?('Tema'):('Theme')}</ReactTooltip></icon></button>
       
       </>)}
       
