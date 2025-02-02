@@ -4,16 +4,19 @@
 
 .container {
   padding: 0;
-  height: 100vh; 
-  width: 100%;
-  margin: 0;
+/*   height: '100vh';
+  width: '100%'; */
+  margin: 0px;
+  /* font-family: 'Major Mono Display', monospace; */
   font-family: 'Alumni Sans Pinstripe', sans-serif;
-  font-size: 25px;
-  background-image: url("/backgroundDark.svg");
+/*   font-size: '25px'; */
+  background: url("/backgroundDark.svg");
+  /* background-position: fixed; */
   background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat;
+ /*  transition-duration: 5s; */
   transition: ease-in 2s;
+  /* position: fixed;
+  right:0; */
   display: flex;
   flex-direction: column;
 }
@@ -21,16 +24,19 @@
 
 .containerLight {
   padding: 0;
-  height: 100vh; 
-  width: 100%;
-  margin: 0;
+/*   height: '100vh';
+  width: '100%'; */
+  margin: 0px;
+  /* font-family: 'Major Mono Display', monospace; */
   font-family: 'Alumni Sans Pinstripe', sans-serif;
-  font-size: 25px;
-  background-image: url("/backgroundLight.svg");
+/*   font-size: '25px'; */
+  background: url("/backgroundLight.svg");
+  /* background-position: fixed; */
   background-size: cover;
-  background-position: center; 
-  background-repeat: no-repeat;
+ /*  transition-duration: 5s; */
   transition: ease-in 2s;
+  /* position: fixed;
+  right:0; */
   display: flex;
   flex-direction: column;
 }
