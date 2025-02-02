@@ -10,7 +10,7 @@
   /* font-family: 'Major Mono Display', monospace; */
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
-  background: url("/styles/backgroundDark.svg");
+  background: url("../styles/backgroundDark.png");
   /* background-position: fixed; */
   background-size: cover;
  /*  transition-duration: 5s; */
@@ -30,7 +30,7 @@
   /* font-family: 'Major Mono Display', monospace; */
   font-family: 'Alumni Sans Pinstripe', sans-serif;
   font-size: '25px';
-  background: url("/styles/backgroundLight.svg");
+  background: url("../styles/backgroundLight.png");
   /* background-position: fixed; */
   background-size: cover;
  /*  transition-duration: 5s; */
