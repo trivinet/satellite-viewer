@@ -865,3 +865,26 @@ background-color: rgba(53, 60, 75 0.25);
   background-color: #FA7268;
 }
 
+
+/* Scrollbar width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar track (background) */
+::-webkit-scrollbar-track {
+  background: #1e1e1e; /* Dark background */
+  border-radius: 5px;
+}
+
+/* Scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+  background: #4CAF50; /* Green thumb */
+  border-radius: 5px;
+}
+
+/* Scrollbar handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #45a049; /* Slightly lighter green */
+}
+
