@@ -1,0 +1,345 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+.container {
+  padding: 0;
+  height: '100vh';
+  width: '100%';
+  margin: 0px;
+  /* font-family: 'Major Mono Display', monospace; */
+  font-family: 'Alumni Sans Pinstripe', sans-serif;
+  font-size: '25px';
+  background-image: url("../styles/waveDocu1.svg");
+  background-position: fixed;
+  background-size: cover;
+ /*  transition-duration: 5s; */
+  transition: ease-in 0.5s;
+}  
+.container:hover{
+  background-image: url("../styles/waveDocu.svg");
+  background-size: cover;
+}
+
+.mainDark {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  /* background-color: #2D333C; */
+  color:#eaeaea;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding-left:250px;
+  padding-right:0px;
+  overflow-y: hidden;
+}
+.mainDarkClose {
+  min-height: 100vh;
+  flex: 1;
+  display: flex;
+  /* background-color: #2D333C; */
+  color:#eaeaea;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  padding-left: 100px;
+  overflow-y: hidden;
+  /* background-image:
+  radial-gradient(at 68% 2%, hsla(204,78%,63%,1) 0px, transparent 50%),
+  radial-gradient(at 78% 69%, hsla(155,72%,66%,1) 0px, transparent 50%),
+  radial-gradient(at 71% 33%, hsla(211,79%,69%,1) 0px, transparent 50%),
+  radial-gradient(at 0% 41%, hsla(352,78%,78%,1) 0px, transparent 50%); */
+  /* background-image: url("../styles/waveMap.svg"); */
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 90%;
+}
+
+.mainDark .grid .card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  background-color: #333;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
+  max-width: 70%;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08);
+
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
+}
+
+.mainDarkClose .grid .card {
+  margin: 1rem;
+  padding: 1.5rem;
+  text-align: left;
+  color: inherit;
+  background-color: #333;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease, max-width 0.3s ease;
+  width: 70%;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08);
+
+  backdrop-filter: blur(2px) saturate(180%);
+  -webkit-backdrop-filter: blur(2px) saturate(180%);
+  background-color: rgba(17, 25, 40, 0.25);
+  /* border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125); */
+
+}
+.mainDark .grid .card:hover,
+.mainDark .grid .card:focus,
+.mainDark .grid .card:active {
+  /* color: #0070f3; */
+  border-color: #0070f3;
+  background-color:  rgba(0, 0, 0, 0);
+  max-width: 83%;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(53, 60, 75 0.25);
+}
+
+.mainDarkClose .grid .card:hover,
+.mainDarkClose .grid .card:focus,
+.mainDarkClose .grid .card:active {
+  /* color: #0070f3; */
+  border-color: #0070f3;
+  background-color:  rgba(0, 0, 0, 0);
+  width: 83%;
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  background-color: rgba(53, 60, 75 0.25);
+}
+
+.mainDark .grid .card .imageGif {
+  position: relative;
+  top : -100%;
+  right: 0%;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  z-index : 5;
+}
+
+.mainDark .grid .card .imageGif img {
+  max-width: 1%;
+  max-height: 1%;
+  border-radius : 15px;
+  transition: max-width 0.3s;
+}
+
+.mainDark .grid .card:hover .imageGif img {
+  max-width: 100%;
+  height:auto;
+}
+
+.mainDarkClose .grid .card .imageGif {
+  position: relative;
+  top : -100%;
+  right: 0%;
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  z-index : 5;
+}
+
+.mainDarkClose .grid .card .imageGif img {
+  max-width: 1%;
+  max-height: 1%;
+  border-radius : 15px;
+  transition: max-width 0.3s;
+}
+
+.mainDarkClose .grid .card:hover .imageGif img {
+  max-width: 100%;
+  height:auto;
+}
+
+.title .logo {
+  color: white;
+  font-family: 'Righteous', cursive;
+  text-decoration: none;
+  /* box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08); */
+  transition: font-size 2s ease-out;
+}
+
+.title {
+  margin: 1%;
+  line-height: 1.15;
+  font-size: 2rem;
+  position: relative;
+  top:3%;
+  text-align: center;
+  /* box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08);
+  border-radius:47% 49% 49% 46% / 53% 50% 42% 53% */
+}
+
+.title .imageGiftitle {
+  position: fixed;
+  right : '-3000px';
+  box-shadow : 0 5px 20px rgba(0,0,0,0.2);
+  /* z-index : 1; */
+}
+
+.title .imageGifTitle img {
+  max-width: 0%;
+  max-height: 0%;
+  border-radius : 15px;
+  transition: max-width 0.2s;
+}
+
+.title:hover .imageGifTitle img {
+  max-width: 3%;
+  top:'-300px';
+}
+
+.card h2 {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+}
+
+.card p {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+.cardinfo {
+  backdrop-filter: blur(7px) saturate(200%);
+  -webkit-backdrop-filter: blur(7px) saturate(200%);
+  background-color: rgba(17, 25, 40, 0.68);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+.mainDarkClose h2 {
+  margin: 0%;
+  padding:1%;
+  line-height: 0.5;
+  font-size: 17px;
+  cursor:pointer;
+  /* position: fixed; */
+  top:3%;
+  box-shadow:
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08);
+  border-radius:15px; /* 49% 49% 46% / 53% 50% 42% 53% */
+}
+
+.mainDarkClose h2:hover{
+  font-size: 25px;
+  background-color: #FA7268;
+}
+.mainDark h2 {
+  margin: 0%;
+  padding:1%;
+  line-height: 0.5;
+  font-size: 17px;
+  cursor:pointer;
+  /* position: fixed; */
+  top:3%;
+  box-shadow:
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08);
+  border-radius:15px; /* 49% 49% 46% / 53% 50% 42% 53% */
+}
+
+.mainDark h2:hover{
+  font-size: 25px;
+  background-color: #FA7268;
+}
+
+.mainDark h3 {
+  margin: 0%;
+  padding:1%;
+  line-height: 1.15;
+  font-size: 2rem;
+}
+
+.mainDark p {
+  margin: 0%;
+  padding:1%;
+  line-height: 1.15;
+  font-size: 1.5rem;
+  text-align: justify;
+}
+
+.mainDarkClose p {
+  margin: 0%;
+  padding:1%;
+  line-height: 1.15;
+  font-size: 1.5rem;
+  text-align: justify;
+}
+
+.mainDarkClose h3 {
+  margin: 0%;
+  padding:1%;
+  line-height: 1.15;
+  font-size: 2rem;
+}
+
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    /* flex-direction: column; */
+  }
+}
+
+
+

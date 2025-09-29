@@ -1,0 +1,255 @@
+/* ===== Shared item layout ===== */
+.item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  margin: 7px 0;
+}
+
+/* Icon square (use on <icon className={styles.iconBox}> ) */
+.iconBox {
+  display: grid;
+  place-items: center;
+  width: 37px;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 0; /* inner icon already centered */
+  transition: background-color .25s ease, box-shadow .25s ease, border-color .25s ease;
+  border-width: 1px;
+  border-style: solid;
+}
+
+/* Label pill (reveals in open, collapses in closed) */
+.label {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 150px;      /* open state width */
+  opacity: 1;
+  padding: 10px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border-width: 1px;
+  border-style: solid;
+  display: inline-block;           /* allow visual clip without layout weirdness */
+  clip-path: inset(0 0 0 0);       /* fully visible in OPEN state */
+  transition:
+    clip-path .25s ease,           /* left→right wipe on open */
+    max-width .25s ease,
+    padding .25s ease,
+    opacity .2s ease,
+    margin-left .25s ease,
+    border-color .25s ease,
+    background-color .25s ease,
+    box-shadow .25s ease,
+    color .25s ease;
+  will-change: clip-path, max-width, opacity;
+}
+
+/* Show labels only when the panel is OPEN (hide the icon squares) */
+.nav .iconBox,
+.navDark .iconBox {
+  display: none;
+  transition: all .25s ease;
+}
+
+/* Show icons again in CLOSED state (overrides composed open styles) */
+.navClose .iconBox,
+.navDarkClose .iconBox {
+  display: grid;     /* same as your .iconBox base */
+  transition: all .25s ease;
+}
+
+
+/* When panel is CLOSED: only collapse the label, icons stay put */
+.navClose .label,
+.navDarkClose .label {
+  max-width: 0;
+  opacity: 0;
+  padding: 0;
+  margin-left: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+
+  /* NEW: hide from the right side */
+  clip-path: inset(0 100% 0 0);
+}
+
+/* Keep a tiny left gap in open state so it reads nicely */
+.nav .label,
+.navDark .label { margin-left: 0; }
+
+/* ===== Panel shells (LIGHT / DARK, OPEN / CLOSED) ===== */
+
+/* LIGHT (OPEN) */
+.nav {
+  height: 390px;
+  color: black;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 210px;                  /* OPEN width */
+  background-color: rgba(239, 237, 238, 0.24);
+  padding: 32px;
+  border: 0;
+  opacity: 0.5;
+  z-index: 5;
+  border-radius: 15px;
+  transition: width .25s ease, opacity .2s ease;
+  box-shadow:
+    1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+    3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+    5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+    8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+    25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+    36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+    56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+.nav:hover { opacity: 1; }
+
+/* LIGHT (CLOSED) */
+.navClose {
+  composes: nav;
+  width: 120px;                  /* CLOSED width */
+}
+
+/* DARK (OPEN) */
+.navDark {
+  height: 390px;
+  color: #eaeaea;
+  position: fixed;
+  top: 20%;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  width: 210px;                  /* OPEN width */
+  background-color: rgba(45, 51, 60, 0.24);
+  padding: 32px;
+  border: 0;
+  opacity: 0.5;
+  z-index: 5;
+  border-radius: 15px;
+  transition: width .25s ease, opacity .2s ease;
+  box-shadow:
+    0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
+    1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
+    2px 3.2px 19.9px rgba(250, 130, 200, 0.034),
+    3.1px 5px 31.7px rgba(250, 130, 200, 0.04),
+    4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+    7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+    12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+    25px 40px 253px rgba(250, 130, 200, 0.08);
+}
+.navDark:hover { opacity: 1; }
+
+/* DARK (CLOSED) */
+.navDarkClose {
+  composes: navDark;
+  width: 120px;                  /* CLOSED width */
+}
+
+/* ===== Theming for icon & label ===== */
+
+/* LIGHT panel items */
+.nav .iconBox,
+.navClose .iconBox {
+  background: white;
+  color: black;
+  border-color: #eaeaea;
+  box-shadow:
+    1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+    3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+    5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+    8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+    25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+    36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+    56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+.nav .iconBox:hover,
+.navClose .iconBox:hover { background: #aeaeae; }
+
+.nav .label {
+  color: black;
+  background: white;
+  border-color: #eaeaea;
+  box-shadow:
+    1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+    3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+    5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+    8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+    12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+    17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+    25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+    36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+    56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+    100px 100px 80px rgba(0, 0, 0, 0.07);
+}
+
+/* DARK panel items */
+.navDark .iconBox,
+.navDarkClose .iconBox {
+  background: #333;
+  color: #eaeaea;
+  border-color: black;
+  box-shadow:
+    0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+    1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+    2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+    3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+    4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+    7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+    12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+    25px 40px 253px rgba(250, 114, 104, 0.08);
+}
+.navDark .iconBox:hover,
+.navDarkClose .iconBox:hover { background: black; }
+
+.navDark .label {
+  color: #eaeaea;
+  background: #333;
+  border-color: black;
+  box-shadow:
+    0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+    1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+    2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+    3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+    4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+    7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+    12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+    25px 40px 253px rgba(250, 114, 104, 0.08);
+}
+
+/* ===== Toggle & theme row ===== */
+.toggle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.themeRow {
+  left: 20px;
+  bottom: 20px;
+  position: fixed;                 /* push to bottom inside the panel */
+  background-color: transparent;
+  border-color: transparent;
+
+}
+
+/* Position the theme row box inside the panel, not the page */
+.themeRow .label,
+.themeRow .iconBox { pointer-events: none; } /* click is on the row */
+
+/* Tooltips don’t need extra styling here; your ReactTooltip props will handle it */

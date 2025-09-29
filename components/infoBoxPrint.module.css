@@ -1,0 +1,474 @@
+.navDark {
+  height: 85%;
+  top:7%;
+  color: #eaeaea;
+  position: fixed;
+  right:0;
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+ /*  background-color: #2D333C; */ 
+  background-color: rgba(45, 51, 60, 0.24);
+  opacity: 0.4; 
+  overflow-x: hidden;
+  padding: 0px 32px;
+  border: 0px;
+  border-radius: 20px;
+  z-index:5;
+  border-right: 1px solid black;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 130, 200, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 130, 200, 0.028),
+  2px 3.2px 19.9px rgba(250, 130, 200, 0.034),
+  3.1px 5px 31.7px rgba(250, 130, 200, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 130, 200, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 130, 200, 0.052),
+  12.5px 20px 126.6px rgba(250, 130, 200, 0.061),
+  25px 40px 253px rgba(250, 130, 200, 0.08)
+;
+
+/* background-image: url("../styles/waveBack2.svg"); */
+}
+
+.navDark:hover {
+  opacity: 1;
+}
+
+.navDark::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.navDark::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.navDark::-webkit-scrollbar-thumb {
+  background-color: rgba(209, 94, 193, 0.2);
+  border-radius: 4px;
+  /* outline: 1px solid slategrey; */
+}
+
+.navDark > input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: #333;
+  color: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+  transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
+}
+
+.navDark > input:hover {
+  background-color: black;
+}
+
+.navDark > a {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #A1A3B5;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: #333;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+}
+
+.navDark > a:hover {
+  background-color: #686A75;
+  cursor:pointer;
+}
+
+.navDark > button {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #333;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+; 
+;
+}
+
+.navDark > button:hover {
+  background-color: black;
+  cursor:pointer;
+}
+
+.navDark > p {
+  margin: 8px 0;
+  color: #eaeaea;
+  text-decoration: none;
+  background: #333;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid white;
+  transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
+}
+
+.navDark > p:hover{
+  background-color: black ;
+}
+
+.navDark > buttonset {
+  /* margin-right: 0px; */
+  color: white;
+  text-decoration: none;
+  background: #333;
+  /* width: 50px; */
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  padding: 7px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+  box-shadow:
+  0.5px 0.8px 5px rgba(250, 114, 104, 0.019),
+  1.1px 1.8px 11.5px rgba(250, 114, 104, 0.028),
+  2px 3.2px 19.9px rgba(250, 114, 104, 0.034),
+  3.1px 5px 31.7px rgba(250, 114, 104, 0.04),
+  4.8px 7.7px 48.9px rgba(250, 114, 104, 0.046),
+  7.5px 12.1px 76.3px rgba(250, 114, 104, 0.052),
+  12.5px 20px 126.6px rgba(250, 114, 104, 0.061),
+  25px 40px 253px rgba(250, 114, 104, 0.08)
+;
+
+}
+
+.navDark > buttonset:hover {
+  background-color: black;
+  cursor:pointer;
+}
+
+.nav {
+  height: 85%;
+  top:7%;
+  color: black;
+  position: fixed;
+  right:0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  width: 250px;
+  background-color:#EFEDEE;
+  padding: 0px 32px;
+  border: 0px;
+  border-radius:15px;
+  border-right: 1px solid #eaeaea;
+  opacity: 0.4;
+  z-index:5;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav:hover {
+  opacity: 1;
+}
+
+.nav > input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+  z-index:5;
+  transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav > input:hover {
+  background-color: #eaeaea;
+}
+
+/* .nav:hover{
+  opacity:1;
+}
+
+.nav::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.nav::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.nav::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+} */
+
+.nav::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+.nav::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+.nav::-webkit-scrollbar-thumb {
+  background-color: rgba(209, 94, 193, 0.2);
+  border-radius: 4px;
+  /* outline: 1px solid slategrey; */
+}
+
+
+.nav > a {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  color: #333;
+  border: 1px solid #eaeaea;
+  transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav > a:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+.nav > button {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid #eaeaea;
+  transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav > button:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+
+
+.nav > p {
+  margin: 8px 0;
+  color: black;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 12px 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav > p :hover{
+  background-color: #eaeaea;
+}
+
+.nav > buttonset {
+ /*  margin: 0px; */
+  color: black;
+  text-decoration: none;
+  background: white;
+  /* width: 50px; */
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  padding: 7px;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  border: 1px solid black;
+  transition: all 0.8s ease;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+.nav > buttonset:hover {
+  background-color: #eaeaea;
+  cursor:pointer;
+}
+
+.input {
+  margin: 32px 0;
+  text-decoration: none;
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #eaeaea;
+  font-size: 14px;
+  padding: 8px 16px;
+  height: 28px;
+  box-shadow:
+  1.6px 1.6px 1.2px rgba(0, 0, 0, 0.015),
+  3.4px 3.4px 2.7px rgba(0, 0, 0, 0.022),
+  5.8px 5.8px 4.6px rgba(0, 0, 0, 0.027),
+  8.7px 8.7px 6.9px rgba(0, 0, 0, 0.031),
+  12.5px 12.5px 10px rgba(0, 0, 0, 0.035),
+  17.7px 17.7px 14.2px rgba(0, 0, 0, 0.039),
+  25.1px 25.1px 20.1px rgba(0, 0, 0, 0.043),
+  36.5px 36.5px 29.2px rgba(0, 0, 0, 0.048),
+  56.3px 56.3px 45px rgba(0, 0, 0, 0.055),
+  100px 100px 80px rgba(0, 0, 0, 0.07)
+;
+
+}
+
+/* .non-standard::-webkit-scrollbar{
+  width: 10px;
+}
+
+.non-standard::-webkit-scrollbar-track{
+  background:#2D333C;
+  border-radius: 10px;
+}
+
+.non-standard::-webkit-scrollbar-thumb{
+  background:#333;
+  border-radius: 10px;
+} */
