@@ -304,7 +304,7 @@ const AnyReactComponentTraceFuture = ({ text, info, number }) => (
       {tleInfoCont}
     <div style={{height: '100vh',width: '100%',paddingRight:'0px',position: 'relative' }}>
     <GoogleMapReact className="Mapa"
-      bootstrapURLKeys={{ key: "AIzaSyDKrg6ygIgLkBGpUX29D9hc2OtKprEQvGY" }}
+      bootstrapURLKeys={{ key: process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY  }}
       options={{
         zoomControl:false,
         fullscreenControl: false,
