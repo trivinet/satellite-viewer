@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/tle-update",
-      "schedule": "35 21 * * *"
+      "schedule": "52 23 * * *"
     }
   ]
 }

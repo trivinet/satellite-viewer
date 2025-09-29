@@ -4,6 +4,7 @@ import styles from '../styles/satelites3.module.css'
 import assignTLE from '../components/assignTLE'
 import Sidebar from '../components/sidebar'
 import Language from '../components/language'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Layout from '../components/layout'
 import { getLatLngObj } from "tle.js";
 import InfoBoxPrint from '../components/infoBoxPrint'
@@ -228,8 +229,35 @@ const gridCols = useMemo(() => [
   { field: 'LAUNCH_DATE', headerName: (lng==='ESP'?'Lanz.':'Launch'), width: 130 },
 ], [lng]);
   
+  const muiTheme = useMemo(() => createTheme({
+  palette: {
+    mode: light ? 'light' : 'dark',
+    primary: { main: '#C62368' },
+    background: {
+      paper: light ? 'rgba(255,255,255,0.85)' : 'rgba(20,20,22,0.75)',
+      // default: 'transparent',            // ❌ causes the error
+      default: 'rgba(0,0,0,0)',             // ✅ ok
+    },
+    text: { primary: light ? '#111' : '#F9F7F6' },
+  },
+  components: {
+    MuiDataGrid: {
+      styleOverrides: {
+        root: { border: 0, borderRadius: 16, backgroundColor: 'transparent' },
+        columnHeaders: {
+          backgroundColor: light ? 'rgba(250,114,104,.10)' : 'rgba(250,114,104,.15)',
+          borderBottom: 0,
+        },
+        cell: { borderBottom: '1px solid rgba(255,255,255,.06)' },
+        footerContainer: { backgroundColor: 'transparent', borderTop: 0 },
+      },
+    },
+  },
+}), [light]);
+
   
-  
+
+
   const dataRawHist = [
     {
       "total": 0,
@@ -2214,22 +2242,40 @@ const [activeIndex, setActiveIndex] = useState(0);
 
         <h2><icon onClick={() =>setBuscador((p)=>!p)}><FontAwesomeIcon icon={(buscador)?(faAnglesUp):(faAnglesDown)} width={'20px'} height={'20px'} cursor={'pointer'}/>{(lng=='ESP')?(" Base de datos"):(" Database")}</icon></h2>
               {buscador ? (
-                <div style={{ maxWidth: 1200 }}>
-                  <div style={{ height: 700, width: '100%' }}>
+              <div style={{ maxWidth: 1200 }}>
+                <div className={`${styles.gridCard} ${light ? styles.gridCardLight : ''}`} style={{ height: 700, width: '100%' }}>
+                  <ThemeProvider theme={muiTheme}>
                     <DataGrid
                       rows={gridRows}
                       columns={gridCols}
                       pagination
-                      autoPageSize   // picks a sensible page size
+                      autoPageSize
                       disableRowSelectionOnClick
                       checkboxSelection={false}
                       density="compact"
                       sortingOrder={['desc', 'asc', null]}
-                      slots={{ toolbar: GridToolbar }}  // optional
+                      slots={{ toolbar: GridToolbar }}
+                      slotProps={{
+                        toolbar: { showQuickFilter: true, quickFilterProps: { debounceMs: 300 } },
+                      }}
+                      sx={{
+                        '& .MuiDataGrid-columnHeaderTitle': { fontWeight: 700 },
+                        '& .MuiDataGrid-toolbarContainer': { p: 1 },
+                        '& .MuiDataGrid-virtualScrollerRenderZone .MuiDataGrid-row:nth-of-type(odd)': {
+                          backgroundColor: light ? 'rgba(0,0,0,.02)' : 'rgba(255,255,255,.02)',
+                        },
+                        '& .MuiDataGrid-row:hover': {
+                          backgroundColor: light ? 'rgba(198,35,104,.06)!important' : 'rgba(198,35,104,.12)!important',
+                        },
+                      }}
+                      pageSizeOptions={[25, 50, 100]}
+                      hideFooterSelectedRowCount
+                      disableColumnMenu={false}
                     />
-                  </div>
+                  </ThemeProvider>
                 </div>
-              ) : null}
+              </div>
+            ) : null}
         
         
         <Link href="/about">
